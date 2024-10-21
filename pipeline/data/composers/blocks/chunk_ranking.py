@@ -103,3 +103,19 @@ class RandomRanker(ChunkRanker):
         for rank, chunk in zip(ranks, chunks):
             chunk.rank.append(rank)
         return chunks
+
+
+class IoURanker(ChunkRanker):
+    def __init__(self, min_len: int) -> None:
+        self.min_len = min_len
+
+    def _get_lines(self, content: str) -> set[str]:
+        return {line for line in map(str.strip, content.split('\n')) if len(line) >= self.min_len}
+
+    def __call__(self, chunks: Sequence[Chunk], datapoint: Datapoint) -> Sequence[Chunk]:
+        target_lines = self._get_lines(datapoint.completion_file['content'])
+        for chunk in chunks:
+            chunk_lines = self._get_lines(chunk.content)
+            iou_score = len(target_lines & chunk_lines) / len(target_lines | chunk_lines)
+            chunk.rank.append(iou_score)
+        return chunks

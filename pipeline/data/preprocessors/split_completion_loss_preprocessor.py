@@ -19,6 +19,7 @@ class SplitCompletionLossPreprocessor(AmortizedPreprocessorBase):
                  tokenizer: PreTrainedTokenizerBase,
                  max_completion_len: int,
                  max_seq_len: int,
+                 block_len: int | None,
                  loss_ratio: float,
                  num_chars_per_token: int,
                  use_sep_token: bool,  # appended to each context block
@@ -36,6 +37,7 @@ class SplitCompletionLossPreprocessor(AmortizedPreprocessorBase):
         self.tokenizer = tokenizer
         self.max_completion_len = max_completion_len
         self.max_seq_len = max_seq_len
+        self.block_len = block_len
         self.loss_ratio = loss_ratio
         self.use_sep_token = use_sep_token
 
@@ -128,7 +130,21 @@ class SplitCompletionLossPreprocessor(AmortizedPreprocessorBase):
         tokenized_completion = self.tokenize_composed_completion(batch['completion_block'][0])
         tokenized_context = self.tokenize_composed_context(batch['context_blocks'][0])
 
+        completion_len = len(tokenized_completion.input_ids)
         tokenized_batch = tokenized_context.input_ids + [tokenized_completion.input_ids]
+
+        # treat input as one long sequence divided into equal blocks
+        if self.block_len is not None:
+            flat_tokenized_batch = [
+                token_id
+                for block in tokenized_batch
+                for token_id in block
+            ]
+            tokenized_batch = [
+                flat_tokenized_batch[i:(i + self.block_len)]
+                for i in range(0, len(flat_tokenized_batch), self.block_len)
+            ]
+
         tokenized_batch = [[self.tokenizer.bos_token_id] + block for block in tokenized_batch]
 
         padded_batch = self.tokenizer.pad(
@@ -139,7 +155,7 @@ class SplitCompletionLossPreprocessor(AmortizedPreprocessorBase):
         )
 
         attention_mask = padded_batch.attention_mask.bool()
-        last_token_idx = completion_len = attention_mask[-1].sum() - 1
+        last_token_idx = attention_mask[-1].sum() - 1
 
         attention_mask[1:, 0] = False  # remove BOS tokens except for the first one
         target_ids = padded_batch.input_ids[attention_mask][None, 1:][..., -self.max_seq_len:]
