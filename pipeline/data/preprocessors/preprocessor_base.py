@@ -3,8 +3,7 @@ from pipeline.data.composed_datapoint import BatchComposedDatapoint
 import math
 import warnings
 from abc import ABC, abstractmethod
-from typing import Any, TypedDict
-from typing_extensions import Self
+from typing import Any, Self, TypedDict
 
 import torch
 from torch.utils.data._utils.collate import default_collate_fn_map  # noqa: see below

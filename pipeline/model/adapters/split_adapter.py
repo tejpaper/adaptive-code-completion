@@ -5,8 +5,7 @@ import copy
 import os
 import re
 from contextlib import nullcontext
-from typing import Any, NoReturn
-from typing_extensions import Self
+from typing import Any, NoReturn, Self
 
 import torch
 import torch.nn as nn

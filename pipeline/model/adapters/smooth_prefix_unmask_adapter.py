@@ -3,8 +3,7 @@ from pipeline.model.adapters.adapter_base import AdapterBase
 from pipeline.model.init import AttentionImplementation
 
 import re
-from typing import Any
-from typing_extensions import Self
+from typing import Any, Self
 
 import torch
 import torch.nn as nn

@@ -1,8 +1,7 @@
 from pipeline.outputs.metrics.statistic_base import StatisticName, StatisticValue
 
 from abc import ABC, abstractmethod
-from typing import TypedDict, TypeVar, Type
-from typing_extensions import NotRequired
+from typing import NotRequired, TypedDict, TypeVar, Type
 
 T = TypeVar('T')
 JsonAllowedTypes = dict | list | tuple | str | int | float | bool | None
