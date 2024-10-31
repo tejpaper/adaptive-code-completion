@@ -121,9 +121,9 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
         return tokenized_contexts
 
     def calc_lens(self,
-                  prompt: torch.Tensor,
-                  context: torch.Tensor,
-                  completion: torch.Tensor,
+                  prompt: list[int],
+                  context: list[int],
+                  completion: list[int],
                   ) -> tuple[int, int, int]:
         if len(context) >= self.context_tokens:
             prompt_len = min(len(prompt), self.max_seq_len - self.context_tokens)

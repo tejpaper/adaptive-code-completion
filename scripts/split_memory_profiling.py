@@ -98,8 +98,8 @@ def main() -> None:
     random_seed = 1337
     model_name = 'deepseek-ai/deepseek-coder-1.3b-base'
     num_gen_layers = 6
-    cache_file = f'extra/cache/mem_grid_generator_{num_gen_layers}.pt'
-    plot_file = f'extra/viz/mem_grid_generator_{num_gen_layers}.png'
+    cache_file = f'scripts/cache/split_memory_profiling/mem_grid_generator_{num_gen_layers}.pt'
+    plot_file = f'scripts/viz/split_memory_profiling/mem_grid_generator_{num_gen_layers}.png'
     block_sizes = [2 ** power for power in range(6, 10 + 1)] + list(range(2 ** 11, 2 ** 13 + 1, 1024))
     num_blocks = list(range(1, 48 + 1))
     accumulation_steps = 2
@@ -120,6 +120,7 @@ def main() -> None:
         num_gen_layers=num_gen_layers,
         max_seq_len=40960,  # max(num_blocks) * max(block_sizes) + 42
         simplified_rope=False,
+        sequential_encoder=False,
         model_name=model_name,
         params_pattern='^generator.*')
     model = adapter.adapt(model)

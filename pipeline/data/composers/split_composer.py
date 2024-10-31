@@ -23,8 +23,8 @@ class SplitComposer:
         self.tokenizer = tokenizer
         self.composer_chain = UnsafeComposerChain(*blocks)
 
-        self.max_token_len = max(map(len, tokenizer.get_vocab()))
         self.min_token_len = min(map(len, tokenizer.get_vocab()))
+        self.max_token_len = max(map(len, tokenizer.get_vocab()))
 
     def compose_context_blocks(self, datapoint: Datapoint) -> list[str]:
         raw_blocks = self.composer_chain(datapoint)[::-1]
@@ -33,10 +33,10 @@ class SplitComposer:
         for block in raw_blocks:
             content = block.content.rstrip(self.block_sep[:1]) + self.block_sep
 
-            if len(content) * self.min_token_len <= self.max_block_size:
+            if len(content) / self.min_token_len <= self.max_block_size:
                 composed_blocks.append(content)
 
-            elif len(content) * self.max_token_len <= self.max_block_size:
+            elif len(content) / self.max_token_len <= self.max_block_size:
                 num_tokens = len(self.tokenizer(content, return_attention_mask=False).input_ids)
                 if num_tokens <= self.max_block_size:
                     composed_blocks.append(content)

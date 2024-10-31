@@ -31,7 +31,7 @@ ADAPTERS = [
     'configs/adapter/split_adapter/generator_6.yaml',
 ]
 RUNS_DIR = 'runs'
-OUTPUTS_DIR = 'extra/outputs/eval_recalc'
+OUTPUTS_DIR = 'scripts/outputs/eval_recalc'
 
 
 def main() -> None:

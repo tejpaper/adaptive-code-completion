@@ -116,7 +116,7 @@ def main() -> None:
         recalculate_random_category=True,
     )
 
-    config = OmegaConf.load('extra/cache/template.yaml')
+    config = OmegaConf.load('scripts/configs/composers_em_eval/template.yaml')
 
     checkpointer_config = CheckpointManagerConfig(
         init_from=LoadingMode.BEST,

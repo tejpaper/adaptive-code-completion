@@ -23,10 +23,10 @@ class FileChunker(ComposerBlock, ABC):
 
 
 class FileGrainedChunker(FileChunker):  # identity chunker
-    def __call__(self, files: Sequence[File], _datapoint: Datapoint) -> Sequence[Chunk]:
+    def __call__(self, files: Sequence[File], datapoint: Datapoint) -> Sequence[Chunk]:
         return [Chunk(content=file.content, metadata=file.metadata, file_ref=file) for file in files
                 # TODO: remove temporary hardcoded solution for data leakage
-                if file.metadata['filename'] != 'tinygrad/llops/ops_llvm.py']
+                if file.metadata['filename'] != datapoint.completion_file['filename']]
 
 
 class CodeSegment(str, Enum):
@@ -84,7 +84,7 @@ class CodeSegmentGrainedChunker(FileChunker):
     def strip_lines(string: str, strip_func: Callable[[str], str]) -> str:
         return '\n'.join(map(strip_func, string.split('\n')))
 
-    def __call__(self, files: Sequence[File], _datapoint: Datapoint) -> Sequence[Chunk]:
+    def __call__(self, files: Sequence[File], datapoint: Datapoint) -> Sequence[Chunk]:
         chunks = list()
 
         for file in files:
@@ -96,7 +96,7 @@ class CodeSegmentGrainedChunker(FileChunker):
                 ))
                 continue
             # TODO: remove temporary hardcoded solution for data leakage
-            if file.metadata['filename'] == 'tinygrad/llops/ops_llvm.py':
+            if file.metadata['filename'] == datapoint.completion_file['filename']:
                 continue
 
             bytecode = bytes(file.content, self.ENCODING)

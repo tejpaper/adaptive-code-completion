@@ -91,7 +91,7 @@ COMPOSERS = {
         PathCommentHarvester(chunks_sep='\n\n', path_comment_template='# {filename}\n{content}'),
     ], **COMPOSER_KWARGS),
 }
-OUTPUT_FILE = 'extra/outputs/composers_ce_eval/checkpoint_comparison.jsonl'
+OUTPUT_FILE = 'scripts/outputs/composers_ce_eval/checkpoint_comparison.jsonl'
 
 
 def main() -> None:
