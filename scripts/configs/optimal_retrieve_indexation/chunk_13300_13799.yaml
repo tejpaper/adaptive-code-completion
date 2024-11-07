@@ -11,7 +11,7 @@ dataset:
 
 chunk:
   start: 13300
-  stop: 13800
+  stop: 13799
 
 preprocessor:
   max_seq_len: 16384

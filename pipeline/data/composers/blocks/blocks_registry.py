@@ -21,6 +21,7 @@ from pipeline.data.composers.blocks.context_postprocessing import (
 from pipeline.data.composers.blocks.file_chunking import (
     FileGrainedChunker,
     CodeSegmentGrainedChunker,
+    FixedLineChunker,
 )
 from pipeline.data.composers.blocks.file_filtering import (
     NullFileFilter,
@@ -53,6 +54,7 @@ BLOCKS_REGISTRY = {
     # file_chunking
     'file_grained_chunker': FileGrainedChunker,
     'code_segment_grained_chunker': CodeSegmentGrainedChunker,
+    'fixed_line_chunker': FixedLineChunker,
 
     # chunk_ranking
     'negative_path_distance_ranker': NegativePathDistanceRanker,

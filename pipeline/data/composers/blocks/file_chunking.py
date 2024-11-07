@@ -160,3 +160,41 @@ class CodeOnlyChunker(CodeSegmentGrainedChunker):
     def __call__(self, *args, **kwargs) -> Sequence[Chunk]:
         return [chunk for chunk in super().__call__(*args, **kwargs)
                 if chunk.metadata['segment_type'] == CodeSegment.CODE]
+
+
+class FixedLineChunker(FileChunker):
+    def __init__(self, chunk_lines_size: int, overlap_lines_size: int) -> None:
+        if chunk_lines_size <= overlap_lines_size:
+            raise ValueError('chunk_lines_size must be greater than overlap_lines_size.')
+
+        self.chunk_lines_size = chunk_lines_size
+        self.overlap_lines_size = overlap_lines_size
+
+    def __call__(self, files: Sequence[File], datapoint: Datapoint) -> Sequence[Chunk]:
+        chunks = list()
+
+        for file in files:
+            # TODO: remove temporary hardcoded solution for data leakage
+            if file.metadata['filename'] == datapoint.completion_file['filename']:
+                continue
+
+            lines = file.content.split('\n')
+            total_lines = len(lines)
+
+            stride = self.chunk_lines_size - self.overlap_lines_size
+            for i in range(total_lines, self.chunk_lines_size - 1, -stride):
+                start_idx = max(0, i - self.chunk_lines_size)
+                chunks.append(Chunk(
+                    content='\n'.join(lines[start_idx:i]),
+                    metadata=file.metadata,
+                    file_ref=file
+                ))
+
+            if total_lines % stride != 0:
+                chunks.append(Chunk(
+                    content='\n'.join(lines[:self.chunk_lines_size]),
+                    metadata=file.metadata,
+                    file_ref=file
+                ))
+
+        return chunks
