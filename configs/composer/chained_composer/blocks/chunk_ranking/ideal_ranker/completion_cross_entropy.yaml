@@ -1,0 +1,3 @@
+path: scripts/outputs/optimal_retrieve_indexation/indices.json
+metric: completion_cross_entropy
+mode: min

@@ -8,6 +8,7 @@ runs/**/logs/stderr.json
 runs/**/logs/stdout.json
 runs/test
 scripts/outputs/optimal_retrieve_indexation/raw
+scripts/outputs/optimal_retrieve_indexation/indices.json
 wandb
 venv
 main.ipynb

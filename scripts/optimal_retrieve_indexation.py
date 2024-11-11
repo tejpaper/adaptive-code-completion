@@ -5,12 +5,13 @@ from pipeline.outputs.metrics.cross_entropy import CrossEntropy
 from pipeline.outputs.metrics.exact_match import ExactMatch
 from pipeline.outputs.metrics.metric_base import MaskType
 
-import jsonlines
+import json
 import os
 import sys
 from collections import defaultdict
 from typing import TypedDict
 
+import jsonlines
 import torch
 import torch.nn.functional as F
 from datasets import load_dataset
@@ -22,7 +23,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BatchEncoding
 from transformers.modeling_outputs import CausalLMOutputWithPast
 
 CONFIGS_DIR = 'scripts/configs/optimal_retrieve_indexation'
-OUTPUTS_DIR = 'scripts/outputs/optimal_retrieve_indexation/raw'
+OUTPUTS_DIR = 'scripts/outputs/optimal_retrieve_indexation'
+RAW_OUTPUTS_DIR = os.path.join(OUTPUTS_DIR, 'raw')
 PREFETCH_FACTOR = 8
 INPUTS_TRACEBACK = [None for _ in range(PREFETCH_FACTOR)]
 
@@ -213,7 +215,7 @@ def main() -> None:
     config_filename = sys.argv[1]
     config = OmegaConf.load(os.path.join(CONFIGS_DIR, config_filename))
     session_name = config_filename.split('.')[0]
-    output_file = os.path.join(OUTPUTS_DIR, f'{session_name}.jsonl')
+    output_file = os.path.join(RAW_OUTPUTS_DIR, f'{session_name}.jsonl')
 
     device = get_free_device()
     dtype = getattr(torch, config.model.dtype)
@@ -318,3 +320,30 @@ if __name__ == '__main__':
         main()
     except torch.cuda.OutOfMemoryError:
         print(f'OOM: {INPUTS_TRACEBACK}')
+
+
+# appendix
+def merge_chunks() -> None:
+    indices = dict()
+
+    for chunk_filename in tqdm(os.listdir(RAW_OUTPUTS_DIR)):
+        with jsonlines.open(os.path.join(RAW_OUTPUTS_DIR, chunk_filename)) as stream:
+            for line in stream:
+                repo = line['repo']
+                commit_hash = line['commit_hash']
+                completion_filename = line['completion_filename']
+                results = line['results']
+
+                repo_dict = indices.get(repo, dict())
+                commit_dict = repo_dict.get(commit_hash, dict())
+                completion_dict = commit_dict.get(completion_filename, dict())
+
+                for content_filename, metrics in results.items():
+                    completion_dict[content_filename] = metrics
+
+                commit_dict[completion_filename] = completion_dict
+                repo_dict[commit_hash] = commit_dict
+                indices[repo] = repo_dict
+
+    with open(os.path.join(OUTPUTS_DIR, 'indices.json'), 'w') as stream:
+        json.dump(indices, stream)

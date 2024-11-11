@@ -8,6 +8,7 @@ from pipeline.data.composers.blocks.chunk_ranking import (
     FileExtensionRanker,
     RandomRanker,
     IoURanker,
+    IdealRanker,
 )
 from pipeline.data.composers.blocks.chunk_sorting import (
     LexicographicSorter,
@@ -62,6 +63,7 @@ BLOCKS_REGISTRY = {
     'file_extension_ranker': FileExtensionRanker,
     'random_ranker': RandomRanker,
     'iou_ranker': IoURanker,
+    'ideal_ranker': IdealRanker,
 
     # chunk_sorting
     'lexicographic_sorter': LexicographicSorter,
