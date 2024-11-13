@@ -32,6 +32,7 @@ from pipeline.data.composers.blocks.file_filtering import (
     FileLengthFilter,
     TokenizedFileLengthFilter,
     CharTokenRatioFilter,
+    IndexQuantileGroupFilter,
 )
 from pipeline.data.composers.blocks.file_preprocessing import (
     EmptyLinesRemovalPreprocessor,
@@ -47,6 +48,7 @@ BLOCKS_REGISTRY = {
     'file_length_filter': FileLengthFilter,
     'tokenized_file_length_filter': TokenizedFileLengthFilter,
     'char_token_ratio_filter': CharTokenRatioFilter,
+    'index_quantile_group_filter': IndexQuantileGroupFilter,
 
     # file_preprocessing
     'empty_lines_removal_preprocessor': EmptyLinesRemovalPreprocessor,

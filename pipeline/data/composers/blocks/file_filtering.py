@@ -1,10 +1,13 @@
 from pipeline.data.composers.chain import File, ComposerBlock
 from pipeline.data.datapoint import Datapoint
 
+import json
+import math
 import random
 from abc import ABC
 from typing import Sequence, Type
 
+import numpy as np
 from transformers import PreTrainedTokenizerBase
 
 
@@ -107,6 +110,60 @@ class CharTokenRatioFilter(FileFilter):
             ratio = len(subsequence) / len(tokenized_subsequence)
 
             if self.min_ratio <= ratio <= self.max_ratio:
+                filtered_files.append(file)
+
+        return filtered_files
+
+
+class IndexQuantileGroupFilter(FileFilter):
+    def __init__(self,
+                 path: str,
+                 index_name: str,
+                 num_groups: int,
+                 group_ids: list[int],
+                 include_nans: bool,
+                 ) -> None:
+        with open(path) as stream:
+            self.indices = json.load(stream)
+
+        self.index_name = index_name
+        self.num_groups = num_groups
+        self.group_ids = np.array(group_ids)
+        self.include_nans = include_nans
+
+    def __call__(self, files: Sequence[File], datapoint: Datapoint) -> Sequence[File]:
+        content_scores = self.indices[
+            datapoint.repo][
+            datapoint.commit_hash][
+            datapoint.completion_file['filename']]
+
+        all_scores = list()
+        for file in files:
+            content_filename = file.metadata['filename']
+
+            if content_filename in content_scores:
+                file_scores = content_scores[content_filename]
+                index = file_scores.get(self.index_name, float('nan'))
+
+                if not math.isnan(index):
+                    all_scores.append(index)
+
+        lower_bound = np.quantile(all_scores, self.group_ids / self.num_groups)
+        upper_bound = np.quantile(all_scores, (self.group_ids + 1) / self.num_groups)
+        upper_bound[upper_bound == max(all_scores)] = float('inf')
+
+        filtered_files = list()
+        for file in files:
+            content_filename = file.metadata['filename']
+
+            if content_filename in content_scores:
+                file_scores = content_scores[content_filename]
+                index = file_scores.get(self.index_name, float('nan'))
+            else:
+                index = float('nan')
+
+            filter_predicate = any((lower_bound <= index) & (index < upper_bound))
+            if (math.isnan(index) and self.include_nans) or filter_predicate:
                 filtered_files.append(file)
 
         return filtered_files
