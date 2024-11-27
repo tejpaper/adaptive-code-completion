@@ -9,6 +9,7 @@ from pipeline.data.preprocessors.preprocessor_base import (
 
 import math
 import re
+import warnings
 
 import torch
 from transformers import BatchEncoding, PreTrainedTokenizerBase
@@ -128,7 +129,13 @@ class SplitCompletionLossPreprocessor(AmortizedPreprocessorBase):
             raise ValueError('This preprocessor only accepts batch_size = 1.')
 
         tokenized_completion = self.tokenize_composed_completion(batch['completion_block'][0])
-        tokenized_context = self.tokenize_composed_context(batch['context_blocks'][0])
+
+        if not batch['context_blocks'][0]:
+            tokenized_context = BatchEncoding({'input_ids': [[]]})
+            if self.verbose:
+                warnings.warn('Context is empty.')
+        else:
+            tokenized_context = self.tokenize_composed_context(batch['context_blocks'][0])
 
         completion_len = len(tokenized_completion.input_ids)
         tokenized_batch = tokenized_context.input_ids + [tokenized_completion.input_ids]
