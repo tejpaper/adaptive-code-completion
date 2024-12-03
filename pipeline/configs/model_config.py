@@ -1,7 +1,7 @@
 from pipeline.configs.config_base import ConfigBase
 
-from dataclasses import dataclass
-from typing import Literal
+from dataclasses import dataclass, field
+from typing import Any, Literal
 
 import torch
 
@@ -18,6 +18,8 @@ class ModelConfig(ConfigBase):
     dtype: torch.dtype | None = None
     attn_implementation: Literal['flash_attention_2', 'sdpa', 'eager'] | None = None
     compile: bool = True
+
+    config: dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
         if isinstance(self.device, str):

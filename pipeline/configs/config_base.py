@@ -1,4 +1,4 @@
-from dataclasses import asdict, dataclass, fields
+from dataclasses import dataclass, fields
 from pprint import pformat
 from typing import Any, TypeVar, Type
 

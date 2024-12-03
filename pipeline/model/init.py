@@ -73,6 +73,7 @@ def init_model(config: ModelConfig) -> PreTrainedModel:
         torch_dtype=config.dtype,
         attn_implementation=config.attn_implementation,
         use_cache=config.use_cache,
+        **config.config,
     )
 
     if config.compile:
