@@ -50,7 +50,7 @@ class SplitCompletionLossPreprocessor(AmortizedPreprocessorBase):
             text=trunc_completion,
             add_special_tokens=False,
             return_attention_mask=False,
-            return_offsets_mapping=True,
+            return_offsets_mapping=self.tokenizer.is_fast,
         )
 
         overflow_chars = (len(completion_block) > char_trunc_upper_bound)
@@ -59,6 +59,9 @@ class SplitCompletionLossPreprocessor(AmortizedPreprocessorBase):
         if overflow_chars and underflow_tokens:
             self._inc_num_chars_per_token()
             return self.tokenize_composed_completion(completion_block)
+
+        if not self.tokenizer.is_fast:
+            tokenized_completion['offset_mapping'] = self.calc_offset_mapping(tokenized_completion.input_ids)
 
         tokenized_completion.input_ids = tokenized_completion.input_ids[:self.max_completion_len]
         tokenized_completion.offset_mapping = tokenized_completion.offset_mapping[:self.max_completion_len]

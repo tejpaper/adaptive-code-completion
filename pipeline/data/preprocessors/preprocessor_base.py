@@ -44,6 +44,8 @@ default_collate_fn_map[BatchMetadata] = lambda x, *args, **kwargs: x[0]
 
 
 class PreprocessorBase(ABC):
+    tokenizer = None
+
     @abstractmethod
     def get_loss_mask(self, *args, **kwargs) -> torch.Tensor:
         """
@@ -53,6 +55,17 @@ class PreprocessorBase(ABC):
         *or we just don't care :)
         """
         raise NotImplementedError
+
+    def calc_offset_mapping(self, seq_ids: list[int]) -> list[tuple[int, int]]:
+        char_start = 0
+        offsets = list()
+
+        for token_len in map(len, self.tokenizer.batch_decode(seq_ids)):
+            char_end = char_start + token_len
+            offsets.append((char_start, char_end))
+            char_start = char_end
+
+        return offsets
 
     @abstractmethod
     def get_completion_mask(self, *args, **kwargs) -> torch.Tensor:

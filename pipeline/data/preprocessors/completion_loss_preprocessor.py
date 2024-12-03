@@ -76,7 +76,7 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
             text=trunc_completions,
             add_special_tokens=False,
             return_attention_mask=False,
-            return_offsets_mapping=True,
+            return_offsets_mapping=self.tokenizer.is_fast,
             return_length=True,
         )
 
@@ -87,6 +87,11 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
         if torch.any(overflow_chars & underflow_tokens):
             self._inc_num_chars_per_token()
             return self.tokenize_composed_completion(completions)
+
+        if not self.tokenizer.is_fast:
+            tokenized_completions['offset_mapping'] = list(map(
+                self.calc_offset_mapping, tokenized_completions.input_ids
+            ))
 
         tokenized_completions['newline_positions'] = [
             [match.start() for match in re.finditer('\n', completion)]
