@@ -27,6 +27,9 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
                  ) -> None:
         super().__init__(num_chars_per_token, verbose)
 
+        # not all models have BOS token (e.g. Qwen2.5-Coder)
+        max_seq_len += (tokenizer.bos_token_id is None)
+
         if not 0 < loss_ratio <= 1:
             raise ValueError('loss_ratio must be selected from the interval (0, 1]. '
                              f'Got {loss_ratio} instead.')
@@ -207,7 +210,10 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
 
             prompt_len, context_len, completion_len = self.calc_lens(prompt, context, completion)
 
-            prompt = [self.tokenizer.bos_token_id] + prompt[-prompt_len:]
+            if self.tokenizer.bos_token_id is not None:
+                prompt = [self.tokenizer.bos_token_id] + prompt
+
+            prompt = prompt[-prompt_len:]
             context = context[-context_len:]
             if self.use_sep_token and context:
                 context = context[1:] + [self.tokenizer.sep_token_id]

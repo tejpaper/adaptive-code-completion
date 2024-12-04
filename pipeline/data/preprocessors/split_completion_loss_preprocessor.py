@@ -28,6 +28,10 @@ class SplitCompletionLossPreprocessor(AmortizedPreprocessorBase):
                  ) -> None:
         super().__init__(num_chars_per_token, verbose)
 
+        if tokenizer.bos_token_id is None:
+            raise NotImplementedError('This version of the pipeline does not support '
+                                      'split preprocessors with BOS token omission.')
+
         if not 0 < loss_ratio <= 1:
             raise ValueError('loss_ratio must be selected from the interval (0, 1]. '
                              f'Got {loss_ratio} instead.')
