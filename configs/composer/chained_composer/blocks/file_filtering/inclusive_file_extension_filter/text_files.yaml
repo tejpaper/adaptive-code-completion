@@ -1,0 +1,1 @@
+whitelist: [.json, .yaml, .yml, .sh, .md, .txt, .rst]
