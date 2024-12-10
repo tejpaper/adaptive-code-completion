@@ -4,7 +4,7 @@ from pipeline.environment.hardware import get_free_device, get_optimal_dtype
 from enum import Enum
 
 import torch
-from omegaconf import DictConfig
+from omegaconf import DictConfig, OmegaConf
 from transformers.models.auto import MODEL_FOR_CAUSAL_LM_MAPPING
 from transformers.utils import is_flash_attn_2_available, is_torch_sdpa_available
 from transformers import (
@@ -73,7 +73,7 @@ def init_model(config: ModelConfig) -> PreTrainedModel:
         torch_dtype=config.dtype,
         attn_implementation=config.attn_implementation,
         use_cache=config.use_cache,
-        **config.config,
+        **OmegaConf.to_container(config.config),
     )
 
     if config.compile:

@@ -210,13 +210,14 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
 
             prompt_len, context_len, completion_len = self.calc_lens(prompt, context, completion)
 
+            prompt = prompt[-prompt_len:]
             if self.tokenizer.bos_token_id is not None:
                 prompt = [self.tokenizer.bos_token_id] + prompt
 
-            prompt = prompt[-prompt_len:]
             context = context[-context_len:]
             if self.use_sep_token and context:
                 context = context[1:] + [self.tokenizer.sep_token_id]
+
             completion = completion[:completion_len]
 
             tokenized_completions.offset_mapping[sample_idx] = \

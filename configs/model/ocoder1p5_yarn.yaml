@@ -1,0 +1,12 @@
+tokenizer_name: infly/OpenCoder-1.5B-Base
+model_name: infly/OpenCoder-1.5B-Base
+trust_remote_code: True
+compile: False
+
+config:
+  rope_scaling:
+    rope_type: yarn
+    factor: 4.0
+    # alpha = 1
+    # beta = 32
+    # attention_factor = 0.1 * ln(factor) + 1.0
