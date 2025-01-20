@@ -1,4 +1,5 @@
 from pipeline.data.composed_datapoint import ComposedDatapoint, BatchComposedDatapoint
+from pipeline.data.composers.blocks.file_preprocessing import NewlinePreprocessor
 from pipeline.data.datapoint import Datapoint, BatchDatapoint
 
 from abc import ABC, abstractmethod
@@ -46,9 +47,8 @@ class ComposerBase(ABC):
             for i in range(len(line_category_ids)):
                 line_category_ids[i] += offset
 
-        completion = template_with_inserted_path.format(**datapoint.completion_file)
-        if not completion.endswith('\n'):
-            completion += '\n'  # instead of EOS token
+        content = NewlinePreprocessor.unify_newlines(datapoint.completion_file['content'])
+        completion = template_with_inserted_path.format(content=content)
 
         return completion
 

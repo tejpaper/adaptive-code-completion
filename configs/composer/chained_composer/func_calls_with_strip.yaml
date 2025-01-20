@@ -5,6 +5,7 @@ recalculate_random_category: True
 
 block_configs: [
   file_filtering/empty_file_filter/no_args.yaml,
+  file_preprocessing/newline_preprocessor/no_args.yaml,
   file_chunking/file_grained_chunker/no_args.yaml,
   chunk_ranking/function_call_ranker/absolute.yaml,
   chunk_sorting/lexicographic_sorter/no_args.yaml,

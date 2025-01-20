@@ -26,6 +26,17 @@ class EmptyLinesRemovalPreprocessor(FilePreprocessor):
         return files
 
 
+class NewlinePreprocessor(FilePreprocessor):
+    @staticmethod
+    def unify_newlines(string: str) -> str:
+        return '\n'.join(string.rstrip().splitlines()) + '\n'
+
+    def __call__(self, files: Sequence[File], _datapoint: Datapoint) -> Sequence[File]:
+        for file in files:
+            file.content = self.unify_newlines(file.content)
+        return files
+
+
 class DeclarationOnlyPreprocessor(FilePreprocessor):
     ENCODING = 'utf8'
 

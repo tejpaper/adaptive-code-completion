@@ -36,6 +36,7 @@ from pipeline.data.composers.blocks.file_filtering import (
 )
 from pipeline.data.composers.blocks.file_preprocessing import (
     EmptyLinesRemovalPreprocessor,
+    NewlinePreprocessor,
     DeclarationOnlyPreprocessor,
 )
 
@@ -52,6 +53,7 @@ BLOCKS_REGISTRY = {
 
     # file_preprocessing
     'empty_lines_removal_preprocessor': EmptyLinesRemovalPreprocessor,
+    'newline_preprocessor': NewlinePreprocessor,
     'declaration_only_preprocessor': DeclarationOnlyPreprocessor,
 
     # file_chunking
