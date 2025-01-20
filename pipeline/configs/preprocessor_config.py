@@ -9,7 +9,8 @@ from transformers import PreTrainedTokenizerBase
 class PreprocessorConfig(ConfigBase):
     tokenizer: PreTrainedTokenizerBase
     max_seq_len: int
-    context_tokens: int | float
+    context_tokens: int
+    max_completion_len: int | float
     loss_ratio: float
     num_chars_per_token: int
     use_sep_token: bool

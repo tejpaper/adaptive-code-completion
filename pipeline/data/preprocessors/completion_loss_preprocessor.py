@@ -18,7 +18,8 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
     def __init__(self,
                  tokenizer: PreTrainedTokenizerBase,
                  max_seq_len: int,
-                 context_tokens: int | float,
+                 context_tokens: int,
+                 max_completion_len: int,
                  loss_ratio: float,
                  num_chars_per_token: int,
                  use_sep_token: bool,  # appended to the context
@@ -40,14 +41,8 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
 
         self.tokenizer = tokenizer
         self.max_seq_len = max_seq_len
-
-        if isinstance(context_tokens, float):
-            if not 0 <= context_tokens <= 1:
-                raise ValueError('The context ratio must be between 0 and 1.')
-
-            context_tokens = int(max_seq_len * context_tokens)
         self.context_tokens = context_tokens
-
+        self.max_completion_len = max_completion_len
         self.loss_ratio = loss_ratio
         self.use_sep_token = use_sep_token
         self.padding = padding
@@ -134,13 +129,26 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
                   completion: list[int],
                   ) -> tuple[int, int, int]:
         if len(context) >= self.context_tokens:
-            prompt_len = min(len(prompt), self.max_seq_len - self.context_tokens)
-            completion_len = min(len(completion), self.max_seq_len - self.context_tokens - prompt_len)
+            prompt_len = min(
+                len(prompt),
+                self.max_seq_len - self.context_tokens,
+            )
+            completion_len = min(
+                len(completion),
+                self.max_seq_len - self.context_tokens - prompt_len,
+                self.max_completion_len,
+            )
             context_len = self.max_seq_len - prompt_len - completion_len
         else:
             context_len = len(context)
-            prompt_len = min(len(prompt), self.max_seq_len - context_len)
-            completion_len = self.max_seq_len - prompt_len - context_len
+            prompt_len = min(
+                len(prompt),
+                self.max_seq_len - context_len,
+            )
+            completion_len = min(
+                self.max_seq_len - prompt_len - context_len,
+                self.max_completion_len,
+            )
 
         return prompt_len, context_len, completion_len
 
