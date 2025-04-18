@@ -25,7 +25,7 @@ MAIN_CONFIG = 'defaults'
 
 # run directory
 RUNS_DIR = os.path.join(LCA_SOLVERS_DIR, 'runs')
-ARGV_SH_FILE = 'run_script.sh'
+ARGV_SH_FILE = 'run.sh'
 CHECKPOINTS_DIR = 'checkpoints'
 LOGS_DIR = 'logs'
 
