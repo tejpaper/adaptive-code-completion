@@ -1,4 +1,4 @@
-from pipeline.outputs.metrics.metric_base import OptimizationMode, MetricBase
+from pipeline.outputs.metrics.metric_base import OptimizationMode, MetricBase, MaskType, MaskBasedMetric
 from pipeline.outputs.metrics.statistic_base import StatisticValue, StatisticName
 
 from typing import TypeVar, Type
@@ -42,3 +42,23 @@ class EpochCounter(MetricBase):
 
     def batch_commit(self, **_kwargs) -> StatisticValue:
         return self.init_epoch + self.samples / self.ds_length
+
+
+class TokenCounter(MaskBasedMetric):
+    mode = OptimizationMode.MAX
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self.num_tokens = 0
+
+    @property
+    def name(self) -> StatisticName:
+        mask_type = '' if self.mask_type == MaskType.ATTACHED else f'{self.mask_type}_'
+        return f'num_{mask_type}tokens'
+
+    @torch.inference_mode
+    def micro_batch_update(self, **kwargs) -> None:
+        self.num_tokens += self.get_mask(**kwargs).sum().item()
+
+    def batch_commit(self, **_kwargs) -> StatisticValue:
+        return self.num_tokens
