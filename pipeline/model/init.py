@@ -66,6 +66,10 @@ def init_model(config: ModelConfig) -> PreTrainedModel:
     if config.load_from is None:
         config.load_from = config.model_name
 
+    kwargs_config = config.config
+    if not isinstance(kwargs_config, dict):
+        kwargs_config = OmegaConf.to_container(kwargs_config)
+
     model = AutoModelForCausalLM.from_pretrained(
         pretrained_model_name_or_path=config.load_from,
         trust_remote_code=config.trust_remote_code,
@@ -73,7 +77,7 @@ def init_model(config: ModelConfig) -> PreTrainedModel:
         torch_dtype=config.dtype,
         attn_implementation=config.attn_implementation,
         use_cache=config.use_cache,
-        **OmegaConf.to_container(config.config),
+        **kwargs_config,
     )
 
     if config.compile:

@@ -3,6 +3,7 @@ from pipeline.outputs.loggers.logger_base import Log
 from pipeline.outputs.metrics.metric_base import OptimizationMode
 from pipeline.outputs.metrics.statistic_base import StatisticName, StatisticValue, StatisticBase
 from pipeline.outputs.metrics.metrics_registry import METRICS_REGISTRY
+from pipeline.environment.hardware import get_free_device
 
 import json
 import os
@@ -99,7 +100,7 @@ class CheckpointManager:  # aka checkpointer
         checkpoint_dir = self.get_checkpoint_directory()
         if checkpoint_dir is not None:
             optim_file = os.path.join(self.directory, checkpoint_dir, self._optim_state_filename)
-            optimizer.load_state_dict(torch.load(optim_file))
+            optimizer.load_state_dict(torch.load(optim_file, map_location=get_free_device()))
 
     def save_checkpoint(self, checkpoint: Checkpoint) -> None:
         checkpoint_dir = os.path.join(
