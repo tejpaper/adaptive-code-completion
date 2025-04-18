@@ -1,7 +1,0 @@
-max_seq_len: 4096
-context_tokens: 2048
-max_completion_len: 4096
-loss_ratio: 1
-num_chars_per_token: 6
-use_sep_token: False
-padding: True

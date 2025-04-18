@@ -3,16 +3,14 @@ run_name: ???
 defaults:
   - adapter: identity_adapter/all_params
   - checkpointer: top_k_checkpointer/top_3
-  - composer: chained_composer/standard
-  # +additional_composer: ...
-  - dataset: train_A100_server
-  - logger: wandb_logger/wandb_composers
+  - dataset: filled_python_files
+  - logger: wandb_logger/context_extension
   - metrics: standard
-  - model: dseek1p3
-  - preprocessor: completion_loss_preprocessor/full_completion_loss_16k
+  - model: ocoder1p5_theta_500k
+  - preprocessor: lm_preprocessor/full_input_loss_12k_4k
   # +additional_preprocessor: ...
-  - split: '256_5'
-  - trainer: universal_trainer/medium_lr
+  - split: '2560_5'
+  - trainer: universal_trainer/standard
 
   - _self_
   - override hydra/hydra_logging: disabled

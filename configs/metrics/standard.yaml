@@ -1,56 +1,63 @@
 train_metrics: [
+  # Training Decomposed Exact Match
+  exact_match/completion_3.yaml,
+  exact_match/context_3.yaml,
+  exact_match/full_3.yaml,
+
   # Training Decomposed Cross-entropy
   cross_entropy/completion.yaml,
   cross_entropy/context.yaml,
-  cross_entropy/attached.yaml,
-  cross_entropy/detached.yaml,
   cross_entropy/full.yaml,
 
-  # Training Categorized Cross-entropy
-  cross_entropy/inproject.yaml,
-  cross_entropy/infile.yaml,
-  cross_entropy/commited.yaml,
-  cross_entropy/common.yaml,
-  cross_entropy/non_informative.yaml,
-  cross_entropy/random.yaml,
+  # Training Decomposed Top-k Accuracy
+  top_k_accuracy/completion_1.yaml,
+  top_k_accuracy/completion_3.yaml,
+  top_k_accuracy/completion_5.yaml,
+  top_k_accuracy/completion_10.yaml,
 
-  # Training Decomposed Exact Match
-  exact_match/completion_3.yaml,
+  top_k_accuracy/context_1.yaml,
+  top_k_accuracy/context_3.yaml,
+  top_k_accuracy/context_5.yaml,
+  top_k_accuracy/context_10.yaml,
 
-  # Training Categorized Top-k Accuracy
-  top_k_accuracy/inproject_1.yaml,
-  top_k_accuracy/inproject_3.yaml,
-  top_k_accuracy/inproject_5.yaml,
-  top_k_accuracy/inproject_10.yaml,
+  top_k_accuracy/full_1.yaml,
+  top_k_accuracy/full_3.yaml,
+  top_k_accuracy/full_5.yaml,
+  top_k_accuracy/full_10.yaml,
 
   # Training Statistics
   epoch/no_args.yaml,
+  num_tokens/completion.yaml,
+  num_tokens/context.yaml,
+  num_tokens/full.yaml,
   lazy_statistic/learning_rate.yaml,
 ]
 valid_metrics: [
+  # Validation Decomposed Exact Match
+  exact_match/completion_3.yaml,
+  exact_match/context_3.yaml,
+  exact_match/full_3.yaml,
+
   # Validation Decomposed Cross-entropy
   cross_entropy/completion.yaml,
   cross_entropy/context.yaml,
-  cross_entropy/attached.yaml,
-  cross_entropy/detached.yaml,
   cross_entropy/full.yaml,
 
-  # Validation Categorized Cross-entropy
-  cross_entropy/inproject.yaml,
-  cross_entropy/infile.yaml,
-  cross_entropy/commited.yaml,
-  cross_entropy/common.yaml,
-  cross_entropy/non_informative.yaml,
-  cross_entropy/random.yaml,
+  # Validation Decomposed Top-k Accuracy
+  top_k_accuracy/completion_1.yaml,
+  top_k_accuracy/completion_3.yaml,
+  top_k_accuracy/completion_5.yaml,
+  top_k_accuracy/completion_10.yaml,
 
-  # Validation Decomposed Exact Match
-  exact_match/completion_3.yaml,
+  top_k_accuracy/context_1.yaml,
+  top_k_accuracy/context_3.yaml,
+  top_k_accuracy/context_5.yaml,
+  top_k_accuracy/context_10.yaml,
 
-  # Validation Categorized Top-k Accuracy
-  top_k_accuracy/inproject_1.yaml,
-  top_k_accuracy/inproject_3.yaml,
-  top_k_accuracy/inproject_5.yaml,
-  top_k_accuracy/inproject_10.yaml,
+  top_k_accuracy/full_1.yaml,
+  top_k_accuracy/full_3.yaml,
+  top_k_accuracy/full_5.yaml,
+  top_k_accuracy/full_10.yaml,
 
   # Validation Statistics
   epoch/no_args.yaml,

@@ -4,4 +4,5 @@ trust_remote_code: True
 compile: False
 
 config:
+  max_position_embeddings: 16384
   rope_theta: 500_000

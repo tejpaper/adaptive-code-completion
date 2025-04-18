@@ -1,8 +1,8 @@
 # Iteration parameters
-max_iters: 20
-valid_freq: 5
-checkpointing_freq: null
-gradient_accumulation_steps: 16
+max_iters: 1900
+valid_freq: 128
+checkpointing_freq: 128
+gradient_accumulation_steps: 128
 micro_batch_size: 1
 
 # AdamW optimizer
