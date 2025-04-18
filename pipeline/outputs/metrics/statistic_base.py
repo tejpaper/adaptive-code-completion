@@ -1,4 +1,3 @@
-# TODO: grad norm, number of (masked) tokens, speed [tok/sec]?
 import re
 from abc import ABC, abstractmethod
 

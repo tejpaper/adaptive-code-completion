@@ -1,7 +1,7 @@
 from pipeline.outputs.checkpointers.data_structures import LoadingMode, Checkpoint
 from pipeline.outputs.loggers.logger_base import Log
 from pipeline.outputs.metrics.metric_base import OptimizationMode
-from pipeline.outputs.metrics.statistic_base import StatisticName, StatisticValue, StatisticBase
+from pipeline.outputs.metrics.statistic_base import StatisticName, StatisticValue
 from pipeline.outputs.metrics.metrics_registry import METRICS_REGISTRY
 from pipeline.environment.hardware import get_free_device
 

@@ -7,7 +7,6 @@ from pipeline.configs.checkpointer_config import (
 )
 from pipeline.configs.composer_config import (
     ChainedComposerConfig,
-    SplitComposerConfig,
 )
 from pipeline.configs.config_base import ConfigBase
 from pipeline.configs.logger_config import (
@@ -16,7 +15,6 @@ from pipeline.configs.logger_config import (
 )
 from pipeline.configs.preprocessor_config import (
     PreprocessorConfig,
-    SplitPreprocessorConfig,
 )
 from pipeline.configs.trainer_config import UniversalTrainerConfig
 
@@ -35,14 +33,10 @@ CONFIGS_REGISTRY = {
 
     # composers
     'chained_composer': ChainedComposerConfig,
-    'split_composer': SplitComposerConfig,
 
     # preprocessors
     'completion_loss_preprocessor': PreprocessorConfig,
-    'file_level_preprocessor': PreprocessorConfig,
     'lm_preprocessor': PreprocessorConfig,
-    'split_completion_loss_preprocessor': SplitPreprocessorConfig,
-    'split_lm_preprocessor': SplitPreprocessorConfig,
 
     # trainers
     'universal_trainer': UniversalTrainerConfig,

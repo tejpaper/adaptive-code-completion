@@ -6,7 +6,7 @@ from datasets import config
 
 
 @dataclass
-class DatasetConfig(ConfigBase):
+class DatasetConfig(ConfigBase):  # TODO: remove?
     path: str
     name: str | None = None
     data_dir: str | None = None
