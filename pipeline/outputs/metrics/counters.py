@@ -23,7 +23,6 @@ class EpochCounter(MetricBase):
         return cls._instance
 
     def __init__(self) -> None:
-        self.init_epoch = 0  # for resumption
         self.samples = 0
         self.ds_length = 1
 
@@ -31,17 +30,13 @@ class EpochCounter(MetricBase):
     def name(self) -> StatisticName:
         return 'epoch'
 
-    def load_state(self, init_epoch: float | None) -> None:
-        if init_epoch is not None:
-            self.init_epoch = init_epoch
-
     def micro_batch_update(self, input_ids: torch.Tensor, trainer: UniversalTrainer, **_kwargs) -> None:
         if trainer.model.training:  # ignores validation samples
             self.samples += input_ids.shape[0]
             self.ds_length = len(trainer.train_dl.dataset)
 
     def batch_commit(self, **_kwargs) -> StatisticValue:
-        return self.init_epoch + self.samples / self.ds_length
+        return self.samples / self.ds_length
 
 
 class TokenCounter(MaskBasedMetric):

@@ -63,15 +63,13 @@ def init_model(config: ModelConfig) -> PreTrainedModel:
         config.dtype = get_optimal_dtype()
     if config.attn_implementation is None:
         config.attn_implementation = get_optimal_attn(config.model_name, config.device, config.dtype)
-    if config.load_from is None:
-        config.load_from = config.model_name
 
     kwargs_config = config.config
     if not isinstance(kwargs_config, dict):
         kwargs_config = OmegaConf.to_container(kwargs_config)
 
     model = AutoModelForCausalLM.from_pretrained(
-        pretrained_model_name_or_path=config.load_from,
+        pretrained_model_name_or_path=config.model_name,
         trust_remote_code=config.trust_remote_code,
         device_map=config.device,
         torch_dtype=config.dtype,
@@ -81,8 +79,9 @@ def init_model(config: ModelConfig) -> PreTrainedModel:
     )
 
     if config.compile:
-        model = torch.compile(model)
-    return model
+        return torch.compile(model)
+    else:
+        return model
 
 
 def init_tokenizer_model(loaded_config: DictConfig, **kwargs) -> tuple[PreTrainedTokenizerBase, PreTrainedModel]:

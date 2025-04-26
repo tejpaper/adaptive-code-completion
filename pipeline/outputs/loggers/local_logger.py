@@ -66,10 +66,9 @@ class LocalLogger(LoggerBase):
         )
 
         if os.path.exists(train_csv):
-            with open(train_csv) as stream:
-                self.last_logged_iter = max(map(lambda x: int(x.split(',')[0]), stream.readlines()[1:]))
-        else:
-            self.last_logged_iter = -1
+            os.remove(train_csv)
+        if os.path.exists(valid_csv):
+            os.remove(valid_csv)
 
         self.train_csv = train_csv
         self.valid_csv = valid_csv
@@ -86,7 +85,7 @@ class LocalLogger(LoggerBase):
 
         if stderr_file == stdout_file:
             stderr_handler = stdout_handler
-        else:  # TODO: large number of processes + high call frequency breaks the json formatting structure (bug)
+        else:
             stderr_handler = JsonHandler(stderr_file)
             stderr_handler.setLevel(logging.WARNING)
             stderr_handler.setFormatter(formatter)
@@ -115,9 +114,6 @@ class LocalLogger(LoggerBase):
             writer.writerow(metrics)
 
     def log(self, metrics: Log) -> Log:
-        if metrics['iteration_number'] <= self.last_logged_iter:
-            return metrics  # repeated iterations between checkpoints
-
         iter_num = {'iter_num': metrics['iteration_number']}
 
         if 'train_metrics' in metrics:

@@ -72,8 +72,7 @@ def main(config: DictConfig) -> None:
         directory=checkpoints_dir,
     )
 
-    load_from = checkpointer.get_model_subdirectory()
-    tokenizer, model = init_tokenizer_model(config.model, load_from=load_from)
+    tokenizer, model = init_tokenizer_model(config.model)
 
     adapter = init_adapter(
         cls_name=adapter_cls,
@@ -129,10 +128,6 @@ def main(config: DictConfig) -> None:
         name=config.run_name,
         config=dict(config) | {'config_choices': config_choices, 'composer_initialization_code': repr(composer)},
     )
-    if load_from is None:
-        logger.message('The model is initialized from Hugging Face Hub.')
-    else:
-        logger.message(f'The model is initialized from {load_from}.')
 
     dataset = load_dataset(**dict(config.dataset))
     train_ds, valid_ds = train_test_split(dataset, **dict(config.split))

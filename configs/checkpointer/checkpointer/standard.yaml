@@ -1,2 +1,1 @@
-init_from: resume
 main_metric: cross_entropy

@@ -8,7 +8,7 @@ JsonAllowedTypes = dict | list | tuple | str | int | float | bool | None
 Message = str | int | float | dict[str, JsonAllowedTypes]
 
 
-class Log(TypedDict):  # TODO: replace with dataclass
+class Log(TypedDict):
     iteration_number: int
     train_metrics: NotRequired[dict[StatisticName, StatisticValue]]
     valid_metrics: NotRequired[dict[StatisticName, StatisticValue]]

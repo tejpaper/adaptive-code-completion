@@ -1,5 +1,4 @@
 from pipeline.configs.config_base import ConfigBase
-from pipeline.outputs.checkpointers.checkpointer import CheckpointManager
 
 from dataclasses import dataclass
 from typing import Any
@@ -16,7 +15,6 @@ class LocalLoggerConfig(ConfigBase):
 
 @dataclass
 class WandbLoggerConfig(LocalLoggerConfig):
-    checkpointer: CheckpointManager
     project: str
     name: str
     config: dict[str, Any] | None = None

@@ -7,7 +7,7 @@ from pipeline.outputs.metrics.top_k_accuracy import TopKAccuracy
 METRICS_REGISTRY = {
     # metrics
     'cross_entropy': CrossEntropy,
-    'exact_match': ExactMatch,
+    'exact_match': ExactMatch,  # TODO: handle this confusion with two names
     'completion_exact_match': ExactMatch,
     'top_k_accuracy': TopKAccuracy,
 

@@ -1,4 +1,4 @@
-from pipeline.outputs.checkpointers.data_structures import Checkpoint
+from pipeline.outputs.checkpointers.checkpoint import Checkpoint
 from pipeline.outputs.checkpointers.checkpointer import CheckpointManager
 
 import os

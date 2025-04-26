@@ -1,6 +1,6 @@
 from pipeline.model.adapters.adapter_base import AdapterBase
+from pipeline.outputs.checkpointers.checkpoint import Checkpoint
 from pipeline.outputs.checkpointers.checkpointer import CheckpointManager
-from pipeline.outputs.checkpointers.data_structures import Checkpoint
 from pipeline.outputs.loggers.logger_base import Log, LoggerBase
 from pipeline.outputs.metrics.statistic_base import StatisticName, StatisticValue, StatisticBase
 from pipeline.trainers.trainer_base import TrainerBase
@@ -76,7 +76,6 @@ class UniversalTrainer(TrainerBase):
             warnings.warn('Validation and checkpointing are not synchronized (valid_freq != checkpointing_freq). '
                           'Resulting checkpoints will not contain validation metrics.')
 
-        self.start_iter = checkpointer.get_iteration_number()
         self.max_iters = max_iters
         self.gradient_accumulation_steps = gradient_accumulation_steps
         self.batch_size = gradient_accumulation_steps * micro_batch_size
@@ -117,7 +116,7 @@ class UniversalTrainer(TrainerBase):
 
         # training dataset
         sampler = FusedSampler(
-            start_sample_idx=(self.batch_size * self.start_iter),
+            start_sample_idx=(self.batch_size * 0),  # was previously used to slice the dataset
             end_sample_idx=(self.batch_size * max_iters),
             dataset_length=len(train_ds),
         ) if shuffle else None
@@ -138,8 +137,8 @@ class UniversalTrainer(TrainerBase):
             self.model, lr=learning_rate,
             betas=(beta_1, beta_2),
             weight_decay=weight_decay,
-            fused=self.is_on_cuda)
-        self.checkpointer.load_optimizer_state(self.optimizer)
+            fused=self.is_on_cuda,
+        )
 
         # gradient utilities
         self.grad_scaler = torch.cuda.amp.GradScaler(enabled=(model.dtype == torch.float16))
@@ -215,9 +214,9 @@ class UniversalTrainer(TrainerBase):
 
         train_iter = iter(self.train_dl)
         pbar_iter = trange(
-            self.start_iter, self.max_iters,
+            0, self.max_iters,
             desc='Optimization steps',
-            initial=self.start_iter,
+            initial=0,
             total=self.max_iters,
             position=0,
             disable=not verbose,
@@ -230,7 +229,8 @@ class UniversalTrainer(TrainerBase):
             disable=not verbose,
         )
 
-        if self.start_iter == 0 and self.valid_dl is not None:
+        # zero-step validation
+        if self.valid_dl is not None:
             valid_log = self.validate(self.valid_dl, verbose)
             valid_log |= self.validate(self.add_valid_dl, verbose)
             log = Log(iteration_number=0, valid_metrics=valid_log)

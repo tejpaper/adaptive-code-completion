@@ -17,9 +17,6 @@ class StatisticBase(ABC):
     def __repr__(self) -> str:
         return self.name
 
-    def load_state(self, prev_value: StatisticValue | None) -> None:  # TODO: use
-        pass  # default behavior
-
     @abstractmethod
     @torch.inference_mode
     def micro_batch_update(self, **kwargs) -> None:

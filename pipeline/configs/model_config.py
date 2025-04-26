@@ -11,7 +11,6 @@ class ModelConfig(ConfigBase):
     tokenizer_name: str
     model_name: str
     trust_remote_code: bool
-    load_from: str | None
 
     use_cache: bool = False
     device: torch.device | None = None
