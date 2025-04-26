@@ -10,5 +10,4 @@ class ChainedComposerConfig(ConfigBase):
     pre_context_prompt: str
     post_context_prompt: str
     path_comment_template: str
-    recalculate_random_category: bool
     blocks: Sequence[ComposerBlock] = field(default_factory=list)

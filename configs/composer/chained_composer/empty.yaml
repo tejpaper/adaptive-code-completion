@@ -1,7 +1,6 @@
 pre_context_prompt: ''
 post_context_prompt: ''
 path_comment_template: '{content}'
-recalculate_random_category: True
 
 block_configs: [
   file_filtering/null_file_filter/no_args.yaml,

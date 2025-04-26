@@ -3,25 +3,9 @@ from pipeline.data.composed_datapoint import BatchComposedDatapoint
 import math
 import warnings
 from abc import ABC, abstractmethod
-from typing import Any, Self, TypedDict
+from typing import TypedDict
 
 import torch
-from torch.utils.data._utils.collate import default_collate_fn_map  # noqa: see below
-
-
-class BatchMetadata(dict):
-    def __getitem__(self, key: Any) ->  Any:
-        if not isinstance(key, str):
-            return self
-        else:
-            return super().__getitem__(key)
-
-    def to(self, *args, **kwargs) -> Self:
-        for key, value in self.items():
-            if isinstance(value, torch.Tensor):
-                self[key] = value.to(*args, **kwargs)
-
-        return self
 
 
 class PreprocessedBatch(TypedDict):
@@ -30,17 +14,9 @@ class PreprocessedBatch(TypedDict):
 
     loss_mask: torch.Tensor
     completion_mask: torch.Tensor
-    category_ids: torch.Tensor
 
     input_attn_mask: torch.Tensor
     target_attn_mask: torch.Tensor
-
-    metadata: BatchMetadata[str, Any]
-
-
-# although this is hidden from users, the PyTorch documentation includes such an example:
-# https://pytorch.org/docs/stable/data.html#torch.utils.data._utils.collate.collate
-default_collate_fn_map[BatchMetadata] = lambda x, *args, **kwargs: x[0]
 
 
 class PreprocessorBase(ABC):
@@ -69,10 +45,6 @@ class PreprocessorBase(ABC):
 
     @abstractmethod
     def get_completion_mask(self, *args, **kwargs) -> torch.Tensor:
-        raise NotImplementedError
-
-    @abstractmethod
-    def get_category_ids(self, *args, **kwargs) -> torch.Tensor:
         raise NotImplementedError
 
     @abstractmethod

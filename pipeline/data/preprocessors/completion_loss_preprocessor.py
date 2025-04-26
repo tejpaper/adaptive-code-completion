@@ -1,11 +1,5 @@
-from pipeline.data.categories import CATEGORY2ID, UNDEFINED_CATEGORY_ID
 from pipeline.data.composed_datapoint import BatchComposedDatapoint
-from pipeline.data.datapoint import CompletionLines
-from pipeline.data.preprocessors.preprocessor_base import (
-    BatchMetadata,
-    PreprocessedBatch,
-    AmortizedPreprocessorBase,
-)
+from pipeline.data.preprocessors.preprocessor_base import PreprocessedBatch, AmortizedPreprocessorBase
 
 import re
 import warnings
@@ -170,39 +164,6 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
     def get_completion_mask(self, *args, **kwargs) -> torch.Tensor:
         return self._get_partial_completion_mask(*args, **kwargs, ratio=1)
 
-    @staticmethod
-    def get_category_ids(tokenized_completions: BatchEncoding,
-                         completion_lines: list[CompletionLines],
-                         target_attn_mask: torch.Tensor,
-                         ) -> torch.Tensor:
-        category_ids = torch.full_like(target_attn_mask, UNDEFINED_CATEGORY_ID)
-        t_completion_start = (target_attn_mask.sum(dim=-1) - tokenized_completions.length).tolist()
-        batch_size = len(tokenized_completions.length)
-
-        for sample_idx in range(batch_size):
-            newline_positions = tokenized_completions.newline_positions[sample_idx]
-            offset_mapping = tokenized_completions.offset_mapping[sample_idx]
-
-            newline_positions.append(float('inf'))
-            line2category = {
-                line_idx: CATEGORY2ID[category]
-                for category, line_category_ids in completion_lines[sample_idx].items()
-                for line_idx in line_category_ids
-            }
-
-            line_idx = 0
-            category_id = line2category.get(line_idx)
-
-            for token_idx, (char_start, _) in enumerate(offset_mapping, start=t_completion_start[sample_idx]):
-                if char_start > newline_positions[line_idx]:
-                    line_idx += 1
-                    category_id = line2category.get(line_idx)
-
-                if category_id is not None:
-                    category_ids[sample_idx, token_idx] = category_id
-
-        return category_ids
-
     def __call__(self, batch: BatchComposedDatapoint) -> PreprocessedBatch:
         tokenized_prompts = self.tokenize_pre_context_prompt(batch['pre_context_prompt'])
         tokenized_completions = self.tokenize_composed_completion(batch['composed_completion'])
@@ -247,8 +208,6 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
             target_ids=padded_batch.input_ids[:, 1:],
             loss_mask=self.get_loss_mask(tokenized_completions, target_attn_mask),
             completion_mask=self.get_completion_mask(tokenized_completions, target_attn_mask),
-            category_ids=self.get_category_ids(tokenized_completions, batch['completion_lines'], target_attn_mask),
             input_attn_mask=input_attn_mask,
             target_attn_mask=target_attn_mask.bool(),
-            metadata=BatchMetadata(),
         )

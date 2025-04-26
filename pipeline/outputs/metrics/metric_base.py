@@ -1,4 +1,3 @@
-from pipeline.data.categories import CATEGORY2ID
 from pipeline.outputs.metrics.statistic_base import StatisticName, StatisticBase
 
 from abc import ABC, abstractmethod
@@ -25,13 +24,6 @@ class MaskType(str, Enum):
     COMPLETION = 'completion'
     CONTEXT = 'context'
     FULL = 'full'
-    COMMITED = 'commited'
-    COMMON = 'common'
-    INFILE = 'infile'
-    INPROJECT = 'inproject'
-    NON_INFORMATIVE = 'non_informative'
-    RANDOM = 'random'
-    OTHER = 'other'
 
 
 class MaskBasedMetric(MetricBase, ABC):
@@ -55,5 +47,5 @@ class MaskBasedMetric(MetricBase, ABC):
                 return ~kwargs['completion_mask'] & kwargs['target_attn_mask']
             case MaskType.FULL:
                 return kwargs['target_attn_mask']
-            case _:  # categorized
-                return kwargs['category_ids'] == CATEGORY2ID[self.mask_type]
+            case _:
+                raise ValueError(f'Invalid mask type: {self.mask_type}.')
