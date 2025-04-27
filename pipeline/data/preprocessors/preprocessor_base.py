@@ -1,4 +1,4 @@
-from pipeline.data.composed_datapoint import BatchComposedDatapoint
+from incontext.data_structures import BatchComposedDatapoint
 
 import math
 import warnings

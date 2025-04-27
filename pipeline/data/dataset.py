@@ -1,6 +1,3 @@
-from pipeline.data.composers.composer_base import ComposerBase
-from pipeline.data.preprocessors.preprocessor_base import PreprocessorBase
-
 import random
 from collections import defaultdict
 
@@ -49,12 +46,3 @@ def train_test_split(dataset: Dataset,
     test_ds = dataset.select(test_repos_ids)
 
     return train_ds, test_ds
-
-
-def set_transform(dataset: Dataset | None,
-                  composer: ComposerBase,
-                  preprocessor: PreprocessorBase,
-                  ) -> None:
-    transform = lambda x: preprocessor(composer.compose_batch(x))
-    if dataset is not None:
-        dataset.set_transform(transform)

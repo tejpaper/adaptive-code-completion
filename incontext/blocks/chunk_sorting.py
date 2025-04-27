@@ -1,5 +1,5 @@
-from pipeline.data.composers.chain import Chunk, ComposerBlock
-from pipeline.data.datapoint import Datapoint
+from incontext.blocks.block import ComposerBlock
+from incontext.data_structures import Chunk, Datapoint
 
 from abc import ABC
 from typing import Sequence, Type
@@ -8,13 +8,18 @@ from typing import Sequence, Type
 class ChunkSorter(ComposerBlock, ABC):
     @property
     def next_blocks(self) -> tuple[Type[ComposerBlock], ...]:
-        from pipeline.data.composers.blocks.chunk_harvesting import ChunkHarvester
-        return ChunkSorter, ChunkHarvester
+        from incontext.blocks.chunk_assembling import ChunkAssembler
+        return ChunkSorter, ChunkAssembler
 
 
 class LexicographicSorter(ChunkSorter):
     def __call__(self, chunks: Sequence[Chunk], _datapoint: Datapoint) -> Sequence[Chunk]:
         return sorted(chunks, key=lambda c: c.rank)
+
+
+class ReverseLexicographicSorter(ChunkSorter):
+    def __call__(self, chunks: Sequence[Chunk], _datapoint: Datapoint) -> Sequence[Chunk]:
+        return sorted(chunks, key=lambda c: c.rank, reverse=True)
 
 
 class MixedSorter(ChunkSorter):

@@ -1,6 +1,10 @@
-from pipeline.data.composed_datapoint import ComposedDatapoint, BatchComposedDatapoint
-from pipeline.data.composers.blocks.file_preprocessing import NewlinePreprocessor
-from pipeline.data.datapoint import Datapoint, BatchDatapoint
+from incontext.blocks.file_preprocessing import NewlinePreprocessor
+from incontext.data_structures import (
+    BatchComposedDatapoint,
+    BatchDatapoint,
+    ComposedDatapoint,
+    Datapoint,
+)
 
 from abc import ABC, abstractmethod
 from typing import Any

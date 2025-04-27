@@ -1,5 +1,5 @@
-from pipeline.data.composers.chain import File, ComposerBlock
-from pipeline.data.datapoint import Datapoint
+from incontext.blocks.block import ComposerBlock
+from incontext.data_structures import Datapoint, File
 
 from abc import ABC
 from typing import Sequence, Type
@@ -14,8 +14,8 @@ class FilePreprocessor(ComposerBlock, ABC):
 
     @property
     def next_blocks(self) -> tuple[Type[ComposerBlock], ...]:
-        from pipeline.data.composers.blocks.file_chunking import FileChunker
-        from pipeline.data.composers.blocks.file_filtering import FileFilter
+        from incontext.blocks.file_chunking import FileChunker
+        from incontext.blocks.file_filtering import FileFilter
         return FileFilter, FilePreprocessor, FileChunker
 
 

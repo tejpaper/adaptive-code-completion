@@ -1,4 +1,4 @@
-from pipeline.data.composed_datapoint import BatchComposedDatapoint
+from incontext.data_structures import BatchComposedDatapoint
 from pipeline.data.preprocessors.preprocessor_base import PreprocessedBatch, AmortizedPreprocessorBase
 
 import re

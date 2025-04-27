@@ -1,5 +1,5 @@
-from pipeline.data.composers.chain import ComposerBlock
-from pipeline.data.datapoint import Datapoint
+from incontext.blocks.block import ComposerBlock
+from incontext.data_structures import Datapoint
 
 import random
 from abc import ABC
@@ -39,11 +39,3 @@ class LineLengthPostprocessor(ContextPostprocessor):
 class LineStripPostprocessor(ContextPostprocessor):
     def __call__(self, context: str, _datapoint: Datapoint) -> str:
         return '\n'.join(line.strip() for line in context.split('\n'))
-
-
-class InverseFrequencyMemoryPostprocessor(ContextPostprocessor):
-    def __call__(self, context: str, _datapoint: Datapoint) -> str:
-        # TODO concerns:
-        # 1. L1 or softmax normalization?
-        # 2. Equivalence groups by line.strip() transformation?
-        return context

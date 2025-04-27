@@ -1,5 +1,4 @@
-from pipeline.data.composers.init import init_composer
-from pipeline.data.dataset import train_test_split, set_transform
+from pipeline.data.dataset import train_test_split
 from pipeline.data.preprocessors.init import init_preprocessor
 from pipeline.model.adapters.init import init_adapter
 from pipeline.model.init import init_tokenizer_model
@@ -61,9 +60,9 @@ def main(config: DictConfig) -> None:
         stream.write(argv_sh)
 
     config_choices = HydraConfig.get().runtime.choices
-    adapter_cls, checkpointer_cls, logger_cls, composer_cls, preprocessor_cls, trainer_cls = [
+    adapter_cls, checkpointer_cls, logger_cls, preprocessor_cls, trainer_cls = [
         os.path.dirname(config_choices.get(cfg_group))
-        for cfg_group in ('adapter', 'checkpointer', 'logger', 'composer', 'preprocessor', 'trainer')
+        for cfg_group in ('adapter', 'checkpointer', 'logger', 'preprocessor', 'trainer')
     ]
 
     checkpointer = init_checkpointer(
@@ -80,38 +79,13 @@ def main(config: DictConfig) -> None:
         model_name=config.model.model_name)
     model = adapter.adapt(model)
 
-    composer = init_composer(
-        cls_name=composer_cls,
-        loaded_config=config.composer,
-        configs_dir=CONFIGS_DIR,
-        tokenizer=tokenizer,
-    )
     preprocessor = init_preprocessor(
         cls_name=preprocessor_cls,
         loaded_config=config.preprocessor,
         tokenizer=tokenizer,
     )
 
-    if ('additional_composer' in config) != ('additional_preprocessor' in config):
-        raise ValueError('Both or neither of additional_composer and '
-                         'additional_preprocessor must be specified.')
-    elif (
-            (add_valid := ('additional_composer' in config)) and
-            (config_choices.get('composer') == config.additional_composer) and
-            (config_choices.get('preprocessor') == config.additional_preprocessor)
-    ):
-        raise ValueError('You are attempting to run validation twice '
-                         'using the same data preprocessing steps.')
-
-    add_composer = init_composer(
-        cls_name=os.path.dirname(config.additional_composer),
-        loaded_config=OmegaConf.load(
-            os.path.join(CONFIGS_DIR, f'composer/{config.additional_composer}.yaml')
-        ),
-        configs_dir=CONFIGS_DIR,
-        tokenizer=tokenizer,
-    ) if add_valid else None
-
+    add_valid = ('additional_preprocessor' in config)
     add_preprocessor = init_preprocessor(
         cls_name=os.path.dirname(config.additional_preprocessor),
         loaded_config=OmegaConf.load(
@@ -126,16 +100,14 @@ def main(config: DictConfig) -> None:
         directory=logs_dir,
         checkpointer=checkpointer,
         name=config.run_name,
-        config=dict(config) | {'config_choices': config_choices, 'composer_initialization_code': repr(composer)},
+        config=dict(config) | {'config_choices': config_choices},
     )
 
     dataset = load_dataset(**dict(config.dataset))
     train_ds, valid_ds = train_test_split(dataset, **dict(config.split))
     add_valid_ds = copy.deepcopy(valid_ds) if add_valid else None
 
-    set_transform(train_ds, composer, preprocessor)
-    set_transform(valid_ds, composer, preprocessor)
-    set_transform(add_valid_ds, add_composer, add_preprocessor)
+    # TODO: set transform
 
     train_metrics = init_metrics(
         loaded_config=config.metrics.train_metrics,

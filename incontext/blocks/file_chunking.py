@@ -1,5 +1,5 @@
-from pipeline.data.composers.chain import File, Chunk, ComposerBlock
-from pipeline.data.datapoint import Datapoint
+from incontext.blocks.block import ComposerBlock
+from incontext.data_structures import Chunk, Datapoint, File
 
 from abc import ABC
 from enum import Enum
@@ -17,16 +17,23 @@ class FileChunker(ComposerBlock, ABC):
 
     @property
     def next_blocks(self) -> tuple[Type[ComposerBlock], ...]:
-        from pipeline.data.composers.blocks.chunk_harvesting import ChunkHarvester
-        from pipeline.data.composers.blocks.chunk_ranking import ChunkRanker
-        return ChunkRanker, ChunkHarvester
+        from incontext.blocks.chunk_assembling import ChunkAssembler
+        from incontext.blocks.chunk_ranking import ChunkRanker
+        return ChunkRanker, ChunkAssembler
 
 
 class FileGrainedChunker(FileChunker):  # identity chunker
     def __call__(self, files: Sequence[File], datapoint: Datapoint) -> Sequence[Chunk]:
-        return [Chunk(content=file.content, metadata=file.metadata, file_ref=file) for file in files
-                # TODO: remove temporary hardcoded solution for data leakage
-                if file.metadata['filename'] != datapoint.completion_file['filename']]
+        chunks = list()
+        for file in files:
+            assert file.metadata['filename'] != datapoint.completion_file['filename']
+            chunks.append(Chunk(
+                content=file.content,
+                metadata=file.metadata,
+                file_ref=file,
+            ))
+
+        return chunks
 
 
 class CodeSegment(str, Enum):
@@ -95,9 +102,8 @@ class CodeSegmentGrainedChunker(FileChunker):
                     file_ref=file,
                 ))
                 continue
-            # TODO: remove temporary hardcoded solution for data leakage
-            if file.metadata['filename'] == datapoint.completion_file['filename']:
-                continue
+
+            assert file.metadata['filename'] != datapoint.completion_file['filename']
 
             bytecode = bytes(file.content, self.ENCODING)
             tree = self.parser.parse(bytecode)
@@ -146,7 +152,7 @@ class CodeSegmentGrainedChunker(FileChunker):
                         prev_edited_chunk = code_chunk
 
                     case _:
-                        raise RuntimeError  # indicates a bug
+                        raise RuntimeError
 
             for chunk in (comments_chunk, docstrings_chunk, imports_chunk, code_chunk):
                 if chunk.content.strip():
@@ -154,6 +160,13 @@ class CodeSegmentGrainedChunker(FileChunker):
                     chunks.append(chunk)
 
         return chunks
+
+
+class DocstringAndCommentOnlyChunker(CodeSegmentGrainedChunker):
+    def __call__(self, *args, **kwargs) -> Sequence[Chunk]:
+        return [chunk for chunk in super().__call__(*args, **kwargs) if
+                chunk.metadata['segment_type'] == CodeSegment.DOCSTRING or
+                chunk.metadata['segment_type'] == CodeSegment.COMMENT]
 
 
 class CodeOnlyChunker(CodeSegmentGrainedChunker):
@@ -174,9 +187,7 @@ class FixedLineChunker(FileChunker):
         chunks = list()
 
         for file in files:
-            # TODO: remove temporary hardcoded solution for data leakage
-            if file.metadata['filename'] == datapoint.completion_file['filename']:
-                continue
+            assert file.metadata['filename'] != datapoint.completion_file['filename']
 
             lines = file.content.split('\n')
             total_lines = len(lines)

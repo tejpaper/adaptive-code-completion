@@ -1,13 +1,11 @@
-from pipeline.data.composers.chain import Chunk, ComposerBlock
-from pipeline.data.datapoint import Datapoint
+from incontext.blocks.block import ComposerBlock
+from incontext.data_structures import Chunk, Datapoint
 
-import json
-import math
 import os
 import random
 import warnings
 from abc import ABC
-from typing import Literal, Sequence, Type
+from typing import Sequence, Type
 
 import tree_sitter
 import tree_sitter_python
@@ -16,7 +14,7 @@ import tree_sitter_python
 class ChunkRanker(ComposerBlock, ABC):
     @property
     def next_blocks(self) -> tuple[Type[ComposerBlock], ...]:
-        from pipeline.data.composers.blocks.chunk_sorting import ChunkSorter
+        from incontext.blocks.chunk_sorting import ChunkSorter
         return ChunkRanker, ChunkSorter
 
 
@@ -120,31 +118,4 @@ class IoURanker(ChunkRanker):
             chunk_lines = self._get_lines(chunk.content)
             iou_score = len(target_lines & chunk_lines) / len(target_lines | chunk_lines)
             chunk.rank.append(iou_score)
-        return chunks
-
-
-class IdealRanker(ChunkRanker):
-    def __init__(self, path: str, metric: str, mode: Literal['min', 'max']) -> None:
-        with open(path) as stream:
-            self.indices = json.load(stream)
-
-        self.metric = metric
-        self.mode = mode
-
-    def __call__(self, chunks: Sequence[Chunk], datapoint: Datapoint) -> Sequence[Chunk]:
-        content_scores = self.indices[
-            datapoint.repo][
-            datapoint.commit_hash][
-            datapoint.completion_file['filename']]
-
-        for chunk in chunks:
-            content_filename = chunk.file_ref.metadata['filename']
-            rank = content_scores.get(content_filename, {self.metric: float('nan')})[self.metric]
-
-            if math.isnan(rank):
-                rank = -float('inf')
-            elif self.mode == 'min':
-                rank *= -1
-
-            chunk.rank.append(rank)
         return chunks
