@@ -97,7 +97,7 @@ class UniversalTrainer(TrainerBase):
         elif valid_ds is not None and valid_freq is not None and valid_metrics:
             self.valid_freq = valid_freq
 
-            ds2dl = lambda x: DataLoader(
+            ds_to_dl = lambda x: DataLoader(
                 dataset=x,
                 batch_size=micro_batch_size,
                 shuffle=False,
@@ -109,8 +109,8 @@ class UniversalTrainer(TrainerBase):
                 pin_memory_device=str(model.device),
             )
 
-            self.valid_dl = ds2dl(valid_ds)
-            self.add_valid_dl = ds2dl(add_valid_ds) if add_valid_ds is not None else None
+            self.valid_dl = ds_to_dl(valid_ds)
+            self.add_valid_dl = ds_to_dl(add_valid_ds) if add_valid_ds is not None else None
         else:
             raise ValueError('The valid_ds, valid_freq and valid_metrics arguments do not match each other.')
 

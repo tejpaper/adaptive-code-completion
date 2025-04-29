@@ -17,6 +17,6 @@ class TopKCheckpointManager(CheckpointManager):
         checkpoints = sorted(checkpoints, key=self.get_checkpoint_score)
 
         while len(checkpoints) > self.max_checkpoints_num:
-            checkpoint2del = checkpoints.pop()
-            checkpoint2del = os.path.join(self.directory, checkpoint2del)
-            shutil.rmtree(checkpoint2del)
+            checkpoint_to_delete = checkpoints.pop()
+            checkpoint_to_delete = os.path.join(self.directory, checkpoint_to_delete)
+            shutil.rmtree(checkpoint_to_delete)

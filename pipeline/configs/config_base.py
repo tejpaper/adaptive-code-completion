@@ -16,7 +16,7 @@ class ConfigBase:
     def from_dict(cls: Type[T], dictionary: dict[str, Any]) -> T:
         config_fields = set(field.name for field in fields(cls))
         kwargs = {key: value for key, value in dictionary.items() if key in config_fields}
-        return cls(**kwargs)  # noqa: PyCharm bug?
+        return cls(**kwargs)
 
     @classmethod
     def from_yaml(cls: Type[T], path: str | None = None) -> T:
@@ -24,6 +24,6 @@ class ConfigBase:
             path = cls._default_path
 
         with open(path) as stream:
-            return cls(**yaml.safe_load(stream))  # noqa: PyCharm bug?
+            return cls(**yaml.safe_load(stream))
 
     dict = property(vars)
