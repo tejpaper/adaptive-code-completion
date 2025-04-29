@@ -1,5 +1,0 @@
-path: scripts/outputs/optimal_retrieve_indexation/indices.json
-index_name: completion_cross_entropy
-num_groups: 5
-group_ids: [3]
-include_nans: False

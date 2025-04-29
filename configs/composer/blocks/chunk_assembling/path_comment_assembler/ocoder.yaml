@@ -1,0 +1,2 @@
+chunks_sep: "<file_sep>"
+path_comment_template: "# {filename}\n{content}"

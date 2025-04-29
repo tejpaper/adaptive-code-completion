@@ -55,3 +55,5 @@ from incontext.blocks.context_postprocessing import (
 
 # composers
 from incontext.composer.chained_composer import ChainedComposer
+
+from incontext.init_from_config import init_from_config

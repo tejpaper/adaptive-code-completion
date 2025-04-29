@@ -1,3 +1,0 @@
-path: scripts/outputs/optimal_retrieve_indexation/indices.json
-metric: inproject_exact_match
-mode: max
