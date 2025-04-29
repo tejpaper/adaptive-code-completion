@@ -1,0 +1,1 @@
+from pipeline.model.adapters.identity_adapter import IdentityAdapter

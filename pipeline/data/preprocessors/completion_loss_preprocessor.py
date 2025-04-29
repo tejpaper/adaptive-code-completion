@@ -18,7 +18,7 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
                  num_chars_per_token: int,
                  use_sep_token: bool,  # appended to the context
                  padding: bool,
-                 verbose: bool,
+                 verbose: bool = True,
                  ) -> None:
         super().__init__(num_chars_per_token, verbose)
 

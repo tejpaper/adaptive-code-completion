@@ -1,17 +1,21 @@
 from incontext.composer.chained_composer import ChainedComposer
 
 import os
+from typing import Callable
 
 import yaml
 from omegaconf import OmegaConf
 
 
-def find_class(name: str, module_name: str) -> type:
-    normalized_name = name.replace('_', '').lower()
-    module = __import__(module_name)
+def find_class(name: str, module_name: str, normalization_func: Callable[[str], str] | None = None) -> type:
+    module = __import__(module_name, fromlist=['*'])
+    if normalization_func is None:
+        normalized_name = name.replace('_', '')
+    else:
+        normalized_name = normalization_func(name)
 
     for attr_name in dir(module):
-        if attr_name.lower() == normalized_name:
+        if attr_name.lower() == normalized_name.lower():
             return getattr(module, attr_name)
 
     raise ValueError('Could not find class matching.')

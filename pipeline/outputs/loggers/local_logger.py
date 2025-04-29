@@ -56,6 +56,7 @@ class LocalLogger(LoggerBase):
                  stdout_file: str,
                  stderr_file: str,
                  directory: str,
+                 **_kwargs,
                  ) -> None:
         if train_csv == valid_csv:
             raise ValueError('The names of the train_csv and valid_csv files must be different.')

@@ -1,20 +1,20 @@
 import random
 from collections import defaultdict
 
-from datasets import Dataset
+import pandas as pd
 
 
-def train_test_split(dataset: Dataset,
+def train_test_split(df: pd.DataFrame,
                      test_size: int,
                      upper_bound_per_repo: int,
                      random_seed: int | None = None,
-                     ) -> tuple[Dataset, Dataset | None]:
+                     ) -> tuple[list[int], list[int] | None]:
     if test_size == 0:
-        return dataset, None
+        return list(range(len(df))), None
 
     generator = random.Random(random_seed)
     queue = defaultdict(list)
-    repos_enum = list(enumerate(dataset['repo']))
+    repos_enum = list(enumerate(df.pre_context_prompt))
     generator.shuffle(repos_enum)
 
     for idx, repo in repos_enum:
@@ -23,7 +23,7 @@ def train_test_split(dataset: Dataset,
     queue = list(queue.items())
     generator.shuffle(queue)
 
-    train_repos_ids = set(range(len(dataset)))
+    train_repos_ids = set(range(len(df)))
     test_repos_ids = set()
     cur_test_size = 0
 
@@ -42,7 +42,4 @@ def train_test_split(dataset: Dataset,
         test_repos_ids.update(ids[:num_new_samples])
         cur_test_size += num_new_samples
 
-    train_ds = dataset.select(train_repos_ids)
-    test_ds = dataset.select(test_repos_ids)
-
-    return train_ds, test_ds
+    return list(train_repos_ids), list(test_repos_ids)

@@ -15,10 +15,10 @@ class CheckpointManager:  # aka checkpointer
     def __init__(self,
                  main_metric: StatisticName,
                  directory: str,
-                 checkpoint_directory_template: str,
-                 model_subdirectory: str,
-                 optim_state_filename: str,
-                 metrics_filename: str,
+                 checkpoint_directory_template: str = '{iteration_number:04d}',
+                 model_subdirectory: str = 'model',
+                 optim_state_filename: str = 'optim.pt',
+                 metrics_filename: str = 'metrics.json',  # should be .json
                  ) -> None:
         self.main_metric_name = main_metric
         self.main_metric = METRICS_REGISTRY[main_metric]
