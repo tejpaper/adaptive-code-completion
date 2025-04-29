@@ -1,8 +1,8 @@
 from pipeline.outputs.checkpointers.checkpoint import Checkpoint
 from pipeline.outputs.loggers.logger_base import Log
+from pipeline.outputs.metrics import find_metric_class
 from pipeline.outputs.metrics.metric_base import OptimizationMode
 from pipeline.outputs.metrics.statistic_base import StatisticName, StatisticValue
-from pipeline.outputs.metrics.metrics_registry import METRICS_REGISTRY
 
 import json
 import os
@@ -21,7 +21,7 @@ class CheckpointManager:  # aka checkpointer
                  metrics_filename: str = 'metrics.json',  # should be .json
                  ) -> None:
         self.main_metric_name = main_metric
-        self.main_metric = METRICS_REGISTRY[main_metric]
+        self.main_metric = find_metric_class(main_metric)
         self.directory = directory
 
         self._checkpoint_directory_template = checkpoint_directory_template

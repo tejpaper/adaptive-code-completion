@@ -14,9 +14,9 @@ class AdapterBase(ABC):
         self.params_pattern = params_pattern
 
         hf_model_config = AutoConfig.from_pretrained(model_name)
-        model_cls = MODEL_FOR_CAUSAL_LM_MAPPING[type(hf_model_config)]
+        model_class = MODEL_FOR_CAUSAL_LM_MAPPING[type(hf_model_config)]
 
-        assert type(self).__name__ == 'IdentityAdapter' or model_cls == LlamaForCausalLM, (
+        assert type(self).__name__ == 'IdentityAdapter' or model_class == LlamaForCausalLM, (
             'Different architectures may require individual adaptations.')
 
     def get_trainable_parameters(self, model: nn.Module) -> Iterable[torch.Tensor]:
