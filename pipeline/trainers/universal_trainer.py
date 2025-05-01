@@ -162,7 +162,7 @@ class UniversalTrainer(TrainerBase):
         self.train_metrics = train_metrics
         self.valid_metrics = valid_metrics
 
-    @torch.inference_mode
+    @torch.inference_mode()
     def validate(self, valid_dl: DataLoader | None, verbose: bool = True) -> dict[StatisticName, StatisticValue]:
         if valid_dl is None:
             return {}

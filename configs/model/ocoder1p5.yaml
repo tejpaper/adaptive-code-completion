@@ -2,3 +2,6 @@ tokenizer_name: infly/OpenCoder-1.5B-Base
 model_name: infly/OpenCoder-1.5B-Base
 trust_remote_code: True
 compile: False
+
+config:
+  max_position_embeddings: 16384

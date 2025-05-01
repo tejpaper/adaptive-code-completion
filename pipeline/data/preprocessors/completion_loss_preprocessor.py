@@ -68,7 +68,7 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
             text=trunc_completions,
             add_special_tokens=False,
             return_attention_mask=False,
-            return_offsets_mapping=self.tokenizer.is_fast,
+            return_offsets_mapping=self.tokenizer.is_fast,  # TODO: is it needed?
             return_length=True,
         )
 
@@ -192,6 +192,8 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
             tokenized_completions.offset_mapping[sample_idx] = \
                 tokenized_completions.offset_mapping[sample_idx][:completion_len]
             tokenized_completions.length[sample_idx] = len(completion)
+
+            print(len(prompt), len(context), len(completion))
 
             tokenized_batch.append(prompt + context + completion)
 

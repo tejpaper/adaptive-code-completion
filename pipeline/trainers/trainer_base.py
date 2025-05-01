@@ -7,7 +7,7 @@ import torch
 
 class TrainerBase(ABC):
     @abstractmethod
-    @torch.inference_mode
+    @torch.inference_mode()
     def validate(self, *args, **kwargs) -> dict[StatisticName, StatisticValue]:
         raise NotImplementedError
 

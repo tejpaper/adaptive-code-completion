@@ -18,7 +18,7 @@ class TopKAccuracy(MaskBasedMetric):
     def name(self) -> StatisticName:
         return super().name.replace('_k_', f'_{self.k}_')
 
-    @torch.inference_mode
+    @torch.inference_mode()
     def micro_batch_update(self,
                            model_output: CausalLMOutputWithPast,
                            target_ids: torch.Tensor,

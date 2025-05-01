@@ -51,7 +51,7 @@ class TokenCounter(MaskBasedMetric):
         mask_type = '' if self.mask_type == MaskType.ATTACHED else f'{self.mask_type}_'
         return f'num_{mask_type}tokens'
 
-    @torch.inference_mode
+    @torch.inference_mode()
     def micro_batch_update(self, **kwargs) -> None:
         self.num_tokens += self.get_mask(**kwargs).sum().item()
 

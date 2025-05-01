@@ -12,7 +12,7 @@ class CrossEntropy(MaskBasedMetric):
         self.mean_loss = 0
         self.num_tokens = 0
 
-    @torch.inference_mode
+    @torch.inference_mode()
     def micro_batch_update(self, loss_per_token: torch.Tensor, **kwargs) -> None:
         mask = self.get_mask(**kwargs)
         loss_update = torch.nan_to_num(loss_per_token[mask].mean()).item()

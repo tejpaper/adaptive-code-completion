@@ -1,0 +1,18 @@
+eval_name: ???
+
+dataset_type: large  # small, medium, large, huge
+context_size: 16384  # 4096
+path_to_composer_config: composer/filled_python_files.yaml
+path_to_checkpoint: null  # e.g. runs/dseek_filled_python_files/checkpoints/0512/model
+
+defaults:
+  - model: ocoder1p5_theta_500k
+
+  - _self_
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+
+hydra:
+  output_subdir: null
+  run:
+    dir: .

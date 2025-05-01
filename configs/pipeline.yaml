@@ -1,5 +1,9 @@
 run_name: ???
 
+argv_sh_file: run.sh
+checkpoints_dir: checkpoints
+logs_dir: logs
+
 defaults:
   - adapter: identity_adapter/all_params
   - checkpointer: top_k_checkpointer/top_3

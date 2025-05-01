@@ -18,7 +18,7 @@ class StatisticBase(ABC):
         return self.name
 
     @abstractmethod
-    @torch.inference_mode
+    @torch.inference_mode()
     def micro_batch_update(self, **kwargs) -> None:
         raise NotImplementedError
 

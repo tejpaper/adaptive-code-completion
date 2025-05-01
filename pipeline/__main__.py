@@ -10,28 +10,19 @@ import hydra
 from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig, OmegaConf
 
-# TODO: remove all mentions of LCA except eval
-LCA_SOLVERS_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# configs
-CONFIGS_DIR = os.path.join(LCA_SOLVERS_DIR, 'configs')
-MAIN_CONFIG = 'defaults'
-
-# run directory
-RUNS_DIR = os.path.join(LCA_SOLVERS_DIR, 'runs')
-ARGV_SH_FILE = 'run.sh'
-CHECKPOINTS_DIR = 'checkpoints'
-LOGS_DIR = 'logs'
+PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
+CONFIGS_DIR = os.path.join(PROJECT_DIR, 'configs')
 
 
-@hydra.main(config_path=CONFIGS_DIR, config_name=MAIN_CONFIG, version_base=None)
+@hydra.main(config_path=CONFIGS_DIR, config_name='pipeline', version_base=None)
 def main(config: DictConfig) -> None:
     argv_sh = ' \\\n'.join(['python3 -m pipeline'] + sys.argv[1:])
 
-    run_dir = os.path.join(RUNS_DIR, config.run_name)
-    argv_sh_file = os.path.join(run_dir, ARGV_SH_FILE)
-    checkpoints_dir = os.path.join(run_dir, CHECKPOINTS_DIR)
-    logs_dir = os.path.join(run_dir, LOGS_DIR)
+    run_dir = os.path.join(PROJECT_DIR, 'runs', config.run_name)
+    argv_sh_file = os.path.join(run_dir, config.argv_sh_file)
+    checkpoints_dir = os.path.join(run_dir, config.checkpoints_dir)
+    logs_dir = os.path.join(run_dir, config.logs_dir)
 
     if os.path.exists(run_dir):
         with open(argv_sh_file) as stream:

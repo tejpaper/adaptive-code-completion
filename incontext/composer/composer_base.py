@@ -37,7 +37,11 @@ class ComposerBase(ABC):
         )
 
     def compose(self, datapoint: dict[str, Any]) -> ComposedDatapoint:
-        datapoint = Datapoint(**datapoint)
+        datapoint = Datapoint(
+            repo=datapoint['repo'],
+            completion_file=datapoint['completion_file'],
+            repo_snapshot=datapoint['repo_snapshot'],
+        )
 
         return ComposedDatapoint(
             pre_context_prompt=self.get_pre_context_prompt(datapoint),

@@ -25,7 +25,7 @@ class ExactMatch(MaskBasedMetric):
         self.num_matches = 0
         self.num_lines = 0
 
-    @torch.inference_mode
+    @torch.inference_mode()
     def micro_batch_update(self,
                            model_output: CausalLMOutputWithPast,
                            target_ids: torch.Tensor,
