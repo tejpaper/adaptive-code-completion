@@ -67,8 +67,6 @@ def main(config: DictConfig) -> None:
     ref_dict = {'inproject': inproject_em, 'infile': infile_em}
     pbar_iter = tqdm(dataloader, desc='Evaluation steps')
 
-    i = 0
-
     for line_types, input_ids, attn_mask, ground_truths in pbar_iter:
         tokenized_completions = model.generate(
             input_ids=input_ids.to(model.device),
@@ -93,10 +91,6 @@ def main(config: DictConfig) -> None:
         pbar_iter.set_description(
             f'Evaluation steps; inproject={inproject_em.value * 100:.1f}, infile={infile_em.value * 100:.1f}'
         )
-
-        i += 1
-        if i > 10:
-            break
 
     result = OmegaConf.to_container(config)
     result.pop('eval_name')
