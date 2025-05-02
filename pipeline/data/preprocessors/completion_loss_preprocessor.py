@@ -193,8 +193,6 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
                 tokenized_completions.offset_mapping[sample_idx][:completion_len]
             tokenized_completions.length[sample_idx] = len(completion)
 
-            print(len(prompt), len(context), len(completion))
-
             tokenized_batch.append(prompt + context + completion)
 
         padded_batch = self.tokenizer.pad(
