@@ -22,16 +22,21 @@ CONFIGS_DIR = os.path.join(PROJECT_DIR, 'configs')
 @torch.inference_mode()
 @hydra.main(config_path=CONFIGS_DIR, config_name='evaluation', version_base=None)
 def main(config: DictConfig) -> None:
+    output_file = os.path.join(PROJECT_DIR, f'evaluation/outputs/individual/{config.eval_name}.json')
+    if os.path.exists(output_file):
+        print(f'{config.eval_name} has already been processed. Skipping this evaluation...')
+        return
+
     argv_sh = ' \\\n'.join(['python3 -m evaluation'] + sys.argv[1:])
 
     if config.path_to_checkpoint is not None:
         config.model.model_name = config.path_to_checkpoint
 
     composer = init_composer(os.path.join(CONFIGS_DIR, config.path_to_composer_config))
-    
+
     tokenizer = init_tokenizer(**config.model)
     tokenizer.truncation_side = 'left'
-    
+
     model = init_model(**config.model)
     model = model.eval().requires_grad_(False)
 
@@ -108,8 +113,6 @@ def main(config: DictConfig) -> None:
             'value': infile_em.value,
         },
     }
-
-    output_file = os.path.join(PROJECT_DIR, f'evaluation/outputs/individual/{config.eval_name}.json')
 
     with open(output_file, 'w') as stream:
         json.dump(result, stream, indent=4)
