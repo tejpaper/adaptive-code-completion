@@ -44,16 +44,16 @@ class LongCodeArenaDataset(Dataset):
             repo=datapoint.repo,
             completion_file=dict(
                 filename=datapoint.completion_file['filename'],
-                content='\n'.join(completion_lines[:line_idx])
+                content='\n'.join(completion_lines[:line_idx]),
             ),
             repo_snapshot=datapoint.repo_snapshot))
         ground_truth = completion_lines[line_idx]
 
         return (
             line_type,
-            composed_datapoint['composed_context'],
-            composed_datapoint['composed_completion'],
-            ground_truth,
+            composed_datapoint['composed_context'] + ('\n', '')[composed_datapoint['composed_context'].endswith('\n')],
+            composed_datapoint['composed_completion'] + ('\n', '')[composed_datapoint['composed_completion'].endswith('\n')],
+            ground_truth + ('\n', '')[ground_truth.endswith('\n')],
         )
 
 
@@ -61,11 +61,9 @@ class DataCollator:
     def __init__(self,
                  tokenizer: PreTrainedTokenizerBase,
                  context_size: int,
-                 max_new_tokens: int,
                  ) -> None:
         self.tokenizer = tokenizer
         self.context_size = context_size
-        self.max_new_tokens = max_new_tokens
 
     def _tokenize(self, 
                   text: str,
@@ -95,16 +93,16 @@ class DataCollator:
         ground_truths = list()
 
         for line_type, repo_context, file_prefix, ground_truth in batch:
-            tokenized_file_prefix = self._tokenize(
-                text=file_prefix,
-                max_seq_len=self.context_size - self.max_new_tokens)
+            tokenized_completion = self._tokenize(
+                text=file_prefix + ground_truth,
+                max_seq_len=self.context_size + 1)
             tokenized_repo_context = self._tokenize(
                 text=repo_context,
-                max_seq_len=self.context_size - len(tokenized_file_prefix) - self.max_new_tokens,
+                max_seq_len=self.context_size - len(tokenized_completion) + 1,
             )
 
             line_types.append(line_type)
-            input_ids.append(tokenized_repo_context + tokenized_file_prefix)
+            input_ids.append((tokenized_repo_context + tokenized_completion)[:-1])
             ground_truths.append(ground_truth)
 
         padded_batch = self.tokenizer.pad(
@@ -112,6 +110,6 @@ class DataCollator:
             padding='longest',
             return_attention_mask=True,
             return_tensors='pt')
-        assert padded_batch.input_ids.shape[-1] <= self.context_size - self.max_new_tokens, padded_batch.input_ids.shape
+        assert padded_batch.input_ids.shape[-1] <= self.context_size, padded_batch.input_ids.shape
 
         return line_types, padded_batch.input_ids, padded_batch.attention_mask, ground_truths

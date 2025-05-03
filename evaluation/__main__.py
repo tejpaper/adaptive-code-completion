@@ -63,7 +63,6 @@ def main(config: DictConfig) -> None:
         collate_fn=DataCollator(
             tokenizer=tokenizer,
             context_size=config.context_size,
-            max_new_tokens=config.max_new_tokens,
         ),
     )
 
@@ -73,24 +72,14 @@ def main(config: DictConfig) -> None:
     pbar_iter = tqdm(dataloader, desc='Evaluation steps')
 
     for line_types, input_ids, attn_mask, ground_truths in pbar_iter:
-        tokenized_completions = model.generate(
-            input_ids=input_ids.to(model.device),
-            attention_mask=attn_mask.to(model.device),
-            max_new_tokens=config.max_new_tokens,
-            tokenizer=tokenizer,
-            stop_strings='\n',
-        )
+        input_ids = input_ids.to(model.device)
+        attn_mask = attn_mask.to(model.device)
 
-        completions = tokenizer.batch_decode([
-                tokenized_completion[context_length:]
-                for context_length, tokenized_completion in zip(
-                    attn_mask.sum(-1), tokenized_completions
-                )],
-            skip_special_tokens=True,
-        )
+        model_output = model(input_ids=input_ids, attention_mask=attn_mask)
+        completions = tokenizer.batch_decode(model_output.logits.argmax(-1))
 
         for line_type, completion, ground_truth in zip(line_types, completions, ground_truths):
-            ref_dict[line_type].num_matches += (completion.strip() == ground_truth.strip())
+            ref_dict[line_type].num_matches += completion.rstrip('\n').endswith(ground_truth.rstrip('\n'))
             ref_dict[line_type].num_lines += 1
 
         pbar_iter.set_description(
