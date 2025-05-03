@@ -11,7 +11,7 @@ num_workers: 16
 prefetch_factor: 6
 
 defaults:
-  - model: ocoder1p5_theta_500k_compiled
+  - model: ocoder1p5_theta_500k
 
   - _self_
   - override hydra/hydra_logging: disabled

@@ -1,8 +1,0 @@
-tokenizer_name: infly/OpenCoder-1.5B-Base
-model_name: infly/OpenCoder-1.5B-Base
-trust_remote_code: True
-compile: True
-
-config:
-  max_position_embeddings: 16384
-  rope_theta: 500_000

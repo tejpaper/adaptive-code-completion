@@ -1,4 +1,0 @@
-tokenizer_name: Qwen/Qwen2.5-Coder-0.5B
-model_name: Qwen/Qwen2.5-Coder-0.5B
-trust_remote_code: True
-compile: True
