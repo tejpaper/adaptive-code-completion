@@ -1,29 +1,33 @@
 {
     "model": {
-        "tokenizer_name": "deepseek-ai/deepseek-coder-1.3b-base",
-        "model_name": "runs/dseek_masked_completion_leak/checkpoints/0512/model",
+        "tokenizer_name": "infly/OpenCoder-1.5B-Base",
+        "model_name": "runs/irrelevant_iou_python_files/checkpoints/0512/model",
         "trust_remote_code": true,
-        "compile": false
+        "compile": false,
+        "config": {
+            "max_position_embeddings": 16384,
+            "rope_theta": 500000
+        }
     },
     "path_to_composer_config": "composer/filled_python_files.yaml",
-    "path_to_checkpoint": "runs/dseek_masked_completion_leak/checkpoints/0512/model",
+    "path_to_checkpoint": "runs/irrelevant_iou_python_files/checkpoints/0512/model",
     "dataset_type": "large",
     "context_size": 16384,
     "batch_size": 4,
     "num_workers": 16,
     "prefetch_factor": 6,
     "composer": "ChainedComposer(pre_context_prompt='<repo_name>{}\n<file_sep>', post_context_prompt='<file_sep>', path_comment_template='# {filename}\n{content}', blocks=[EmptyFileFilter(), InclusiveFileExtensionFilter(whitelist=['.py']), NewlinePreprocessor(), FileGrainedChunker(), NegativePathDistanceRanker(), IoURanker(min_len=5), LexicographicSorter(), PathCommentAssembler(chunks_sep='<file_sep>', path_comment_template='# {filename}\n{content}')])",
-    "sh": "python3 -m evaluation \\\neval_name=rq_a2_pd_16k_masked_completion_leak \\\npath_to_checkpoint=runs/dseek_masked_completion_leak/checkpoints/0512/model \\\nmodel=dseek1p3",
+    "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_irrelevant_iou_python_files \\\npath_to_checkpoint=runs/irrelevant_iou_python_files/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1087,
+            "num_matches": 1253,
             "num_lines": 2595,
-            "value": 0.4188824662813102
+            "value": 0.48285163776493256
         },
         "infile": {
-            "num_matches": 1181,
+            "num_matches": 1303,
             "num_lines": 2691,
-            "value": 0.4388703084355258
+            "value": 0.48420661464139725
         }
     }
 }

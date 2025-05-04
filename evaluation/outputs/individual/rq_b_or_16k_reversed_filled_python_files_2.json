@@ -1,0 +1,34 @@
+{
+    "model": {
+        "tokenizer_name": "infly/OpenCoder-1.5B-Base",
+        "model_name": "runs/reversed_filled_python_files_2/checkpoints/0512/model",
+        "trust_remote_code": true,
+        "compile": false,
+        "config": {
+            "max_position_embeddings": 16384,
+            "rope_theta": 500000
+        }
+    },
+    "path_to_composer_config": "composer/reversed_filled_python_files.yaml",
+    "path_to_checkpoint": "runs/reversed_filled_python_files_2/checkpoints/0512/model",
+    "dataset_type": "large",
+    "context_size": 16384,
+    "allow_leak": false,
+    "batch_size": 4,
+    "num_workers": 16,
+    "prefetch_factor": 6,
+    "composer": "ChainedComposer(pre_context_prompt='<repo_name>{}\n<file_sep>', post_context_prompt='<file_sep>', path_comment_template='# {filename}\n{content}', blocks=[EmptyFileFilter(), InclusiveFileExtensionFilter(whitelist=['.py']), NewlinePreprocessor(), FileGrainedChunker(), NegativePathDistanceRanker(), IoURanker(min_len=5), LexicographicSorter(), PathCommentAssembler(chunks_sep='<file_sep>', path_comment_template='# {filename}\n{content}'), OCoderReversedContextPostprocessor(chars_lower_bound=140000, context_size=16384, chunks_sep='<file_sep>')])",
+    "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_reversed_filled_python_files_2 \\\npath_to_composer_config=composer/reversed_filled_python_files.yaml \\\npath_to_checkpoint=runs/reversed_filled_python_files_2/checkpoints/0512/model",
+    "exact_match": {
+        "inproject": {
+            "num_matches": 1259,
+            "num_lines": 2595,
+            "value": 0.48516377649325626
+        },
+        "infile": {
+            "num_matches": 1328,
+            "num_lines": 2691,
+            "value": 0.49349684132292826
+        }
+    }
+}

@@ -1,7 +1,7 @@
 {
     "model": {
         "tokenizer_name": "infly/OpenCoder-1.5B-Base",
-        "model_name": "runs/mixed_context/checkpoints/0512/model",
+        "model_name": "runs/file_level_2/checkpoints/0512/model",
         "trust_remote_code": true,
         "compile": false,
         "config": {
@@ -10,24 +10,25 @@
         }
     },
     "path_to_composer_config": "composer/file_level.yaml",
-    "path_to_checkpoint": "runs/mixed_context/checkpoints/0512/model",
+    "path_to_checkpoint": "runs/file_level_2/checkpoints/0512/model",
     "dataset_type": "large",
-    "context_size": 4096,
+    "context_size": 16384,
+    "allow_leak": false,
     "batch_size": 4,
     "num_workers": 16,
     "prefetch_factor": 6,
     "composer": "ChainedComposer(pre_context_prompt='<repo_name>{}\n<file_sep>', post_context_prompt='<file_sep>', path_comment_template='# {filename}\n{content}', blocks=[NullFileFilter(), FileGrainedChunker(), PathCommentAssembler(chunks_sep='<file_sep>', path_comment_template='# {filename}\n{content}')])",
-    "sh": "python3 -m evaluation \\\neval_name=rq_b2_fl_4k_mixed_context \\\npath_to_composer_config=composer/file_level.yaml \\\npath_to_checkpoint=runs/mixed_context/checkpoints/0512/model \\\ncontext_size=4096",
+    "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_file_level_2 \\\npath_to_composer_config=composer/file_level.yaml \\\npath_to_checkpoint=runs/file_level_2/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 255,
+            "num_matches": 218,
             "num_lines": 2595,
-            "value": 0.09826589595375723
+            "value": 0.08400770712909442
         },
         "infile": {
-            "num_matches": 327,
+            "num_matches": 271,
             "num_lines": 2691,
-            "value": 0.12151616499442586
+            "value": 0.10070605722779635
         }
     }
 }

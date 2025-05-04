@@ -1,0 +1,30 @@
+{
+    "model": {
+        "tokenizer_name": "deepseek-ai/deepseek-coder-1.3b-base",
+        "model_name": "runs/dseek_completion_leak/checkpoints/0512/model",
+        "trust_remote_code": true,
+        "compile": false
+    },
+    "path_to_composer_config": "composer/dseek_completion_leak.yaml",
+    "path_to_checkpoint": "runs/dseek_completion_leak/checkpoints/0512/model",
+    "dataset_type": "large",
+    "context_size": 16384,
+    "allow_leak": true,
+    "batch_size": 4,
+    "num_workers": 16,
+    "prefetch_factor": 6,
+    "composer": "ChainedComposer(pre_context_prompt='<repo_name>{}\n', post_context_prompt='\n\n', path_comment_template='# {filename}\n{content}', blocks=[EmptyFileFilter(), InclusiveFileExtensionFilter(whitelist=['.py']), NewlinePreprocessor(), FileGrainedChunker(), NegativePathDistanceRanker(), IoURanker(min_len=5), LexicographicSorter(), PathCommentAssembler(chunks_sep='\n\n', path_comment_template='# {filename}\n{content}'), DseekCompletionLeakPostprocessor(chars_lower_bound=140000, context_size=16384, num_segments=5, random_seed=42)])",
+    "sh": "python3 -m evaluation \\\neval_name=rq_a2_or_16k_completion_leak \\\npath_to_composer_config=composer/dseek_completion_leak.yaml \\\npath_to_checkpoint=runs/dseek_completion_leak/checkpoints/0512/model \\\nallow_leak=true \\\nmodel=dseek1p3",
+    "exact_match": {
+        "inproject": {
+            "num_matches": 2023,
+            "num_lines": 2595,
+            "value": 0.7795761078998074
+        },
+        "infile": {
+            "num_matches": 2062,
+            "num_lines": 2691,
+            "value": 0.7662578966926793
+        }
+    }
+}
