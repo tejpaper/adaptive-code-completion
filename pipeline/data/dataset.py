@@ -46,23 +46,23 @@ def train_test_split(df: pd.DataFrame,
     return list(train_repos_ids), list(test_repos_ids)
 
 
-def reverse_context(string: str) -> str:
-    # Experiments with reverse context are only done with OpenCoder, so this function is sufficient
-    # See the dual class ReverseContextPostprocessor in incontext/blocks/context_postprocessing.py
+def irrelevant_context(string: str) -> str:
+    # Experiments with irrelevant context are only done with OpenCoder, so this function is sufficient
+    # Note that it has a different effect than the ReversedContextPostprocessor in incontext/blocks/context_postprocessing.py
     return '<file_sep>'.join(string.split('<file_sep>')[:-1][::-1] + [''])
 
 
 def load_dataset(main_dataset_path: str,
                  add_dataset_path: str | None,
-                 reversed_context: bool,
+                 irrelevant_context: bool,
                  file_level: bool,
                  **split_kwargs,
                  ) -> tuple[Dataset, Dataset, Dataset | None]:
     dataset = pd.read_parquet(main_dataset_path)
     train_ids, test_ids = train_test_split(dataset, **split_kwargs)
 
-    if reversed_context:
-        dataset['composed_context'] = dataset.composed_context.apply(reverse_context)
+    if irrelevant_context:
+        dataset['composed_context'] = dataset.composed_context.apply(irrelevant_context)
     if file_level:
         dataset['composed_context'] = ''
 

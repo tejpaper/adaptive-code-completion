@@ -1,0 +1,5 @@
+chars_lower_bound: 140_000
+context_size: 16384
+chunks_sep: "<file_sep>"
+tokenizer_name: infly/OpenCoder-1.5B-Base
+trust_remote_code: true

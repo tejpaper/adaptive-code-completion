@@ -6,11 +6,11 @@ block_configs: [
   file_filtering/empty_file_filter/no_args.yaml,
   file_filtering/inclusive_file_extension_filter/python_files.yaml,
   file_preprocessing/newline_preprocessor/no_args.yaml,
+  file_preprocessing/declaration_only_preprocessor/no_args.yaml,
   file_chunking/file_grained_chunker/no_args.yaml,
   chunk_ranking/negative_path_distance_ranker/no_args.yaml,
   chunk_ranking/iou_ranker/5.yaml,
   chunk_sorting/lexicographic_sorter/no_args.yaml,
   chunk_assembling/path_comment_assembler/ocoder.yaml,
   context_postprocessing/ocoder_reversed_context_postprocessor/16k.yaml,
-  context_postprocessing/ocoder_completion_leak_postprocessor/16k_5.yaml,
 ]

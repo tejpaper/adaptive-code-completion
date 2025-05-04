@@ -1,4 +1,4 @@
 main_dataset_path: datasets/declarations.parquet
 add_dataset_path: datasets/filled_python_files.parquet
-reversed_context: True
+irrelevant_context: True
 file_level: False

@@ -147,11 +147,43 @@ class OCoderCompletionLeakPostprocessor(CompletionLeakPostprocessor):
 
 
 class ReversedContextPostprocessor(ContextPostprocessor):
-    def __init__(self, chunks_sep: str) -> None:
+    def __init__(self,
+                 chars_lower_bound: int,
+                 context_size: int,
+                 chunks_sep: str,
+                 tokenizer_name: str,
+                 trust_remote_code: bool,
+                 ) -> None:
+        self.chars_lower_bound = chars_lower_bound
+        self.context_size = context_size
         self.chunks_sep = chunks_sep
 
-    def __call__(self, context: str, _datapoint: Datapoint) -> str:
-        return self.chunks_sep.join(context.split(self.chunks_sep)[::-1])
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            pretrained_model_name_or_path=tokenizer_name,
+            trust_remote_code=trust_remote_code,
+        )
+
+    def __call__(self, context: str, datapoint: Datapoint) -> str:
+        completion = datapoint.completion_file['content']
+
+        tokenized_context = self.tokenizer(
+            (context + completion)[-self.chars_lower_bound:],
+            return_attention_mask=False,
+        ).input_ids[-self.context_size:]
+        num_required_chars = len(self.tokenizer.decode(tokenized_context)) - len(completion)
+
+        visible_context = context[-num_required_chars:]
+        reversed_context = self.chunks_sep.join(visible_context.split(self.chunks_sep)[::-1])
+
+        return reversed_context
+
+
+# Hardcode to make init_from_config clearer
+class OCoderReversedContextPostprocessor(ReversedContextPostprocessor):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs,
+                         tokenizer_name='infly/OpenCoder-1.5B-Base',
+                         trust_remote_code=True)
 
 
 class RandomTokensPostprocessor(ContextPostprocessor):
