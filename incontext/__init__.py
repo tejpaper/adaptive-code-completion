@@ -52,6 +52,10 @@ from incontext.blocks.context_postprocessing import (
     PartialMemoryPostprocessor,
     LineLengthPostprocessor,
     LineStripPostprocessor,
+    CompletionLeakPostprocessor,
+    DseekCompletionLeakPostprocessor,
+    OCoderCompletionLeakPostprocessor,
+    ReversedContextPostprocessor,
 )
 
 # composers

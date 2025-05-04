@@ -1,0 +1,6 @@
+chars_lower_bound: 140_000
+context_size: 16384
+num_segments: 5
+tokenizer_name: deepseek-ai/deepseek-coder-1.3b-base
+trust_remote_code: true
+random_seed: 42

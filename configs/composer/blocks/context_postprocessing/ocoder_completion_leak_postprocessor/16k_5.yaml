@@ -1,0 +1,4 @@
+chars_lower_bound: 140_000
+context_size: 16384
+num_segments: 5
+random_seed: 42

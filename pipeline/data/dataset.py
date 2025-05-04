@@ -47,7 +47,8 @@ def train_test_split(df: pd.DataFrame,
 
 
 def reverse_context(string: str) -> str:
-    # TODO: works only with opencoder's format
+    # Experiments with reverse context are only done with OpenCoder, so this function is sufficient
+    # See the dual class ReverseContextPostprocessor in incontext/blocks/context_postprocessing.py
     return '<file_sep>'.join(string.split('<file_sep>')[:-1][::-1] + [''])
 
 
