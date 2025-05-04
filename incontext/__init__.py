@@ -56,6 +56,9 @@ from incontext.blocks.context_postprocessing import (
     DseekCompletionLeakPostprocessor,
     OCoderCompletionLeakPostprocessor,
     ReversedContextPostprocessor,
+    RandomTokensPostprocessor,
+    DseekRandomTokensPostprocessor,
+    OCoderRandomTokensPostprocessor,
 )
 
 # composers

@@ -1,0 +1,10 @@
+pre_context_prompt: "<repo_name>{}\n<file_sep>"
+post_context_prompt: "<file_sep>"
+path_comment_template: "# {filename}\n{content}"
+
+block_configs: [
+  file_filtering/null_file_filter/no_args.yaml,
+  file_chunking/file_grained_chunker/no_args.yaml,
+  chunk_assembling/path_comment_assembler/ocoder.yaml,
+  context_postprocessing/ocoder_random_tokens_postprocessor/16k_5.yaml,
+]

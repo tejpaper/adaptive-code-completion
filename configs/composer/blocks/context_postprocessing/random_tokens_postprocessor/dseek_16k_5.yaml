@@ -1,0 +1,4 @@
+context_size: 16384
+tokenizer_name: deepseek-ai/deepseek-coder-1.3b-base
+trust_remote_code: true
+random_seed: 42

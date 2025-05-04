@@ -5,7 +5,7 @@ import random
 from abc import ABC
 from typing import Type
 
-from transformers import AutoTokenizer, PreTrainedTokenizerBase
+from transformers import AutoTokenizer
 
 
 class ContextPostprocessor(ComposerBlock, ABC):
@@ -50,7 +50,8 @@ class CompletionLeakPostprocessor(ContextPostprocessor):
                  num_segments: int,
                  tokenizer_name: str,
                  trust_remote_code: bool,
-                 random_seed: int | None) -> None:
+                 random_seed: int | None,
+                 ) -> None:
         self.chars_lower_bound = chars_lower_bound
         self.context_size = context_size
         self.num_segments = num_segments
@@ -151,3 +152,41 @@ class ReversedContextPostprocessor(ContextPostprocessor):
 
     def __call__(self, context: str, _datapoint: Datapoint) -> str:
         return self.chunks_sep.join(context.split(self.chunks_sep)[::-1])
+
+
+class RandomTokensPostprocessor(ContextPostprocessor):
+    def __init__(self,
+                 context_size: int,
+                 tokenizer_name: str,
+                 trust_remote_code: bool,
+                 random_seed: int | None,
+                 ) -> None:
+        self.context_size = context_size
+
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            pretrained_model_name_or_path=tokenizer_name,
+            trust_remote_code=trust_remote_code,
+        )
+        self.generator = random.Random(random_seed)
+
+        special_token_ids = set(list(self.tokenizer.get_added_vocab().values()) + self.tokenizer.all_special_ids)
+        self.allowed_token_ids = list(set(range(len(self.tokenizer))).difference(special_token_ids))
+
+    def __call__(self, _context: str, _datapoint: Datapoint) -> str:
+        return self.tokenizer.decode(self.generator.choices(self.allowed_token_ids, k=self.context_size))
+
+
+# Hardcode to make init_from_config clearer
+class DseekRandomTokensPostprocessor(RandomTokensPostprocessor):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs,
+                         tokenizer_name='deepseek-ai/deepseek-coder-1.3b-base',
+                         trust_remote_code=True)
+
+
+# Hardcode to make init_from_config clearer
+class OCoderRandomTokensPostprocessor(RandomTokensPostprocessor):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs,
+                         tokenizer_name='infly/OpenCoder-1.5B-Base',
+                         trust_remote_code=True)
