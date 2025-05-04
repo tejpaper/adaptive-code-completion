@@ -1,0 +1,33 @@
+{
+    "model": {
+        "tokenizer_name": "infly/OpenCoder-1.5B-Base",
+        "model_name": "runs/irrelevant_code_chunks/checkpoints/0512/model",
+        "trust_remote_code": true,
+        "compile": false,
+        "config": {
+            "max_position_embeddings": 16384,
+            "rope_theta": 500000
+        }
+    },
+    "path_to_composer_config": "composer/file_level.yaml",
+    "path_to_checkpoint": "runs/irrelevant_code_chunks/checkpoints/0512/model",
+    "dataset_type": "large",
+    "context_size": 4096,
+    "batch_size": 4,
+    "num_workers": 16,
+    "prefetch_factor": 6,
+    "composer": "ChainedComposer(pre_context_prompt='<repo_name>{}\n<file_sep>', post_context_prompt='<file_sep>', path_comment_template='# {filename}\n{content}', blocks=[NullFileFilter(), FileGrainedChunker(), PathCommentAssembler(chunks_sep='<file_sep>', path_comment_template='# {filename}\n{content}')])",
+    "sh": "python3 -m evaluation \\\neval_name=rq_b2_fl_4k_irrelevant_code_chunks \\\npath_to_composer_config=composer/file_level.yaml \\\npath_to_checkpoint=runs/irrelevant_code_chunks/checkpoints/0512/model \\\ncontext_size=4096",
+    "exact_match": {
+        "inproject": {
+            "num_matches": 255,
+            "num_lines": 2595,
+            "value": 0.09826589595375723
+        },
+        "infile": {
+            "num_matches": 328,
+            "num_lines": 2691,
+            "value": 0.1218877740616871
+        }
+    }
+}

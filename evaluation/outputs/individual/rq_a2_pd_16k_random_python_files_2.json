@@ -1,0 +1,29 @@
+{
+    "model": {
+        "tokenizer_name": "deepseek-ai/deepseek-coder-1.3b-base",
+        "model_name": "runs/dseek_random_python_files_2/checkpoints/0512/model",
+        "trust_remote_code": true,
+        "compile": false
+    },
+    "path_to_composer_config": "composer/filled_python_files.yaml",
+    "path_to_checkpoint": "runs/dseek_random_python_files_2/checkpoints/0512/model",
+    "dataset_type": "large",
+    "context_size": 16384,
+    "batch_size": 4,
+    "num_workers": 16,
+    "prefetch_factor": 6,
+    "composer": "ChainedComposer(pre_context_prompt='<repo_name>{}\n<file_sep>', post_context_prompt='<file_sep>', path_comment_template='# {filename}\n{content}', blocks=[EmptyFileFilter(), InclusiveFileExtensionFilter(whitelist=['.py']), NewlinePreprocessor(), FileGrainedChunker(), NegativePathDistanceRanker(), IoURanker(min_len=5), LexicographicSorter(), PathCommentAssembler(chunks_sep='<file_sep>', path_comment_template='# {filename}\n{content}')])",
+    "sh": "python3 -m evaluation \\\neval_name=rq_a2_pd_16k_random_python_files_2 \\\npath_to_checkpoint=runs/dseek_random_python_files_2/checkpoints/0512/model \\\nmodel=dseek1p3",
+    "exact_match": {
+        "inproject": {
+            "num_matches": 1089,
+            "num_lines": 2595,
+            "value": 0.41965317919075146
+        },
+        "infile": {
+            "num_matches": 1210,
+            "num_lines": 2691,
+            "value": 0.4496469713861018
+        }
+    }
+}

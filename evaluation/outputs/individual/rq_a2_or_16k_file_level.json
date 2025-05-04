@@ -1,0 +1,29 @@
+{
+    "model": {
+        "tokenizer_name": "deepseek-ai/deepseek-coder-1.3b-base",
+        "model_name": "runs/dseek_file_level/checkpoints/0512/model",
+        "trust_remote_code": true,
+        "compile": false
+    },
+    "path_to_composer_config": "composer/file_level.yaml",
+    "path_to_checkpoint": "runs/dseek_file_level/checkpoints/0512/model",
+    "dataset_type": "large",
+    "context_size": 16384,
+    "batch_size": 4,
+    "num_workers": 16,
+    "prefetch_factor": 6,
+    "composer": "ChainedComposer(pre_context_prompt='<repo_name>{}\n<file_sep>', post_context_prompt='<file_sep>', path_comment_template='# {filename}\n{content}', blocks=[NullFileFilter(), FileGrainedChunker(), PathCommentAssembler(chunks_sep='<file_sep>', path_comment_template='# {filename}\n{content}')])",
+    "sh": "python3 -m evaluation \\\neval_name=rq_a2_or_16k_file_level \\\npath_to_composer_config=composer/file_level.yaml \\\npath_to_checkpoint=runs/dseek_file_level/checkpoints/0512/model \\\nmodel=dseek1p3",
+    "exact_match": {
+        "inproject": {
+            "num_matches": 200,
+            "num_lines": 2595,
+            "value": 0.07707129094412331
+        },
+        "infile": {
+            "num_matches": 256,
+            "num_lines": 2691,
+            "value": 0.09513192121887774
+        }
+    }
+}
