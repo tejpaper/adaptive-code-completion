@@ -1,7 +1,9 @@
 from evaluation.data_structures import LongCodeArenaDatapoint
 from incontext import ChainedComposer
+from incontext.data_structures import Datapoint
 
 import math
+from dataclasses import asdict
 from typing import Literal
 
 import torch
@@ -20,10 +22,12 @@ class LongCodeArenaDataset(Dataset):
                  crumpled_dataset: HuggingFaceDataset,
                  context_size: int,
                  composer: ChainedComposer,
+                 allow_leak: bool,
                  ) -> None:
         self.crumpled_dataset = crumpled_dataset
         self.context_size = context_size
         self.composer = composer
+        self.allow_leak = allow_leak
 
         self.indices = list()
         for datapoint_idx, datapoint in enumerate(crumpled_dataset):
@@ -38,15 +42,21 @@ class LongCodeArenaDataset(Dataset):
         datapoint_idx, line_type, line_idx = self.indices[idx]
         datapoint = LongCodeArenaDatapoint(**self.crumpled_dataset[datapoint_idx])
 
-        completion_lines = self.crumpled_dataset[datapoint_idx]['completion_file']['content'].split('\n')
-
-        composed_datapoint = self.composer.compose(dict(
+        completion_lines = datapoint.completion_file['content'].split('\n')
+        incontext_datapoint = Datapoint(
             repo=datapoint.repo,
-            completion_file=dict(
-                filename=datapoint.completion_file['filename'],
-                content='\n'.join(completion_lines[:line_idx]),
-            ),
-            repo_snapshot=datapoint.repo_snapshot))
+            completion_file=datapoint.completion_file,
+            repo_snapshot=datapoint.repo_snapshot,
+        )
+
+        if self.allow_leak:
+            composed_datapoint = self.composer.compose(asdict(incontext_datapoint))
+            incontext_datapoint.completion_file['content'] = '\n'.join(completion_lines[:line_idx])
+        else:
+            incontext_datapoint.completion_file['content'] = '\n'.join(completion_lines[:line_idx])
+            composed_datapoint = self.composer.compose(asdict(incontext_datapoint))
+        
+        composed_datapoint['composed_completion'] = self.composer.compose_completion(incontext_datapoint)
         ground_truth = completion_lines[line_idx]
 
         return (

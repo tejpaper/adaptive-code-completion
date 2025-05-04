@@ -1,6 +1,8 @@
 from incontext.blocks.block import ComposerBlock
+from incontext.blocks.file_preprocessing import NewlinePreprocessor
 from incontext.data_structures import Chunk, Datapoint, File
 
+import math
 from abc import ABC
 from enum import Enum
 from string import whitespace
@@ -209,3 +211,22 @@ class FixedLineChunker(FileChunker):
                 ))
 
         return chunks
+
+
+class CompletionDuplicationChunker(FileChunker):
+    def __init__(self, chars_lower_bound: int) -> None:
+        self.chars_lower_bound = chars_lower_bound
+
+    def __call__(self, _files: Sequence[File], datapoint: Datapoint) -> Sequence[Chunk]:
+        filename = datapoint.completion_file['filename']
+        content = NewlinePreprocessor.unify_newlines(datapoint.completion_file['content'])
+        num_repeats = math.ceil(self.chars_lower_bound / len(content))
+        
+        return [Chunk(
+                    content=content,
+                    metadata=dict(filename=filename),
+                    file_ref=File(
+                        content=content,
+                        metadata=dict(filename=filename),
+                    ))
+                for _ in range(num_repeats)]

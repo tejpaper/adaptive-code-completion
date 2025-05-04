@@ -49,6 +49,7 @@ def main(config: DictConfig) -> None:
         crumpled_dataset=crumpled_dataset,
         context_size=config.context_size,
         composer=composer,
+        allow_leak=config.allow_leak,
     )
 
     dataloader = DataLoader(

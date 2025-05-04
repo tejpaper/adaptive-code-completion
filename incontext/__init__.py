@@ -30,6 +30,7 @@ from incontext.blocks.file_chunking import (
     DocstringAndCommentOnlyChunker,
     CodeOnlyChunker,
     FixedLineChunker,
+    CompletionDuplicationChunker,
 )
 from incontext.blocks.chunk_ranking import (
     NegativePathDistanceRanker,

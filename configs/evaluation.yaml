@@ -5,6 +5,7 @@ path_to_checkpoint: null  # e.g. runs/dseek_filled_python_files/checkpoints/0512
 
 dataset_type: large  # small, medium, large, huge
 context_size: 16384  # 4096
+allow_leak: false
 
 batch_size: 4
 num_workers: 16
