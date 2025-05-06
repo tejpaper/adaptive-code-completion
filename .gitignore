@@ -3,6 +3,7 @@
 **/__pycache__/
 wandb
 venv
+.venv
 
 !.gitkeep
 !**/.gitkeep
@@ -11,6 +12,7 @@ runs/**/checkpoints/*
 !runs/**/checkpoints/.gitkeep
 runs/**/logs/stderr.json
 runs/**/logs/stdout.json
+runs/debugging
 runs/test
 
 main.ipynb

@@ -1,0 +1,5 @@
+omegaconf==2.3.0
+PyYAML==6.0.2
+transformers==4.46.1
+tree_sitter==0.22.3
+tree_sitter_python==0.21.0
