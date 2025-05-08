@@ -22,7 +22,7 @@ CONFIGS_DIR = os.path.join(PROJECT_DIR, 'configs')
 @torch.inference_mode()
 @hydra.main(config_path=CONFIGS_DIR, config_name='evaluation', version_base=None)
 def main(config: DictConfig) -> None:
-    output_file = os.path.join(PROJECT_DIR, f'evaluation/outputs/individual/{config.eval_name}.json')
+    output_file = os.path.join(PROJECT_DIR, f'evaluation/outputs/json/{config.eval_name}.json')
     if os.path.exists(output_file):
         print(f'{config.eval_name} has already been processed. Skipping this evaluation...')
         return

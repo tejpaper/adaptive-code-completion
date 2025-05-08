@@ -1,0 +1,34 @@
+{
+    "model": {
+        "tokenizer_name": "infly/OpenCoder-1.5B-Base",
+        "model_name": "runs/random_python_files_2/checkpoints/0512/model",
+        "trust_remote_code": true,
+        "compile": false,
+        "config": {
+            "max_position_embeddings": 16384,
+            "rope_theta": 500000
+        }
+    },
+    "path_to_composer_config": "composer/filled_python_files.yaml",
+    "path_to_checkpoint": "runs/random_python_files_2/checkpoints/0512/model",
+    "dataset_type": "large",
+    "context_size": 4096,
+    "allow_leak": false,
+    "batch_size": 4,
+    "num_workers": 16,
+    "prefetch_factor": 6,
+    "composer": "ChainedComposer(pre_context_prompt='<repo_name>{}\n<file_sep>', post_context_prompt='<file_sep>', path_comment_template='# {filename}\n{content}', blocks=[EmptyFileFilter(), InclusiveFileExtensionFilter(whitelist=['.py']), NewlinePreprocessor(), FileGrainedChunker(), NegativePathDistanceRanker(), IoURanker(min_len=5), LexicographicSorter(), PathCommentAssembler(chunks_sep='<file_sep>', path_comment_template='# {filename}\n{content}')])",
+    "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_4k_random_python_files_2 \\\npath_to_checkpoint=runs/random_python_files_2/checkpoints/0512/model \\\ncontext_size=4096",
+    "exact_match": {
+        "inproject": {
+            "num_matches": 967,
+            "num_lines": 2595,
+            "value": 0.37263969171483624
+        },
+        "infile": {
+            "num_matches": 1050,
+            "num_lines": 2691,
+            "value": 0.39018952062430323
+        }
+    }
+}
