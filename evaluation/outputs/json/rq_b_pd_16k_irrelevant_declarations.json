@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_irrelevant_declarations \\\npath_to_checkpoint=runs/irrelevant_declarations/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1221,
+            "num_matches": 1218,
             "num_lines": 2595,
-            "value": 0.4705202312138728
+            "value": 0.46936416184971097
         },
         "infile": {
-            "num_matches": 1264,
+            "num_matches": 1262,
             "num_lines": 2691,
-            "value": 0.46971386101820883
+            "value": 0.46897064288368634
         }
     }
 }

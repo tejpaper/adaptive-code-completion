@@ -3,8 +3,11 @@ import json
 
 import pandas as pd
 
+PATH_TO_EVALUATION_OUTPUTS = 'evaluation/outputs'
+
 
 def compile_rq_a1_table(path_to_results: str, output_file: str = 'csv/rq_a1.csv') -> None:
+    output_file = os.path.join(PATH_TO_EVALUATION_OUTPUTS, output_file)
     results = list()
 
     for filename in os.listdir(path_to_results):
@@ -27,6 +30,7 @@ def compile_rq_a1_table(path_to_results: str, output_file: str = 'csv/rq_a1.csv'
 
 
 def compile_rq_a2_table(path_to_results: str, output_file: str = 'csv/rq_a2.csv') -> None:
+    output_file = os.path.join(PATH_TO_EVALUATION_OUTPUTS, output_file)
     results = list()
 
     eval_names = [
@@ -65,6 +69,7 @@ def compile_rq_a2_table(path_to_results: str, output_file: str = 'csv/rq_a2.csv'
 
 
 def compile_rq_b_table(path_to_results: str, output_file: str = 'csv/rq_b.csv') -> None:
+    output_file = os.path.join(PATH_TO_EVALUATION_OUTPUTS, output_file)
     results = list()
 
     eval_names = [
@@ -125,6 +130,7 @@ def compile_rq_b_table(path_to_results: str, output_file: str = 'csv/rq_b.csv') 
 
 
 def compile_rq_a2_gradient_masking_table(path_to_results: str, output_file: str = 'csv/rq_a2_gradient_masking.csv') -> None:
+    output_file = os.path.join(PATH_TO_EVALUATION_OUTPUTS, output_file)
     results = list()
 
     eval_names = [
@@ -156,6 +162,7 @@ def compile_rq_a2_gradient_masking_table(path_to_results: str, output_file: str 
 
 
 def compile_rq_b_gradient_masking_table(path_to_results: str, output_file: str = 'csv/rq_b_gradient_masking.csv') -> None:
+    output_file = os.path.join(PATH_TO_EVALUATION_OUTPUTS, output_file)
     results = list()
 
     eval_names = [
@@ -193,7 +200,7 @@ def compile_rq_b_gradient_masking_table(path_to_results: str, output_file: str =
 
 
 def main() -> None:
-    path_to_results = 'json'
+    path_to_results = os.path.join(PATH_TO_EVALUATION_OUTPUTS, 'json')
     compile_rq_a1_table(path_to_results)
     compile_rq_a2_table(path_to_results)
     compile_rq_b_table(path_to_results)

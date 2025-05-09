@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_reversed_iou_python_files_2 \\\npath_to_checkpoint=runs/reversed_iou_python_files_2/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1252,
+            "num_matches": 1255,
             "num_lines": 2595,
-            "value": 0.48246628131021196
+            "value": 0.4836223506743738
         },
         "infile": {
-            "num_matches": 1305,
+            "num_matches": 1304,
             "num_lines": 2691,
-            "value": 0.48494983277591974
+            "value": 0.4845782237086585
         }
     }
 }

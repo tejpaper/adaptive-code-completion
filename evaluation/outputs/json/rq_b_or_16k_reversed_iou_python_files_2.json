@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_reversed_iou_python_files_2 \\\npath_to_composer_config=composer/reversed_iou_python_files.yaml \\\npath_to_checkpoint=runs/reversed_iou_python_files_2/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1319,
+            "num_matches": 1328,
             "num_lines": 2595,
-            "value": 0.5082851637764932
+            "value": 0.5117533718689788
         },
         "infile": {
-            "num_matches": 1363,
+            "num_matches": 1360,
             "num_lines": 2691,
-            "value": 0.5065031586770717
+            "value": 0.5053883314752879
         }
     }
 }

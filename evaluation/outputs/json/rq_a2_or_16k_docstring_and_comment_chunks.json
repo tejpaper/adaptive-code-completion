@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_or_16k_docstring_and_comment_chunks \\\npath_to_composer_config=composer/docstring_and_comment_chunks.yaml \\\npath_to_checkpoint=runs/dseek_docstring_and_comment_chunks/checkpoints/0512/model \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 537,
+            "num_matches": 631,
             "num_lines": 2595,
-            "value": 0.2069364161849711
+            "value": 0.24315992292870905
         },
         "infile": {
-            "num_matches": 700,
+            "num_matches": 808,
             "num_lines": 2691,
-            "value": 0.2601263470828688
+            "value": 0.3002601263470829
         }
     }
 }

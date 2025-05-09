@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_4k_reversed_declarations \\\npath_to_checkpoint=runs/reversed_declarations/checkpoints/0512/model \\\ncontext_size=4096",
     "exact_match": {
         "inproject": {
-            "num_matches": 966,
+            "num_matches": 967,
             "num_lines": 2595,
-            "value": 0.3722543352601156
+            "value": 0.37263969171483624
         },
         "infile": {
-            "num_matches": 1041,
+            "num_matches": 1045,
             "num_lines": 2691,
-            "value": 0.38684503901895206
+            "value": 0.38833147528799705
         }
     }
 }

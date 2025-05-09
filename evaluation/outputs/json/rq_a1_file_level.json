@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a1_file_level \\\npath_to_composer_config=composer/file_level.yaml \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 196,
+            "num_matches": 662,
             "num_lines": 2595,
-            "value": 0.07552986512524085
+            "value": 0.25510597302504817
         },
         "infile": {
-            "num_matches": 244,
+            "num_matches": 836,
             "num_lines": 2691,
-            "value": 0.09067261241174285
+            "value": 0.31066518023039763
         }
     }
 }

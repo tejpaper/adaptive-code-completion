@@ -21,9 +21,9 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_docstring_and_comment_chunks \\\npath_to_checkpoint=runs/docstring_and_comment_chunks/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1240,
+            "num_matches": 1243,
             "num_lines": 2595,
-            "value": 0.47784200385356457
+            "value": 0.4789980732177264
         },
         "infile": {
             "num_matches": 1286,

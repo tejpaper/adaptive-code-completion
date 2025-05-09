@@ -20,14 +20,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_fl_4k_no_extension \\\npath_to_composer_config=composer/file_level.yaml \\\ncontext_size=4096 \\\nmodel=ocoder1p5",
     "exact_match": {
         "inproject": {
-            "num_matches": 252,
+            "num_matches": 678,
             "num_lines": 2595,
-            "value": 0.09710982658959537
+            "value": 0.261271676300578
         },
         "infile": {
-            "num_matches": 323,
+            "num_matches": 881,
             "num_lines": 2691,
-            "value": 0.1200297287253809
+            "value": 0.3273875882571535
         }
     }
 }

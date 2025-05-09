@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_irrelevant_docstring_and_comment_chunks \\\npath_to_checkpoint=runs/irrelevant_docstring_and_comment_chunks/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1238,
+            "num_matches": 1236,
             "num_lines": 2595,
-            "value": 0.4770712909441233
+            "value": 0.47630057803468207
         },
         "infile": {
-            "num_matches": 1293,
+            "num_matches": 1286,
             "num_lines": 2691,
-            "value": 0.48049052396878483
+            "value": 0.47788926049795616
         }
     }
 }

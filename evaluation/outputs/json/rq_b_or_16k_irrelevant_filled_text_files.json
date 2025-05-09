@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_irrelevant_filled_text_files \\\npath_to_composer_config=composer/irrelevant_filled_text_files.yaml \\\npath_to_checkpoint=runs/irrelevant_filled_text_files/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 592,
+            "num_matches": 704,
             "num_lines": 2595,
-            "value": 0.22813102119460502
+            "value": 0.27129094412331406
         },
         "infile": {
-            "num_matches": 720,
+            "num_matches": 914,
             "num_lines": 2691,
-            "value": 0.26755852842809363
+            "value": 0.33965068747677446
         }
     }
 }

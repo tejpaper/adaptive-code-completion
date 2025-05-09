@@ -74,6 +74,7 @@ class DataCollator:
                  ) -> None:
         self.tokenizer = tokenizer
         self.context_size = context_size
+        self.no_bos = (tokenizer.bos_token_id is None)
 
     def _tokenize(self, 
                   text: str,
@@ -105,14 +106,19 @@ class DataCollator:
         for line_type, repo_context, file_prefix, ground_truth in batch:
             tokenized_completion = self._tokenize(
                 text=file_prefix + ground_truth,
-                max_seq_len=self.context_size + 1)
+                max_seq_len=self.context_size + self.no_bos)
             tokenized_repo_context = self._tokenize(
                 text=repo_context,
-                max_seq_len=self.context_size - len(tokenized_completion) + 1,
+                max_seq_len=self.context_size - len(tokenized_completion) + self.no_bos,
             )
+            
+            tokenized_input = tokenized_repo_context + tokenized_completion
+            if not self.no_bos:
+                tokenized_input = [self.tokenizer.bos_token_id] + tokenized_input
+            tokenized_input = tokenized_input[:-1]
 
             line_types.append(line_type)
-            input_ids.append((tokenized_repo_context + tokenized_completion)[:-1])
+            input_ids.append(tokenized_input)
             ground_truths.append(ground_truth)
 
         padded_batch = self.tokenizer.pad(

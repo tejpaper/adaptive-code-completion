@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_irrelevant_half_memory \\\npath_to_checkpoint=runs/irrelevant_half_memory/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1236,
+            "num_matches": 1233,
             "num_lines": 2595,
-            "value": 0.47630057803468207
+            "value": 0.4751445086705202
         },
         "infile": {
-            "num_matches": 1288,
+            "num_matches": 1286,
             "num_lines": 2691,
-            "value": 0.47863247863247865
+            "value": 0.47788926049795616
         }
     }
 }

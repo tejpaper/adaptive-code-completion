@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_fl_4k_no_extension_2 \\\npath_to_composer_config=composer/file_level.yaml \\\ncontext_size=4096",
     "exact_match": {
         "inproject": {
-            "num_matches": 115,
+            "num_matches": 347,
             "num_lines": 2595,
-            "value": 0.04431599229287091
+            "value": 0.13371868978805396
         },
         "infile": {
-            "num_matches": 126,
+            "num_matches": 396,
             "num_lines": 2691,
-            "value": 0.046822742474916385
+            "value": 0.14715719063545152
         }
     }
 }

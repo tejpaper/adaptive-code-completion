@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_irrelevant_half_memory \\\npath_to_composer_config=composer/irrelevant_half_memory.yaml \\\npath_to_checkpoint=runs/irrelevant_half_memory/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 701,
+            "num_matches": 703,
             "num_lines": 2595,
-            "value": 0.2701348747591522
+            "value": 0.27090558766859346
         },
         "infile": {
-            "num_matches": 904,
+            "num_matches": 906,
             "num_lines": 2691,
-            "value": 0.33593459680416204
+            "value": 0.3366778149386845
         }
     }
 }

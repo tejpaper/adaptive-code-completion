@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_4k_filled_text_files \\\npath_to_checkpoint=runs/filled_text_files/checkpoints/0512/model \\\ncontext_size=4096",
     "exact_match": {
         "inproject": {
-            "num_matches": 955,
+            "num_matches": 960,
             "num_lines": 2595,
-            "value": 0.36801541425818884
+            "value": 0.3699421965317919
         },
         "infile": {
-            "num_matches": 1046,
+            "num_matches": 1056,
             "num_lines": 2691,
-            "value": 0.38870308435525824
+            "value": 0.39241917502787066
         }
     }
 }

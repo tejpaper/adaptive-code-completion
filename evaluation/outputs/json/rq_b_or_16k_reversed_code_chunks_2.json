@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_reversed_code_chunks_2 \\\npath_to_composer_config=composer/reversed_code_chunks.yaml \\\npath_to_checkpoint=runs/reversed_code_chunks_2/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1249,
+            "num_matches": 1250,
             "num_lines": 2595,
-            "value": 0.4813102119460501
+            "value": 0.4816955684007707
         },
         "infile": {
-            "num_matches": 1313,
+            "num_matches": 1317,
             "num_lines": 2691,
-            "value": 0.48792270531400966
+            "value": 0.48940914158305465
         }
     }
 }

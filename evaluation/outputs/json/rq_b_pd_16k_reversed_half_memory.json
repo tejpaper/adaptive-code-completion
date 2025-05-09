@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_reversed_half_memory \\\npath_to_checkpoint=runs/reversed_half_memory/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1235,
+            "num_matches": 1233,
             "num_lines": 2595,
-            "value": 0.47591522157996147
+            "value": 0.4751445086705202
         },
         "infile": {
-            "num_matches": 1280,
+            "num_matches": 1285,
             "num_lines": 2691,
-            "value": 0.4756596060943887
+            "value": 0.4775176514306949
         }
     }
 }

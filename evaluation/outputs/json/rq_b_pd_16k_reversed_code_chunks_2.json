@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_reversed_code_chunks_2 \\\npath_to_checkpoint=runs/reversed_code_chunks_2/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1241,
+            "num_matches": 1249,
             "num_lines": 2595,
-            "value": 0.47822736030828517
+            "value": 0.4813102119460501
         },
         "infile": {
-            "num_matches": 1309,
+            "num_matches": 1307,
             "num_lines": 2691,
-            "value": 0.4864362690449647
+            "value": 0.48569305091044224
         }
     }
 }

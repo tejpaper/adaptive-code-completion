@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_half_memory \\\npath_to_composer_config=composer/half_memory.yaml \\\npath_to_checkpoint=runs/half_memory/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 965,
+            "num_matches": 976,
             "num_lines": 2595,
-            "value": 0.371868978805395
+            "value": 0.3761078998073218
         },
         "infile": {
-            "num_matches": 1072,
+            "num_matches": 1079,
             "num_lines": 2691,
-            "value": 0.39836492010405056
+            "value": 0.40096618357487923
         }
     }
 }

@@ -17,9 +17,9 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_pd_16k_code_chunks \\\npath_to_checkpoint=runs/dseek_code_chunks/checkpoints/0512/model \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 1109,
+            "num_matches": 1092,
             "num_lines": 2595,
-            "value": 0.4273603082851638
+            "value": 0.4208092485549133
         },
         "infile": {
             "num_matches": 1207,

@@ -21,9 +21,9 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_reversed_declarations \\\npath_to_checkpoint=runs/reversed_declarations/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1228,
+            "num_matches": 1231,
             "num_lines": 2595,
-            "value": 0.47321772639691717
+            "value": 0.474373795761079
         },
         "infile": {
             "num_matches": 1264,

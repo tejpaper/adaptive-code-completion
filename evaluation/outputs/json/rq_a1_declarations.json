@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a1_declarations \\\npath_to_composer_config=composer/declarations.yaml \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 483,
+            "num_matches": 721,
             "num_lines": 2595,
-            "value": 0.1861271676300578
+            "value": 0.27784200385356456
         },
         "infile": {
-            "num_matches": 541,
+            "num_matches": 869,
             "num_lines": 2691,
-            "value": 0.2010405053883315
+            "value": 0.32292827945001856
         }
     }
 }

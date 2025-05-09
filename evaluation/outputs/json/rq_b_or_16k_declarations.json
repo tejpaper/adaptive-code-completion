@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_declarations \\\npath_to_composer_config=composer/declarations.yaml \\\npath_to_checkpoint=runs/declarations/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 418,
+            "num_matches": 733,
             "num_lines": 2595,
-            "value": 0.16107899807321774
+            "value": 0.28246628131021195
         },
         "infile": {
-            "num_matches": 445,
+            "num_matches": 941,
             "num_lines": 2691,
-            "value": 0.16536603493125232
+            "value": 0.34968413229282796
         }
     }
 }

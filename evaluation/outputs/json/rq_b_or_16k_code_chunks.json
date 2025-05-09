@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_code_chunks \\\npath_to_composer_config=composer/code_chunks.yaml \\\npath_to_checkpoint=runs/code_chunks/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 1238,
+            "num_matches": 1237,
             "num_lines": 2595,
-            "value": 0.4770712909441233
+            "value": 0.4766859344894027
         },
         "infile": {
-            "num_matches": 1313,
+            "num_matches": 1312,
             "num_lines": 2691,
-            "value": 0.48792270531400966
+            "value": 0.4875510962467484
         }
     }
 }

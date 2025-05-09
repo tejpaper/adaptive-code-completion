@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_pd_16k_completion_leak \\\npath_to_checkpoint=runs/dseek_completion_leak/checkpoints/0512/model \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 1111,
+            "num_matches": 1067,
             "num_lines": 2595,
-            "value": 0.428131021194605
+            "value": 0.41117533718689786
         },
         "infile": {
-            "num_matches": 1198,
+            "num_matches": 1160,
             "num_lines": 2691,
-            "value": 0.4451876625789669
+            "value": 0.43106651802303975
         }
     }
 }

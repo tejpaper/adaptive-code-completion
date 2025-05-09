@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_pd_16k_random_python_files_2 \\\npath_to_checkpoint=runs/dseek_random_python_files_2/checkpoints/0512/model \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 1089,
+            "num_matches": 1041,
             "num_lines": 2595,
-            "value": 0.41965317919075146
+            "value": 0.40115606936416187
         },
         "infile": {
-            "num_matches": 1210,
+            "num_matches": 1170,
             "num_lines": 2691,
-            "value": 0.4496469713861018
+            "value": 0.43478260869565216
         }
     }
 }

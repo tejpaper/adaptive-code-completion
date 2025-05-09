@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_reversed_filled_text_files \\\npath_to_composer_config=composer/reversed_filled_text_files.yaml \\\npath_to_checkpoint=runs/reversed_filled_text_files/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 595,
+            "num_matches": 702,
             "num_lines": 2595,
-            "value": 0.22928709055876687
+            "value": 0.2705202312138728
         },
         "infile": {
-            "num_matches": 712,
+            "num_matches": 904,
             "num_lines": 2691,
-            "value": 0.2645856558900037
+            "value": 0.33593459680416204
         }
     }
 }

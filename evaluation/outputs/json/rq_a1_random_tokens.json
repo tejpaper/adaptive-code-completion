@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a1_random_tokens \\\npath_to_composer_config=composer/dseek_random_tokens.yaml \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 592,
+            "num_matches": 599,
             "num_lines": 2595,
-            "value": 0.22813102119460502
+            "value": 0.2308285163776493
         },
         "infile": {
-            "num_matches": 790,
+            "num_matches": 797,
             "num_lines": 2691,
-            "value": 0.29357116313638054
+            "value": 0.2961724266072092
         }
     }
 }

@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_fl_16k_half_memory \\\npath_to_composer_config=composer/file_level.yaml \\\npath_to_checkpoint=runs/dseek_half_memory/checkpoints/0512/model \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 197,
+            "num_matches": 648,
             "num_lines": 2595,
-            "value": 0.07591522157996146
+            "value": 0.24971098265895952
         },
         "infile": {
-            "num_matches": 249,
+            "num_matches": 843,
             "num_lines": 2691,
-            "value": 0.09253065774804906
+            "value": 0.3132664437012263
         }
     }
 }

@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_or_16k_iou_python_files_2 \\\npath_to_composer_config=composer/iou_python_files.yaml \\\npath_to_checkpoint=runs/dseek_iou_python_files_2/checkpoints/0512/model \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 1195,
+            "num_matches": 1137,
             "num_lines": 2595,
-            "value": 0.4605009633911368
+            "value": 0.43815028901734104
         },
         "infile": {
-            "num_matches": 1253,
+            "num_matches": 1210,
             "num_lines": 2691,
-            "value": 0.46562616127833517
+            "value": 0.4496469713861018
         }
     }
 }

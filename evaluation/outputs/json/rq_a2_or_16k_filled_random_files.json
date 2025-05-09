@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_or_16k_filled_random_files \\\npath_to_composer_config=composer/filled_random_files.yaml \\\npath_to_checkpoint=runs/dseek_filled_random_files/checkpoints/0512/model \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 714,
+            "num_matches": 657,
             "num_lines": 2595,
-            "value": 0.2751445086705202
+            "value": 0.25317919075144507
         },
         "infile": {
-            "num_matches": 891,
+            "num_matches": 833,
             "num_lines": 2691,
-            "value": 0.3311036789297659
+            "value": 0.3095503530286139
         }
     }
 }

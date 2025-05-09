@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_completion_duplication \\\npath_to_composer_config=composer/completion_duplication.yaml \\\npath_to_checkpoint=runs/completion_duplication/checkpoints/0512/model \\\nallow_leak=true",
     "exact_match": {
         "inproject": {
-            "num_matches": 2492,
+            "num_matches": 2491,
             "num_lines": 2595,
-            "value": 0.9603082851637765
+            "value": 0.9599229287090558
         },
         "infile": {
-            "num_matches": 2563,
+            "num_matches": 2566,
             "num_lines": 2691,
-            "value": 0.9524340393905611
+            "value": 0.9535488665923448
         }
     }
 }

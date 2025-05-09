@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_irrelevant_iou_python_files_2 \\\npath_to_composer_config=composer/irrelevant_iou_python_files.yaml \\\npath_to_checkpoint=runs/irrelevant_iou_python_files_2/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 700,
+            "num_matches": 705,
             "num_lines": 2595,
-            "value": 0.2697495183044316
+            "value": 0.27167630057803466
         },
         "infile": {
-            "num_matches": 905,
+            "num_matches": 904,
             "num_lines": 2691,
-            "value": 0.33630620587142324
+            "value": 0.33593459680416204
         }
     }
 }

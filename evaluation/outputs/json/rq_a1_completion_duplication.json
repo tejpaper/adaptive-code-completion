@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a1_completion_duplication \\\npath_to_composer_config=composer/completion_duplication.yaml \\\nallow_leak=true \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 2251,
+            "num_matches": 2252,
             "num_lines": 2595,
-            "value": 0.8674373795761079
+            "value": 0.8678227360308285
         },
         "infile": {
-            "num_matches": 2338,
+            "num_matches": 2336,
             "num_lines": 2691,
-            "value": 0.8688219992567818
+            "value": 0.8680787811222593
         }
     }
 }

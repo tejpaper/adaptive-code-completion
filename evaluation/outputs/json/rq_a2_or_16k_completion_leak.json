@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_or_16k_completion_leak \\\npath_to_composer_config=composer/dseek_completion_leak.yaml \\\npath_to_checkpoint=runs/dseek_completion_leak/checkpoints/0512/model \\\nallow_leak=true \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 2023,
+            "num_matches": 2054,
             "num_lines": 2595,
-            "value": 0.7795761078998074
+            "value": 0.7915221579961464
         },
         "infile": {
-            "num_matches": 2062,
+            "num_matches": 2123,
             "num_lines": 2691,
-            "value": 0.7662578966926793
+            "value": 0.788926049795615
         }
     }
 }

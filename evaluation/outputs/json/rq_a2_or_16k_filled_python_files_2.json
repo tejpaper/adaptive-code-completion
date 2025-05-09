@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_or_16k_filled_python_files_2 \\\npath_to_composer_config=composer/filled_python_files.yaml \\\npath_to_checkpoint=runs/dseek_filled_python_files_2/checkpoints/0512/model \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 1089,
+            "num_matches": 1031,
             "num_lines": 2595,
-            "value": 0.41965317919075146
+            "value": 0.39730250481695567
         },
         "infile": {
-            "num_matches": 1206,
+            "num_matches": 1177,
             "num_lines": 2691,
-            "value": 0.44816053511705684
+            "value": 0.43738387216648084
         }
     }
 }

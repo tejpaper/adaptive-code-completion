@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_4k_irrelevant_completion_leak \\\npath_to_checkpoint=runs/irrelevant_completion_leak/checkpoints/0512/model \\\ncontext_size=4096",
     "exact_match": {
         "inproject": {
-            "num_matches": 922,
+            "num_matches": 917,
             "num_lines": 2595,
-            "value": 0.3552986512524085
+            "value": 0.3533718689788054
         },
         "infile": {
-            "num_matches": 966,
+            "num_matches": 948,
             "num_lines": 2691,
-            "value": 0.358974358974359
+            "value": 0.35228539576365664
         }
     }
 }

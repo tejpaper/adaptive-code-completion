@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_or_16k_irrelevant_declarations \\\npath_to_composer_config=composer/irrelevant_declarations.yaml \\\npath_to_checkpoint=runs/irrelevant_declarations/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 408,
+            "num_matches": 736,
             "num_lines": 2595,
-            "value": 0.15722543352601157
+            "value": 0.2836223506743738
         },
         "infile": {
-            "num_matches": 440,
+            "num_matches": 928,
             "num_lines": 2691,
-            "value": 0.1635079895949461
+            "value": 0.3448532144184318
         }
     }
 }

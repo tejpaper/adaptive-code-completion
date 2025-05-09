@@ -18,17 +18,17 @@
     "num_workers": 16,
     "prefetch_factor": 6,
     "composer": "ChainedComposer(pre_context_prompt='<repo_name>{}\n<file_sep>', post_context_prompt='<file_sep>', path_comment_template='# {filename}\n{content}', blocks=[NullFileFilter(), FileGrainedChunker(), PathCommentAssembler(chunks_sep='<file_sep>', path_comment_template='# {filename}\n{content}')])",
-    "sh": "python3 -m evaluation \\\neval_name=rq_b2_fl_4k_filled_random_files \\\npath_to_composer_config=composer/file_level.yaml \\\npath_to_checkpoint=runs/filled_random_files/checkpoints/0512/model \\\ncontext_size=4096",
+    "sh": "python3 -m evaluation \\\neval_name=rq_b_fl_4k_filled_random_files \\\npath_to_composer_config=composer/file_level.yaml \\\npath_to_checkpoint=runs/filled_random_files/checkpoints/0512/model \\\ncontext_size=4096",
     "exact_match": {
         "inproject": {
-            "num_matches": 252,
+            "num_matches": 676,
             "num_lines": 2595,
-            "value": 0.09710982658959537
+            "value": 0.2605009633911368
         },
         "infile": {
-            "num_matches": 334,
+            "num_matches": 887,
             "num_lines": 2691,
-            "value": 0.12411742846525456
+            "value": 0.3296172426607209
         }
     }
 }

@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_completion_duplication_2 \\\npath_to_checkpoint=runs/completion_duplication_2/checkpoints/0512/model",
     "exact_match": {
         "inproject": {
-            "num_matches": 899,
+            "num_matches": 904,
             "num_lines": 2595,
-            "value": 0.3464354527938343
+            "value": 0.34836223506743735
         },
         "infile": {
-            "num_matches": 757,
+            "num_matches": 755,
             "num_lines": 2691,
-            "value": 0.28130806391675955
+            "value": 0.28056484578223706
         }
     }
 }

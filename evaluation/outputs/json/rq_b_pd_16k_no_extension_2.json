@@ -21,14 +21,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_b_pd_16k_no_extension_2",
     "exact_match": {
         "inproject": {
-            "num_matches": 220,
+            "num_matches": 216,
             "num_lines": 2595,
-            "value": 0.08477842003853564
+            "value": 0.08323699421965318
         },
         "infile": {
-            "num_matches": 97,
+            "num_matches": 96,
             "num_lines": 2691,
-            "value": 0.03604607952434039
+            "value": 0.03567447045707915
         }
     }
 }

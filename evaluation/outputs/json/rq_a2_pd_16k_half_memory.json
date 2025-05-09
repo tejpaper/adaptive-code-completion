@@ -17,14 +17,14 @@
     "sh": "python3 -m evaluation \\\neval_name=rq_a2_pd_16k_half_memory \\\npath_to_checkpoint=runs/dseek_half_memory/checkpoints/0512/model \\\nmodel=dseek1p3",
     "exact_match": {
         "inproject": {
-            "num_matches": 1084,
+            "num_matches": 997,
             "num_lines": 2595,
-            "value": 0.41772639691714836
+            "value": 0.38420038535645473
         },
         "infile": {
-            "num_matches": 1209,
+            "num_matches": 1155,
             "num_lines": 2691,
-            "value": 0.4492753623188406
+            "value": 0.42920847268673357
         }
     }
 }

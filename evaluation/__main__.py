@@ -36,6 +36,7 @@ def main(config: DictConfig) -> None:
 
     tokenizer = init_tokenizer(**config.model)
     tokenizer.truncation_side = 'left'
+    tokenizer.padding_side = 'left'
 
     model = init_model(**config.model)
     model = model.eval().requires_grad_(False)
@@ -77,7 +78,7 @@ def main(config: DictConfig) -> None:
         attn_mask = attn_mask.to(model.device)
 
         model_output = model(input_ids=input_ids, attention_mask=attn_mask)
-        completions = tokenizer.batch_decode(model_output.logits.argmax(-1))
+        completions = tokenizer.batch_decode(model_output.logits.argmax(-1), skip_special_tokens=True)
 
         for line_type, completion, ground_truth in zip(line_types, completions, ground_truths):
             ref_dict[line_type].num_matches += completion.rstrip('\n').endswith(ground_truth.rstrip('\n'))
