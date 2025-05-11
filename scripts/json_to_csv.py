@@ -199,6 +199,68 @@ def compile_rq_b_gradient_masking_table(path_to_results: str, output_file: str =
     df.to_csv(output_file, index=False)
 
 
+def compile_beyond_training_window_table(path_to_results: str, output_file: str = 'csv/beyond_training_window.csv') -> None:
+    output_file = os.path.join(PATH_TO_EVALUATION_OUTPUTS, output_file)
+    results = list()
+
+    eval_names = [
+        'rq_b_pd_1k_file_level_2',
+        'rq_b_pd_2k_file_level_2',
+        'rq_b_pd_4k_file_level_2',
+        'rq_b_pd_8k_file_level_2',
+        'rq_b_pd_16k_file_level_2',
+        'rq_b_pd_32k_file_level_2',
+        'rq_b_pd_64k_file_level_2',
+        'rq_b_pd_128k_file_level_2',
+        'rq_b_pd_1k_filled_python_files_2',
+        'rq_b_pd_2k_filled_python_files_2',
+        'rq_b_pd_4k_filled_python_files_2',
+        'rq_b_pd_8k_filled_python_files_2',
+        'rq_b_pd_16k_filled_python_files_2',
+        'rq_b_pd_32k_filled_python_files_2',
+        'rq_b_pd_64k_filled_python_files_2',
+        'rq_b_pd_128k_filled_python_files_2',
+        'rq_b_pd_1k_qwen',
+        'rq_b_pd_2k_qwen',
+        'rq_b_pd_4k_qwen',
+        'rq_b_pd_8k_qwen',
+        'rq_b_pd_16k_qwen',
+        'rq_b_pd_32k_qwen',
+        'rq_b_pd_64k_qwen',
+        'rq_b_pd_128k_qwen',
+        'rq_b_pd_1k_dseek',
+        'rq_b_pd_2k_dseek',
+        'rq_b_pd_4k_dseek',
+        'rq_b_pd_8k_dseek',
+        'rq_b_pd_16k_dseek',
+        'rq_b_pd_32k_dseek',
+        'rq_b_pd_64k_dseek',
+        'rq_b_pd_128k_dseek',
+    ]
+
+    for eval_name in eval_names:
+        path_to_json = os.path.join(path_to_results, f'{eval_name}.json')
+
+        with open(path_to_json) as stream:
+            result = json.load(stream)
+
+        model_arg = result['sh'].split('\\\n')[-1]
+        if 'model=' not in model_arg:
+            model = 'ocoder1p5_theta_500k'
+        else:
+            model = model_arg[6:]
+
+        results.append(dict(
+            eval_name=eval_name,
+            model=model,
+            inproject_em=result['exact_match']['inproject']['value'],
+            infile_em=result['exact_match']['infile']['value'],
+        ))
+
+    df = pd.DataFrame(results)
+    df.to_csv(output_file, index=False)
+
+
 def main() -> None:
     path_to_results = os.path.join(PATH_TO_EVALUATION_OUTPUTS, 'json')
     compile_rq_a1_table(path_to_results)
@@ -207,6 +269,8 @@ def main() -> None:
     
     compile_rq_a2_gradient_masking_table(path_to_results)
     compile_rq_b_gradient_masking_table(path_to_results)
+
+    compile_beyond_training_window_table(path_to_results)
 
 
 if __name__ == '__main__':
