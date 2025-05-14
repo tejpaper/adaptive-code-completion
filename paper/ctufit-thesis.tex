@@ -214,8 +214,8 @@ Will & Be Done at the Very End\\
 % MODIFY ANYTHING BELOW THIS LINE
 %%%%%%%%%%%%%%%%%%%
 
-\include{text/objectives}
 \include{text/introduction}
+\include{text/objectives}
 \part{Conceptual Framework}\label{part:conceptual-framework}  % other options are Theoretical Background, Theoretical Part, Foundational Concepts
 \include{text/code-completion}
 \include{text/standard-lm}
@@ -225,7 +225,8 @@ Will & Be Done at the Very End\\
 \makeatletter
 \def\@part[#1]#2{%
   \ifnum \c@secnumdepth >-2\relax
-    \refstepcounter{part}
+    \refstepcounter{part}%
+    \renewcommand{\@currentlabelname}{#1}%
     \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}
   \else
     \addcontentsline{toc}{part}{#1}
