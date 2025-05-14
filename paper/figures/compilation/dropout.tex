@@ -1,0 +1,78 @@
+% source: https://arxiv.org/abs/1904.13310
+\documentclass{standalone}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage[table]{xcolor}
+\usepackage{paralist}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[preview]{standalone}
+\standaloneconfig{border=10pt}
+
+\begin{document}
+
+\begin{minipage}{\linewidth}
+	\centering
+	\begin{tikzpicture}[]
+		\node[circle,minimum size=15,draw](1) at (0,0) {};
+		\node[circle,minimum size=15,draw](2) at (0,0.75) {};
+		\node[circle,minimum size=15,draw](3) at (0,1.5) {};
+		\node[circle,minimum size=15,draw](4) at (0,2.25) {};
+		\node[circle,minimum size=15,draw](5) at (0,3) {};
+		\node[circle,minimum size=15,draw](6) at (1.5,0) {};
+		\node[circle,minimum size=15,draw](7) at (1.5,0.75) {};
+		\node[circle,minimum size=15,draw](8) at (1.5,1.5) {};
+		\node[circle,minimum size=15,draw](9) at (1.5,2.25) {};
+		\node[circle,minimum size=15,draw](10) at (1.5,3) {};
+		\node[circle,minimum size=15,draw](11) at (3,1) {};
+		\node[circle,minimum size=15,draw](12) at (3,2) {};
+		\draw [-Stealth] (1) -- (6); \draw [-Stealth] (1) -- (7); \draw [-Stealth] (1) -- (8); \draw [-Stealth] (1) -- (9); \draw [-Stealth] (1) -- (10);
+		\draw [-Stealth] (2) -- (6); \draw [-Stealth] (2) -- (7); \draw [-Stealth] (2) -- (8); \draw [-Stealth] (2) -- (9); \draw [-Stealth] (2) -- (10);
+		\draw [-Stealth] (3) -- (6); \draw [-Stealth] (3) -- (7); \draw [-Stealth] (3) -- (8); \draw [-Stealth] (3) -- (9); \draw [-Stealth] (3) -- (10);
+		\draw [-Stealth] (4) -- (6); \draw [-Stealth] (4) -- (7); \draw [-Stealth] (4) -- (8); \draw [-Stealth] (4) -- (9); \draw [-Stealth] (4) -- (10);
+		\draw [-Stealth] (5) -- (6); \draw [-Stealth] (5) -- (7); \draw [-Stealth] (5) -- (8); \draw [-Stealth] (5) -- (9); \draw [-Stealth] (5) -- (10);
+		\draw [-Stealth] (6) -- (11); \draw [-Stealth] (6) -- (12);
+		\draw [-Stealth] (7) -- (11); \draw [-Stealth] (7) -- (12);
+		\draw [-Stealth] (8) -- (11); \draw [-Stealth] (8) -- (12);
+		\draw [-Stealth] (9) -- (11); \draw [-Stealth] (9) -- (12);
+		\draw [-Stealth] (10) -- (11); \draw [-Stealth] (10) -- (12);
+	\end{tikzpicture}
+	\hspace{5mm}
+	\begin{tikzpicture}[]
+		\node[circle,minimum size=15,draw](1) at (0,0) {};
+		\node[circle,minimum size=15,draw](2) at (0,0.75) {};
+		\node[circle,minimum size=15,fill=black,draw](3) at (0,1.5) {};
+		\node[circle,minimum size=15,draw](4) at (0,2.25) {};
+		\node[circle,minimum size=15,fill=black,draw](5) at (0,3) {};
+		\node[circle,minimum size=15,fill=black,draw](6) at (1.5,0) {};
+		\node[circle,minimum size=15,draw](7) at (1.5,0.75) {};
+		\node[circle,minimum size=15,fill=black,draw](8) at (1.5,1.5) {};
+		\node[circle,minimum size=15,fill=black,draw](9) at (1.5,2.25) {};
+		\node[circle,minimum size=15,draw](10) at (1.5,3) {};
+		\node[circle,minimum size=15,draw](11) at (3,1) {};
+		\node[circle,minimum size=15,draw](12) at (3,2) {};
+		\draw [-Stealth] (1) -- (7); \draw [-Stealth] (1) -- (10);
+		\draw [-Stealth] (2) -- (7); \draw [-Stealth] (2) -- (10);
+		\draw [-Stealth] (4) -- (7); \draw [-Stealth] (4) -- (10);
+		\draw [-Stealth] (7) -- (11); \draw [-Stealth] (7) -- (12);
+		\draw [-Stealth] (10) -- (11); \draw [-Stealth] (10) -- (12);
+	\end{tikzpicture}
+\end{minipage}
+
+\end{document}

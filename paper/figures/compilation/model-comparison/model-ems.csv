@@ -1,0 +1,17 @@
+model,composer,exact_match,line_type
+DeepSeek-Coder-Base 1.3B,FL-16K,25.5,inproject
+DeepSeek-Coder-Base 1.3B,FL-16K,31.1,infile
+DeepSeek-Coder-Base 1.3B,PD-16K,42.6,inproject
+DeepSeek-Coder-Base 1.3B,PD-16K,44.6,infile
+Qwen2.5-Coder-1.5B,FL-16K,27.8,inproject
+Qwen2.5-Coder-1.5B,FL-16K,35.4,infile
+Qwen2.5-Coder-1.5B,PD-16K,49.2,inproject
+Qwen2.5-Coder-1.5B,PD-16K,51.8,infile
+OpenCoder-1.5B-Base (FL),FL-16K,26.1,inproject
+OpenCoder-1.5B-Base (FL),FL-16K,33.5,infile
+OpenCoder-1.5B-Base (FL),PD-16K,44.9,inproject
+OpenCoder-1.5B-Base (FL),PD-16K,44.7,infile
+OpenCoder-1.5B-Base (PD),FL-16K,26.1,inproject
+OpenCoder-1.5B-Base (PD),FL-16K,33.6,infile
+OpenCoder-1.5B-Base (PD),PD-16K,48.7,inproject
+OpenCoder-1.5B-Base (PD),PD-16K,49.2,infile

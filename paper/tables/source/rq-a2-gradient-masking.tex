@@ -1,0 +1,52 @@
+\documentclass{standalone}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage[table]{xcolor}
+\usepackage{paralist}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{pgfplots}
+\begin{document}
+
+\begin{table}
+\centering
+    \begin{tabular}{lc c>{\columncolor{gray!30}}cc c c>{\columncolor{gray!30}}cc}
+    \toprule
+    
+    \multirow{3}{*}{\makecell{\textbf{Fine-Tuning} \\ \textbf{Composer \& Loss}}} & & \multicolumn{3}{c}{\textbf{inproject}} & & \multicolumn{3}{c}{\textbf{infile}} \\\cmidrule(lr){3-5}\cmidrule(lr){7-9}
+    & & FL-16K & PD-16K & Or-16K & & FL-16K & PD-16K & Or-16K \\
+    \midrule
+    No Fine-Tuning & & 25.5 & 42.6 & --- & & 31.1 & 44.6 & --- \\
+    \midrule
+    Path Distance & & & & & & & & \\
+    ~~~Masked loss & & 25.4 & 39.7 & 39.7 & & 31.3 & 43.7 & 43.7 \\
+    ~~~Full loss & & 25.7 & 42.6 & 42.6 & & 31.3 & 44.8 & 44.8 \\
+    \cmidrule(lr){1-1}
+    Lines IoU & & & & & & & & \\
+    ~~~Masked loss & & 25.6 & 40.3 & 43.8 & & 31.4 & 43.7 & 45.0 \\
+    ~~~Full loss & & 25.5 & 42.5 & 46.2 & & 31.5 & 45.1 & 46.5 \\
+    \cmidrule(lr){1-1}
+    Code Chunks & & & & & & & & \\
+    ~~~Masked loss & & 25.5 & 39.0 & 39.3 & & 31.5 & 42.6 & 42.5 \\
+    ~~~Full loss & & 25.8 & 42.1 & 42.0 & & 31.5 & 44.9 & 44.8 \\
+    \cmidrule(lr){1-1}
+    Random \texttt{.py} & & & & & & & & \\
+    ~~~Masked loss & & 25.2 & 40.1 & 27.1 & & 30.8 & 43.5 & 31.7 \\
+    ~~~Full loss & & 25.7 & 41.7 & 28.9 & & 31.7 & 45.0 & 33.7 \\
+    \midrule
+    Duplication & & & & & & & & \\
+    ~~~Masked loss & & 25.6 & 42.8 & 86.9 & & 31.1 & 45.0 & 86.9 \\
+    ~~~Full loss & & 25.7 & 42.2 & 86.9 & & 31.7 & 44.7 & 87.0 \\
+    
+    \bottomrule
+    \end{tabular}
+\end{table}
+\end{document}

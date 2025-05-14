@@ -1,4 +1,7 @@
 .idea
+.vscode
+.venv
+.cursor
 .ipynb_checkpoints
 **/__pycache__/
 wandb
@@ -7,6 +10,28 @@ venv
 
 !.gitkeep
 !**/.gitkeep
+
+paper/grounding
+paper/**/*.aux
+paper/**/*.bbl
+paper/**/*.bcf
+paper/**/*.blg
+paper/**/*.dvi
+paper/**/*.fdb_latexmk
+paper/**/*.fls
+paper/**/*.lof
+paper/**/*.log
+paper/**/*.lol
+paper/**/*.lot
+paper/**/*.lua
+paper/**/_minted-ctufit-thesis/
+paper/**/*.out
+paper/**/*.ps
+paper/**/*.run.xml
+paper/**/*.synctex.gz
+paper/**/*.timestamp
+paper/**/*.toc
+paper/pdfa.xmpi
 
 runs/**/checkpoints/*
 !runs/**/checkpoints/.gitkeep

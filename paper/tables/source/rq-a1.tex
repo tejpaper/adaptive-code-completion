@@ -1,0 +1,47 @@
+\documentclass{standalone}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage[table]{xcolor}
+\usepackage{paralist}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{pgfplots}
+\begin{document}
+
+\begin{table}
+    \centering
+    
+    \begin{tabular}{lccc}
+        \toprule
+        
+        \multirow{2}{*}{\makecell{\textbf{Inference} \\\textbf{Composer}}} & \multicolumn{1}{c}{} & \multirow{2}{*}{\textbf{inproject}} & \multirow{2}{*}{\textbf{infile}} \\
+        & & & \\
+        
+        \midrule
+        File-Level & & 25.5 & 31.1 \\
+        Path Distance & & 42.6 & 44.6 \\
+        Lines IoU & & \textbf{46.4} & \textbf{46.2} \\
+        Code Chunks & & 43.0 & 45.0 \\
+        Half-Memory & & 33.9 & 36.8 \\
+        Declarations & & 27.8 & 32.3 \\
+        Text Chunks & & 26.1 & 31.2 \\
+        Text Files & & 25.7 & 31.8 \\
+        Random Files & & 28.1 & 33.1 \\
+        Random \texttt{.py} & & 29.9 & 33.5 \\
+        Random Tokens & & 23.1 & 29.6 \\
+        \midrule
+        Duplication & & 86.8 & 86.8 \\
+        Leak & & 78.5 & 78.3 \\
+        
+        \bottomrule
+    \end{tabular}
+\end{table}
+\end{document}

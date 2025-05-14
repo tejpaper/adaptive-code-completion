@@ -1,0 +1,266 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CLASS OPTIONS
+% language: czech/english/slovak
+% thesis type: bachelor/master/dissertation
+% color: bw for black&white OR no option for default color scheme
+% electronic (oneside) or printed (twoside), twoside is default
+% paragraph - if passed, this optional argument sets paragraphs as the deepest level of headers, styles it, numbers it and adds it to Table of Content. Use with care! Normally, it is considered unwise to use it, since its too deep.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[english,bachelor,unicode,oneside]{ctufit-thesis}
+
+\ctufittitle{Project adaptation in code completion via in-context learning}
+\ctufitauthorfull{Maksim Sapronov}
+\ctufitauthorsurnames{Sapronov}
+\ctufitauthorgivennames{Maksim}
+\ctufitsupervisor{Evgenii Glukhov\, M.Sc.}
+\ctufitdepartment{Department of Applied Mathematics}
+\ctufityear{2025}
+\ctufitdeclarationplace{Prague} % replace with the place where you sign the declaration
+\ctufitdeclarationdate{\today} % replace with the date of signature of the declaration
+% TODO: determine the order of abstracts and fill them in (2 following lines)
+\ctufitabstractCZE{Fill in the abstract of this thesis in Czech.}
+\ctufitabstractENG{Fill in the abstract of this thesis in English.}
+% TODO: determine the order of keywords (2 following lines)
+\ctufitkeywordsCZE{dokončování kódu, dokončování kódu na úrovni repozitáře, projektové přizpůsobení, učení v kontextu, dlouhý kontext, rozšíření kontextu, Transformátor, Code LLM}
+\ctufitkeywordsENG{code completion, repository-level code completion, project adaptation, in-context learning, long context, context extension, Transformer, Code LLM}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOMIZATION of this template
+% Skip this part or alter it if you know what you are doing.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{iftex}[2020/03/06]
+\iftutex % XeLaTeX and LuaLaTeX
+    \RequirePackage{ellipsis}[2020/05/22] %ellipsis workaround for XeLaTeX
+\else
+    \errmessage{Only compilation with XeLaTeX or LuaLaTeX is allowed}
+    \stop
+\fi
+
+% hyperlinks
+\hypersetup{
+    pdfpagelayout=TwoPageRight,
+    colorlinks=false,
+    allcolors=decoration,
+    pdfborder={0 0 0.1}
+}
+
+% uncomment the following to hide all hyperlinks
+%\hypersetup{hidelinks}
+
+% uncomment the following to change the color of all hyperlinks to CTU blue
+%\hypersetup{allbordercolors=decoration}
+
+\RequirePackage{pdfpages}[2020/01/28]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOMIZATION of this template END
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+% DEMO CONTENTS SETTINGS
+% You may choose to modify this part.
+%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{dirtree}
+\usepackage{lipsum,tikz}
+\usepackage[style=authoryear,backend=biber,uniquename=false,uniquelist=false,sorting=nyt]{biblatex}
+\addbibresource{text/bib-database.bib}
+\usepackage{array}
+\usepackage{xurl}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage{csquotes}
+\usepackage{bm}
+\usepackage{commath}
+\usepackage{fontspec}
+\usepackage{etoolbox}
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage[table]{xcolor}
+\usepackage{paralist}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{pgfplots}
+\usepackage{bbding}
+\usepackage{nameref}
+\usepackage{hyperref}
+
+\ExecuteBibliographyOptions{maxcitenames=1,mincitenames=1}
+
+% Create a separate category for self-citing
+\DeclareBibliographyCategory{our_papers}
+\addtocategory{our_papers}{sapronov2025}
+
+% Add this to define \citet command using biblatex functionality with clickable author names
+\DeclareCiteCommand{\citet}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \bibhyperref{%
+     \printnames{labelname}%
+     \setunit{\printdelim{nameyeardelim}}%
+     \printtext[parens]{\usebibmacro{cite:labeldate+extradate}}%
+   }}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% Add this configuration to make the entire citation a hyperlink
+\ExecuteBibliographyOptions{hyperref=true}
+\DeclareFieldFormat{citehyperref}{%
+  \bibhyperref{#1}}
+\DeclareFieldFormat{textcitehyperref}{%
+  \bibhyperref{#1}}
+\DeclareFieldFormat{citesetup}{%
+  \bibhyperref{#1}}
+\DeclareFieldFormat{parencite}{%
+  \bibhyperref{\mkbibparens{#1}}}
+
+% For name+year citations
+\letbibmacro{cite:labelyear+extrayear}{cite:labeldate+extradate}
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \printnames{labelname}%
+    \setunit{\printdelim{nameyeardelim}}%
+    \usebibmacro{cite:labeldate+extradate}}}
+
+\renewbibmacro*{textcite}{%
+  \printtext[textcitehyperref]{%
+    \printnames{labelname}%
+    \setunit{\printdelim{nameyeardelim}}%
+    \usebibmacro{cite:labeldate+extradate}}}
+
+\DeclareCiteCommand{\citeyear}
+    {}
+    {\bibhyperref{\printdate}}
+    {\multicitedelim}
+    {}
+
+\newfontface\lserif{Liberation Serif}
+
+\newcommand{\Csh}{C{\lserif\#}}
+\newcommand{\todo}[1]{\hl{\textbf{TODO: ``#1''}}}
+\newcommand{\chapterref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
+\newcommand{\sectionref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
+\newcommand{\figureref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
+\newcommand{\tableref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
+\newcommand{\equationref}[1]{\hyperref[#1]{Equation~\ref*{#1}}}
+\newcommand{\appendixref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% DEMO CONTENTS SETTINGS END
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\frontmatter\frontmatterinit
+
+\thispagestyle{empty}\maketitle\thispagestyle{empty}\cleardoublepage
+
+\includepdf[pages={1-}]{assignment.pdf}
+
+\imprintpage
+\stopTOCentries
+%%%%%%%%%%%%%%%%%%%%%%
+% list of other contents END
+%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO: fill in the acknowledgment page; mention JetBrains
+\begin{acknowledgmentpage}
+	Thank you \(\dots\)
+\end{acknowledgmentpage}
+
+% Source of the two first paragraphs: https://courses.fit.cvut.cz/SFE/download/index.html#_documents (document Declaration for FT in English); "authorization" is used instead of "authorisation" and "license" instead of "licence"
+\begin{declarationpage}
+  I hereby declare that the presented thesis is my own work and that I have cited all sources of information in accordance with the Guideline for adhering to ethical principles when elaborating an academic final thesis.
+
+  I acknowledge that my thesis is subject to the rights and obligations stipulated by the Act No. 121/2000 Coll., the Copyright Act, as amended. In accordance with Section 2373(2) of Act No. 89/2012 Coll., the Civil Code, as amended, I hereby grant a non-exclusive authorization (license) to utilize this thesis, including all computer programs that are part of it or attached to it and all documentation thereof (hereinafter collectively referred to as the ``Work''), to any and all persons who wish to use the Work. Such persons are entitled to use the Work in any manner that does not diminish the value of the Work and for any purpose (including use for profit). This authorization is unlimited in time, territory and quantity.
+
+  The use of generative AI tools, such as GPT-4o, Claude 3.7 Sonnet, and DeepL, was strictly limited to checking grammar and rephrasing pre-written text without altering its original meaning. These tools were not utilized as sources of information on the subject of this Work. Furthermore, Perplexity services were employed for search purposes, with subsequent human analysis of the results. I accept full responsibility for the outcomes associated with the use of these tools.
+\end{declarationpage}
+
+\printabstractpage
+
+\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%
+% list of other contents: figures, tables, code listings, algorithms, etc.
+% add/remove commands accordingly
+%%%%%%%%%%%%%%%%%%%%%%
+\listoffigures % list of figures
+\begingroup
+\let\clearpage\relax
+\listoftables % list of tables
+\thectufitlistingscommand
+\endgroup
+
+\todo{Supporting visualizations will be added after the main text is complete.}
+
+% TODO: fill in the abbreviations (here is an irrelevant example)
+\chapter{\thectufitabbreviationlabel}
+
+\begin{tabular}{rl}
+Will & Be Done at the Very End\\
+\end{tabular}
+
+\resumeTOCentries
+\mainmatter\mainmatterinit
+%%%%%%%%%%%%%%%%%%%
+% THE THESIS
+% MODIFY ANYTHING BELOW THIS LINE
+%%%%%%%%%%%%%%%%%%%
+
+\include{text/objectives}
+\include{text/introduction}
+\part{Conceptual Framework}\label{part:conceptual-framework}  % other options are Theoretical Background, Theoretical Part, Foundational Concepts
+\include{text/code-completion}
+\include{text/standard-lm}
+\include{text/completion-centric-lm}
+\include{text/in-context-learning}
+
+\makeatletter
+\def\@part[#1]#2{%
+  \ifnum \c@secnumdepth >-2\relax
+    \refstepcounter{part}
+    \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}
+  \else
+    \addcontentsline{toc}{part}{#1}
+  \fi
+  \markboth{}{}%
+  {\centering
+    \interlinepenalty \@M
+    \normalfont
+    \ifnum \c@secnumdepth >-2\relax
+      \huge\bfseries \partname\nobreakspace\thepart
+      \par
+      \vskip 20\p@
+    \fi
+    \Huge \bfseries #2\par
+    \vskip 0.5cm
+    \normalsize\normalfont\textit{The investigation of the final research question, \hyperref[rq:rq-b2]{RQ.B2}, in this thesis was previously published by \citet{sapronov2025} in the ``Tiny Papers'' track at the Deep Learning for Code (DL4C) workshop during the International Conference on Learning Representations (ICLR) 2025. This thesis should be regarded as an extended version of that paper, authored by the same individual, and does not constitute plagiarism of either their own or others' work. All differences are highlighted and justified below.}\par}
+  \@endpart}
+\makeatother
+
+\part{Applied Research}\label{part:applied-research} % other options are Experimental Analysis, Research Part, Experimental Validation
+\addtocontents{toc}{\protect\vspace{-\baselineskip}}
+\include{text/technical-foundation}
+\include{text/research-investigation}
+\include{text/conclusion}
+
+\appendix\appendixinit
+
+\include{text/appendix} % include `appendix.tex' from `text/' subdirectory
+
+\backmatter
+
+% Split bibliography with sapronov2025 first, then a gap, then all other references
+\printbibliography[category=our_papers,heading=none]
+\printbibliography[notcategory=our_papers,heading=none]
+
+\include{text/medium} % include `medium.tex' from `text/' subdirectory
+
+\end{document}
