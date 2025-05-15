@@ -1,10 +1,7 @@
 %% This is the ctufit-thesis document class. It is used to produce theses
 %% for submission to Czech Technical University, Faculty of Information Technology.
 %%
-%% Get the newest version from
-%% https://gitlab.fit.cvut.cz/theses-templates/FITthesis-LaTeX
-%%
-%%
+%% Copyright 2025, Maksim Sapronov
 %% Copyright 2024, Tomas Novacek
 %% Copyright 2021, Eliska Sestakova and Ondrej Guth
 %%
@@ -18,11 +15,9 @@
 %%
 %% This work has the LPPL maintenance status `maintained'.
 %%
-%% The current maintainer of this work is Tomas Novacek.
+%% The current maintainer of this work is Maksim Sapronov.
 %% Alternatively, submit bug reports to the tracker at
 %% https://gitlab.fit.cvut.cz/theses-templates/FITthesis-LaTeX/issues
-%%
-%%
 
 % identification
 

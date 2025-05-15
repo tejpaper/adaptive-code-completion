@@ -30,7 +30,7 @@
 
 \RequirePackage{iftex}[2020/03/06]
 \iftutex % XeLaTeX and LuaLaTeX
-    \RequirePackage{ellipsis}[2020/05/22] %ellipsis workaround for XeLaTeX
+    \RequirePackage{ellipsis}[2020/05/22] % ellipsis workaround for XeLaTeX
 \else
     \errmessage{Only compilation with XeLaTeX or LuaLaTeX is allowed}
     \stop
@@ -44,9 +44,6 @@
     pdfborder={0 0 0.1}
 }
 
-% uncomment the following to hide all hyperlinks
-%\hypersetup{hidelinks}
-
 % uncomment the following to change the color of all hyperlinks to CTU blue
 %\hypersetup{allbordercolors=decoration}
 
@@ -59,7 +56,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%
 % DEMO CONTENTS SETTINGS
-% You may choose to modify this part.
 %%%%%%%%%%%%%%%%%%%%%%
 \usepackage{dirtree}
 \usepackage{lipsum,tikz}
@@ -212,7 +208,6 @@
 \tableofcontents
 %%%%%%%%%%%%%%%%%%%%%%
 % list of other contents: figures, tables, code listings, algorithms, etc.
-% add/remove commands accordingly
 %%%%%%%%%%%%%%%%%%%%%%
 \listoffigures % list of figures
 \begingroup
@@ -298,7 +293,7 @@
 
 \appendix\appendixinit
 
-\include{text/appendix} % include `appendix.tex' from `text/' subdirectory
+\include{text/appendix}
 
 \backmatter
 
