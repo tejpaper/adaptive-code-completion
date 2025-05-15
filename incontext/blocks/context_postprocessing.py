@@ -44,7 +44,7 @@ class LineStripPostprocessor(ContextPostprocessor):
 
 
 class CompletionLeakPostprocessor(ContextPostprocessor):
-    def __init__(self, 
+    def __init__(self,
                  chars_lower_bound: int,
                  context_size: int,
                  num_segments: int,
@@ -130,7 +130,7 @@ class CompletionLeakPostprocessor(ContextPostprocessor):
         return contaminated_context
 
 
-# Hardcode to make init_from_config clearer
+# hardcode to make init_from_config clearer
 class DseekCompletionLeakPostprocessor(CompletionLeakPostprocessor):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs,
@@ -138,7 +138,7 @@ class DseekCompletionLeakPostprocessor(CompletionLeakPostprocessor):
                          trust_remote_code=True)
 
 
-# Hardcode to make init_from_config clearer
+# hardcode to make init_from_config clearer
 class OCoderCompletionLeakPostprocessor(CompletionLeakPostprocessor):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs,
@@ -178,7 +178,7 @@ class ReversedContextPostprocessor(ContextPostprocessor):
         return reversed_context
 
 
-# Hardcode to make init_from_config clearer
+# hardcode to make init_from_config clearer
 class OCoderReversedContextPostprocessor(ReversedContextPostprocessor):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs,
@@ -208,7 +208,7 @@ class RandomTokensPostprocessor(ContextPostprocessor):
         return self.tokenizer.decode(self.generator.choices(self.allowed_token_ids, k=self.context_size))
 
 
-# Hardcode to make init_from_config clearer
+# hardcode to make init_from_config clearer
 class DseekRandomTokensPostprocessor(RandomTokensPostprocessor):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs,
@@ -216,7 +216,7 @@ class DseekRandomTokensPostprocessor(RandomTokensPostprocessor):
                          trust_remote_code=True)
 
 
-# Hardcode to make init_from_config clearer
+# hardcode to make init_from_config clearer
 class OCoderRandomTokensPostprocessor(RandomTokensPostprocessor):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs,

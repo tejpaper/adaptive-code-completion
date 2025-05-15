@@ -48,14 +48,14 @@ class ExactMatch(MaskBasedMetric):
 
         start_idx = 0
         for line in gt_line_ids:
-            line_length = len(line)
-            line_logits = logits[start_idx:(start_idx + line_length)]
+            line_len = len(line)
+            line_logits = logits[start_idx:(start_idx + line_len)]
             pred_line = line_logits.argmax(-1).tolist()
 
-            start_idx += line_length
+            start_idx += line_len
 
             interruption = bool(self.set_newline_ids & set(pred_line[:(self.min_tokens - 1)]))
-            short_line = (line_length < self.min_tokens)
+            short_line = (line_len < self.min_tokens)
 
             if interruption and not short_line:  # give the model a second chance
                 line_logits[:(self.min_tokens - 1), self.list_newline_ids] = -torch.inf

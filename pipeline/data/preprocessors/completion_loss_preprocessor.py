@@ -22,7 +22,7 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
                  ) -> None:
         super().__init__(num_chars_per_token, verbose)
 
-        # not all models have BOS token (e.g. Qwen2.5-Coder)
+        # Not all models have BOS token (e.g. Qwen2.5-Coder)
         max_seq_len += (tokenizer.bos_token_id is None)
 
         if not 0 < loss_ratio <= 1:
@@ -68,7 +68,7 @@ class CompletionLossPreprocessor(AmortizedPreprocessorBase):
             text=trunc_completions,
             add_special_tokens=False,
             return_attention_mask=False,
-            return_offsets_mapping=self.tokenizer.is_fast,  # TODO: is it needed?
+            return_offsets_mapping=self.tokenizer.is_fast,
             return_length=True,
         )
 

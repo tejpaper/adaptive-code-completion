@@ -27,8 +27,8 @@ def init_metrics(loaded_config: Iterable[StatisticName],
                  configs_dir: str,
                  tokenizer: PreTrainedTokenizerBase,
                  ) -> list[StatisticBase]:
-    # dictionary solves the problem of using the same metric names multiple times:
-    # only the last metric specified in the configuration will be used
+    # Dictionary solves the problem of using the same metric names multiple times:
+    # Only the last metric specified in the configuration will be used
     metrics = dict()
 
     for path in loaded_config:

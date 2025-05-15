@@ -4,8 +4,8 @@ from typing import Any, Iterable
 
 import torch
 import torch.nn as nn
-from transformers.models.auto import MODEL_FOR_CAUSAL_LM_MAPPING
 from transformers import AutoConfig, LlamaForCausalLM
+from transformers.models.auto import MODEL_FOR_CAUSAL_LM_MAPPING
 
 
 class AdapterBase(ABC):

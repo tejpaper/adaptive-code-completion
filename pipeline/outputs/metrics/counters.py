@@ -7,13 +7,13 @@ import torch
 
 T = TypeVar('T')
 
-# avoiding cyclical imports
+# avoids cyclical imports
 UniversalTrainer = TypeVar('UniversalTrainer')
 
 
 class EpochCounter(MetricBase):
     _instance = None  # singleton pattern
-    # it’s not a metric in the usual sense, but when used with main_metric in
+    # It is not a metric in the usual sense, but when used with main_metric in
     # TopKCheckpointManager, it will result in saving only the last k checkpoints
     mode = OptimizationMode.MAX
 
@@ -24,7 +24,7 @@ class EpochCounter(MetricBase):
 
     def __init__(self) -> None:
         self.samples = 0
-        self.ds_length = 1
+        self.ds_len = 1
 
     @property
     def name(self) -> StatisticName:
@@ -33,10 +33,10 @@ class EpochCounter(MetricBase):
     def micro_batch_update(self, input_ids: torch.Tensor, trainer: UniversalTrainer, **_kwargs) -> None:
         if trainer.model.training:  # ignores validation samples
             self.samples += input_ids.shape[0]
-            self.ds_length = len(trainer.train_dl.dataset)
+            self.ds_len = len(trainer.train_dl.dataset)
 
     def batch_commit(self, **_kwargs) -> StatisticValue:
-        return self.samples / self.ds_length
+        return self.samples / self.ds_len
 
 
 class TokenCounter(MaskBasedMetric):

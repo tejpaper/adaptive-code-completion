@@ -18,8 +18,6 @@ class WandbLogger(LocalLogger):
         wandb.init(**wandb_init_kwargs)
 
     def log(self, metrics: Log) -> Log:
-        # TODO: nesting: don't forget the additional validation loop case
-
         wandb_log = dict()
         if 'train_metrics' in metrics:
             wandb_log['train'] = metrics['train_metrics']

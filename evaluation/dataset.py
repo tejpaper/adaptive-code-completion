@@ -11,7 +11,6 @@ from datasets import Dataset as HuggingFaceDataset
 from torch.utils.data import Dataset
 from transformers import PreTrainedTokenizerBase
 
-
 LineType = Literal['inproject', 'infile']
 EvalSample = tuple[LineType, str, str, str]
 EvalBatch = tuple[list[LineType], torch.Tensor, torch.Tensor, list[str]]
@@ -55,14 +54,16 @@ class LongCodeArenaDataset(Dataset):
         else:
             incontext_datapoint.completion_file['content'] = '\n'.join(completion_lines[:line_idx])
             composed_datapoint = self.composer.compose(asdict(incontext_datapoint))
-        
+
         composed_datapoint['composed_completion'] = self.composer.compose_completion(incontext_datapoint)
         ground_truth = completion_lines[line_idx]
 
         return (
             line_type,
-            composed_datapoint['composed_context'] + ('\n', '')[composed_datapoint['composed_context'].endswith('\n')],
-            composed_datapoint['composed_completion'] + ('\n', '')[composed_datapoint['composed_completion'].endswith('\n')],
+            composed_datapoint['composed_context'] + ('\n', '')[
+                composed_datapoint['composed_context'].endswith('\n')],
+            composed_datapoint['composed_completion'] + ('\n', '')[
+                composed_datapoint['composed_completion'].endswith('\n')],
             ground_truth + ('\n', '')[ground_truth.endswith('\n')],
         )
 
@@ -76,7 +77,7 @@ class DataCollator:
         self.context_size = context_size
         self.no_bos = (tokenizer.bos_token_id is None)
 
-    def _tokenize(self, 
+    def _tokenize(self,
                   text: str,
                   max_seq_len: int,
                   num_chars_per_token: int = 6,
@@ -111,7 +112,7 @@ class DataCollator:
                 text=repo_context,
                 max_seq_len=self.context_size - len(tokenized_completion) + self.no_bos,
             )
-            
+
             tokenized_input = tokenized_repo_context + tokenized_completion
             if not self.no_bos:
                 tokenized_input = [self.tokenizer.bos_token_id] + tokenized_input

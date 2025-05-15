@@ -18,7 +18,7 @@ class CheckpointManager:  # aka checkpointer
                  checkpoint_directory_template: str = '{iteration_number:04d}',
                  model_subdirectory: str = 'model',
                  optim_state_filename: str = 'optim.pt',
-                 metrics_filename: str = 'metrics.json',  # should be .json
+                 metrics_filename: str = 'metrics.json',
                  ) -> None:
         self.main_metric_name = main_metric
         self.main_metric = find_metric_class(main_metric)

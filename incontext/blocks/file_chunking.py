@@ -221,12 +221,11 @@ class CompletionDuplicationChunker(FileChunker):
         filename = datapoint.completion_file['filename']
         content = NewlinePreprocessor.unify_newlines(datapoint.completion_file['content'])
         num_repeats = math.ceil(self.chars_lower_bound / len(content))
-        
+
         return [Chunk(
-                    content=content,
-                    metadata=dict(filename=filename),
-                    file_ref=File(
-                        content=content,
-                        metadata=dict(filename=filename),
-                    ))
-                for _ in range(num_repeats)]
+            content=content,
+            metadata=dict(filename=filename),
+            file_ref=File(
+                content=content,
+                metadata=dict(filename=filename),
+            )) for _ in range(num_repeats)]

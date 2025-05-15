@@ -27,7 +27,6 @@ class UniversalTrainer(TrainerBase):
                  train_ds: Dataset,
                  valid_ds: Dataset | None,
                  add_valid_ds: Dataset | None,
-                 # auxiliary objects
                  adapter: AdapterBase,
                  checkpointer: CheckpointManager,
                  logger: LoggerBase,
@@ -56,7 +55,7 @@ class UniversalTrainer(TrainerBase):
                  num_workers: int,
                  prefetch_factor: int,
                  random_seed: int | None,
-                 # Floating point
+                 # floating point
                  fp32_matmul_precision: Literal['highest', 'high', 'medium'],
                  ) -> None:
         # main objects
@@ -257,8 +256,8 @@ class UniversalTrainer(TrainerBase):
                     target=target_ids.flatten(0, 1),
                     reduction='none',
                 ).view_as(target_ids)
-                # not accurate if drop_last=False and micro_batch_size != 1
-                # see also PreprocessorBase.get_loss_mask comment in pipeline/data/preprocessors/preprocessor_base.py
+                # Not accurate if drop_last=False and micro_batch_size != 1
+                # See also PreprocessorBase.get_loss_mask comment in pipeline/data/preprocessors/preprocessor_base.py
                 loss = loss_per_token[loss_mask].mean() / self.gradient_accumulation_steps
 
                 self.grad_scaler.scale(loss).backward()

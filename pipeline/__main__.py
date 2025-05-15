@@ -10,7 +10,6 @@ import hydra
 from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig, OmegaConf
 
-
 PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 CONFIGS_DIR = os.path.join(PROJECT_DIR, 'configs')
 
@@ -30,7 +29,7 @@ def main(config: DictConfig) -> None:
 
         if argv_sh != old_argv_sh:
             input(f'Mismatch of script arguments with an older instance of the same run ({argv_sh_file}).\n'
-                   'Press ENTER to continue with the new ones.')
+                  'Press ENTER to continue with the new ones.')
     else:
         os.mkdir(run_dir)
         os.mkdir(checkpoints_dir)
@@ -65,9 +64,7 @@ def main(config: DictConfig) -> None:
 
     tokenizer = init_tokenizer(**config.model)
     model = init_model(**config.model)
-
     adapter = adapter_class(**config.adapter, model_name=config.model.model_name)
-
     model = adapter.adapt(model)
 
     preprocessor = preprocessor_class(**config.preprocessor, tokenizer=tokenizer)

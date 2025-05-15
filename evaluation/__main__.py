@@ -11,9 +11,8 @@ import hydra
 import torch
 from datasets import load_dataset
 from omegaconf import DictConfig, OmegaConf
-from tqdm import tqdm
 from torch.utils.data import DataLoader
-
+from tqdm import tqdm
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 CONFIGS_DIR = os.path.join(PROJECT_DIR, 'configs')

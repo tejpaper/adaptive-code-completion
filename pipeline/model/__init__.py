@@ -5,22 +5,20 @@ from typing import Any
 
 import torch
 from omegaconf import OmegaConf
-from transformers.models.auto import MODEL_FOR_CAUSAL_LM_MAPPING
-from transformers.utils import is_flash_attn_2_available, is_torch_sdpa_available
 from transformers import (
-    AutoTokenizer,
-    AutoModelForCausalLM,
     AutoConfig,
+    AutoModelForCausalLM,
+    AutoTokenizer,
     PreTrainedModel,
     PreTrainedTokenizerBase,
 )
+from transformers.models.auto import MODEL_FOR_CAUSAL_LM_MAPPING
+from transformers.utils import is_flash_attn_2_available, is_torch_sdpa_available
 
 
 class AttentionImplementation(str, Enum):
-    # nondeterministic
     FA2 = 'flash_attention_2'
     SDPA = 'sdpa'
-    # deterministic
     EAGER = 'eager'
 
 

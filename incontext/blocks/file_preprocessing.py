@@ -1,12 +1,12 @@
 from incontext.blocks.block import ComposerBlock
 from incontext.data_structures import Datapoint, File
 
+import warnings
 from abc import ABC
 from typing import Sequence, Type
 
 import tree_sitter
 import tree_sitter_python
-import warnings
 
 
 class FilePreprocessor(ComposerBlock, ABC):
