@@ -30,7 +30,9 @@ Each of these blocks has its own abstract class and serves as a foundation for c
 
 \subsection{List of Context Composers}\label{sec:context-composers-list}
 
-All context composers utilized in the \nameref{chap:research-investigation} chapter adhere to two standard preprocessing steps: the removal of empty files and the normalization of all line endings to the Line Feed (LF) character. These shared preprocessing steps ensure consistency across all experiments. The following list provides a comprehensive overview of the context composers employed in this research.
+\begin{sloppypar}
+All context composers utilized in the \nameref{chap:research-investigation} chapter adhere to two standard preprocessing steps: the removal of empty files and the normalization of all line endings to the Line Feed character. These shared preprocessing steps ensure consistency across all experiments. The following list provides a comprehensive overview of the context composers employed in this research.
+\end{sloppypar}
 
 \label{appendix:context-composers}
 \begin{enumerate}
@@ -79,7 +81,7 @@ The pipeline integrates models from the Hugging Face Hub\footnote{\url{https://h
 
 The training loop is implemented in pure PyTorch\footnote{\url{https://pytorch.org/}}. It supports cosine learning rate scheduling with linear warmup, gradient scaling, clipping, and accumulation. The pipeline can periodically invoke two validation loops: one on the original dataset split and another on an additional provided dataset. The latter allows metrics to be grounded on baseline composition strategy instead of solely monitoring the in-distribution capabilities of the model.
 
-During the training process, the pipeline produces a set of configurable metrics and statistics for both the training and validation data. These include cross-entropy, exact match, top-\(k\) accuracy, learning rate tracking, epoch and token number counting. Their values are decomposed based on the types of tokens they are applied to. We denote five such types:
+During the training process, the pipeline produces a set of configurable metrics and statistics for both the training and validation data. These include cross-entropy, Exact Match, Top-\(k\) Accuracy, learning rate tracking, epoch and token number counting. Their values are decomposed based on the types of tokens they are applied to. We denote five such types:
 \begin{itemize}
     \item \textbf{Attached:} Tokens whose losses participate as leaf nodes in automatic differentiation for gradient computation.
     \item \textbf{Detached:} Tokens whose losses are zeroed out during gradient masking and serve as a complement to the attached tokens.
