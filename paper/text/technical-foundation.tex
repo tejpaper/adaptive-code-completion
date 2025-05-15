@@ -25,7 +25,7 @@ Each of these blocks has its own abstract class and serves as a foundation for c
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{figures/composer-blocks.pdf}
-    \caption{Order of composer blocks. Nodes represent block types: \textcircled{\raisebox{-0.9pt}{1}} File Filtering, \textcircled{\raisebox{-0.9pt}{2}} File Preprocessing, \textcircled{\raisebox{-0.9pt}{3}} File Chunking, \textcircled{\raisebox{-0.9pt}{4}} Chunk Ranking, \textcircled{\raisebox{-0.9pt}{5}} Chunk Sorting, \textcircled{\raisebox{-0.9pt}{6}} Chunk Assembling, and \textcircled{\raisebox{-0.9pt}{7}} Context Postprocessing. Edges indicate the permissible sequence of block application. The data format is denoted by three frames: Files, Chunks, and Context. The bold subgraph highlights blocks that may be omitted.}\label{fig:composer-blocks}
+    \shortcaption{Order of composer blocks}{Order of composer blocks. Nodes represent block types: \textcircled{\raisebox{-0.9pt}{1}} File Filtering, \textcircled{\raisebox{-0.9pt}{2}} File Preprocessing, \textcircled{\raisebox{-0.9pt}{3}} File Chunking, \textcircled{\raisebox{-0.9pt}{4}} Chunk Ranking, \textcircled{\raisebox{-0.9pt}{5}} Chunk Sorting, \textcircled{\raisebox{-0.9pt}{6}} Chunk Assembling, and \textcircled{\raisebox{-0.9pt}{7}} Context Postprocessing. Edges indicate the permissible sequence of block application. The data format is denoted by three frames: Files, Chunks, and Context. The bold subgraph highlights blocks that may be omitted.}\label{fig:composer-blocks}
 \end{figure}
 
 \subsection{List of Context Composers}\label{sec:context-composers-list}
@@ -34,7 +34,6 @@ Each of these blocks has its own abstract class and serves as a foundation for c
 All context composers utilized in the \nameref{chap:research-investigation} chapter adhere to two standard preprocessing steps: the removal of empty files and the normalization of all line endings to the Line Feed character. These shared preprocessing steps ensure consistency across all experiments. The following list provides a comprehensive overview of the context composers employed in this research.
 \end{sloppypar}
 
-\label{appendix:context-composers}
 \begin{enumerate}
     \item \textbf{File-Level} produces an empty context.
     \item \textbf{Path Distance} constructs the context using only files with the \texttt{.py} extension. The selected files are sorted in descending order according to their path distance from the completion file. For files with identical path distances, a secondary sorting criterion is applied using the Intersection over Union (IoU) metric, which equals to the number of lines shared with the completion file divided by the total number of unique lines in both files. The IoU calculation considers lines with leading and trailing whitespace removed and includes only those lines that are at least five characters in length after whitespace removal.
@@ -48,9 +47,8 @@ All context composers utilized in the \nameref{chap:research-investigation} chap
     \item \textbf{Random \texttt{.py}} selects only files with the \texttt{.py} extension and arranges them in a random order.
     \item \textbf{Random Tokens} constructs the context by sampling a sequence of non-special tokens at random, with each token selected independently and with equal probability.
     \item \textbf{Duplication} constructs the context by repeatedly concatenating the content of the completion file until the maximum context window size is reached.
-    \item \textbf{Leak} begins with the context produced by Path Distance. The completion file is randomly divided into five segments at newline characters, which then disjointedly replace context lines at random positions, approximately preserving the original token count.
-\end{enumerate}\parencite{sapronov2025} % TODO: check the correctness of the citation
-% TODO: motivate choices
+    \item \textbf{Leak} begins with the context produced by Path Distance. The completion file is randomly divided into five segments at newline characters, which then disjointedly replace context lines at random positions, approximately preserving the original token count. \parencite{sapronov2025}
+\end{enumerate}
 
 \subsection{Order Modifications}
 
@@ -64,7 +62,7 @@ To increase the diversity of experiments conducted to address \hyperref[rq:rq-b1
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{figures/order-modes.pdf}
-    \caption{Three modes of context ordering. The numbers in boxes indicate the rank of the chunks, with smaller numbers denoting higher relevance.}\label{fig:order-modes}
+    \shortcaption{Three modes of context ordering}{Three modes of context ordering. The numbers in boxes indicate the rank of the chunks, with smaller numbers denoting higher relevance.}\label{fig:order-modes}
 \end{figure}
 
 \subsection{Examples}
@@ -98,8 +96,6 @@ The entire pipeline utilizes a modular structure, which enhances code maintainab
 
 In the context composition framework, we integrate Hugging Face tokenizers from the Transformers\footnote{\url{https://github.com/huggingface/transformers}} library to compute token-related statistics, and Tree-sitter\footnote{\url{https://tree-sitter.github.io/tree-sitter/}} to decompose Python code into its parts. Both libraries are employed in the concrete implementations of the blocks, although their usage can be omitted without disrupting the main abstract framework. The OmegaConf\footnote{\url{https://github.com/omry/omegaconf}} configuration system is utilized to manage the initialization of the composers from YAML configuration files.
 
-The pipeline inherits requirements from the context composition framework as it utilizes its functions. Additionally, it employs Datasets\footnote{\url{https://github.com/huggingface/datasets}} and Accelerate\footnote{\url{https://github.com/huggingface/accelerate}} from the Hugging Face ecosystem to provide peripheral support to the Transformers library. The Hydra\footnote{\url{https://github.com/facebookresearch/hydra}} package extends the configurative capabilities of OmegaConf and enhances the pipeline's usability. PyTorch, as mentioned in the previous section, is used to implement the training loop. The tqdm\footnote{\url{https://github.com/tqdm/tqdm}} library is employed to display progress bars for all prolonged processes. Weights~\&~Biases\footnote{\url{https://github.com/wandb/wandb}} is used to track metrics and statistics in real-time.
-
-% TODO: add Pandas
+The pipeline inherits requirements from the context composition framework as it utilizes its functions. Additionally, it employs Datasets\footnote{\url{https://github.com/huggingface/datasets}} and Accelerate\footnote{\url{https://github.com/huggingface/accelerate}} from the Hugging Face ecosystem to provide peripheral support to the Transformers library. Pandas\footnote{\url{https://github.com/pandas-dev/pandas}} is used to load pre-composed datasets from the Parquet format. The Hydra\footnote{\url{https://github.com/facebookresearch/hydra}} package extends the configurative capabilities of OmegaConf and enhances the pipeline's usability. PyTorch, as mentioned in the previous section, is used to implement the training loop. The tqdm\footnote{\url{https://github.com/tqdm/tqdm}} library is employed to display progress bars for all prolonged processes. Weights~\&~Biases\footnote{\url{https://github.com/wandb/wandb}} is used to track metrics and statistics in real-time.
 
 To conduct all experiments and run evaluation scripts, a single 8\(\times\)H200 node was used, with each GPU having 141 GB of VRAM.

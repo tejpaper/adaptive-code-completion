@@ -62,7 +62,7 @@ To measure the impact of context composition strategies on the quality of code c
 \begin{table}[htbp]
     \centering
     \includegraphics{tables/rq-a1.pdf}
-    \caption{Exact Match scores of DeepSeek-Coder-Base 1.3B benchmarked on the LCA}\label{tab:dseek-inference}
+    \shortcaption{Evaluation of DeepSeek-Coder-Base 1.3B}{Exact Match scores of DeepSeek-Coder-Base 1.3B benchmarked on the LCA}\label{tab:dseek-inference}
 \end{table}
 
 A noticeable difference is observed, allowing us to infer that the context provided to the model during inference has a significant impact on its performance. Some detailed findings are as follows:
@@ -84,7 +84,7 @@ To estimate the impact of the context composition strategy employed during model
 \begin{table}[htbp]
     \centering
     \includegraphics[width=\textwidth]{tables/rq-a2.pdf}
-    \caption{Exact Match scores of DeepSeek-Coder-Base 1.3B fine-tuned with different context composition strategies. The rows indicate the composer used to obtain the model checkpoint. The columns represent different evaluation setups: PD for Path Distance, FL for File-Level, and Or for the composer used during fine-tuning. All sequences are truncated to 16K tokens. The blank cells refer to the \tableref{tab:dseek-inference}.}\label{tab:dseek-fine-tuning}
+    \shortcaption{Evaluation of fine-tuned DeepSeek-Coder-Base 1.3B}{Exact Match scores of DeepSeek-Coder-Base 1.3B fine-tuned with different context composition strategies. The rows indicate the composer used to obtain the model checkpoint. The columns represent different evaluation setups: PD for Path Distance, FL for File-Level, and Or for the composer used during fine-tuning. All sequences are truncated to 16K tokens. The blank cells refer to the \tableref{tab:dseek-inference}.}\label{tab:dseek-fine-tuning}
 \end{table}
 
 The marginal differences in metric values suggest that this particular model is sufficiently trained and is not significantly affected by subsequent fine-tuning.
@@ -100,7 +100,7 @@ We assess the impact of repository-level pre-training on the previously obtained
 \begin{table}[htbp]
     \centering
     \includegraphics[width=\textwidth]{tables/rq-b1.pdf}
-    \caption{Exact Match scores of OpenCoder-1.5B-Base under different evaluation setups. The original model's performance is denoted by No Extension. The other rows represent the checkpoints obtained with the respective composers. Context extension is performed with 4K-token sequences for the File-Level and 16K-token sequences for all other composers. The column notations are consistent with the previous table.}\label{tab:ocoder-in-context-retention}
+    \shortcaption{In-context learning capabilities of OpenCoder-1.5B-Base after context extension}{Exact Match scores of OpenCoder-1.5B-Base under different evaluation setups. The original model's performance is denoted by No Extension. The other rows represent the checkpoints obtained with the respective composers. Context extension is performed with 4K-token sequences for the File-Level and 16K-token sequences for all other composers. The column notations are consistent with the previous table.}\label{tab:ocoder-in-context-retention}
 \end{table}
 
 Three main observations can be drawn from the table to address \hyperref[rq:rq-b1]{RQ.B1}:
@@ -118,7 +118,7 @@ In this section, we address the final research question \hyperref[rq:rq-b2]{RQ.B
 \begin{table}[htbp]
     \centering
     \includegraphics[width=\textwidth]{tables/rq-b2.pdf}
-    \caption{Exact Match scores collected from the long-context evaluation of composer choices employed during the repository-level pre-training stage. All clarifying remarks are consistent with the previous table. Blank cells indicate the absence of a repository-level pre-training stage in OpenCoder's development pipeline.}\label{tab:ocoder-extension}
+    \shortcaption{Evaluation of repository-level pre-trained OpenCoder-1.5B-Base}{Exact Match scores collected from the long-context evaluation of composer choices employed during the repository-level pre-training stage of OpenCoder-1.5B-Base. All clarifying remarks are consistent with the previous table. Blank cells indicate the absence of a repository-level pre-training stage in OpenCoder's development pipeline.}\label{tab:ocoder-extension}
 \end{table}
 
 To summarize the outcomes of our study, we present the following observations:
@@ -135,16 +135,16 @@ The main practical contribution of this research is the identification of a low-
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{figures/model-comparison.pdf}
-    \caption{Comparison of our two main checkpoints with other existing Code LLMs of the same weight class. The PD-16K setup is used to produce the metric assessment.}\label{fig:model-comparison}
+    \shortcaption{Comparison of two main checkpoints after context extention with Qwen2.5-Coder-1.5B and DeepSeek-Coder-Base-1.3B}{Comparison of our two main checkpoints with other existing Code LLMs of the same weight class. The PD-16K setup is used to produce the metric assessment.}\label{fig:model-comparison}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{figures/beyond-training-window-inproject.pdf}
-    \caption{Evaluation of the performance 
-    scaling beyond the context extension 
-    window. The \textit{inproject} line type from the LCA benchmark is selected for visualization; the corresponding \figureref{fig:beyond-training-window-infile} presents results for the \textit{infile} category. ``1K'' refers to 1,024 tokens. The \raisebox{-0.3ex}{\FiveStarOpen} markers denote the context length used during repository-level pre-training stage.}\label{fig:beyond-training-window-inproject}
-\end{figure}  % TODO: connect with Code Llama findings
+    \shortcaption{Performance scaling beyond context extension window (\textit{inproject})}{Evaluation of the performance scaling beyond the context extension window. The \textit{inproject} line type from the LCA benchmark is selected for visualization; the corresponding \figureref{fig:beyond-training-window-infile} presents results for the \textit{infile} category. ``1K'' refers to 1,024 tokens. The \raisebox{-0.3ex}{\FiveStarOpen} markers denote the context length used during repository-level pre-training stage.}\label{fig:beyond-training-window-inproject}
+\end{figure}
+
+We note that the same model's extrapolation behavior, as shown in \figureref{fig:beyond-training-window-inproject}, was partially reported by \citet{rozière2023}. Specifically, when the model is initialized with RoPE from scratch and trained on sequences up to \(N\) tokens, it is unable to extrapolate beyond its pre-training length. However, after applying ABF and optimizing for a few steps on sequences up to \(M > N\) tokens, the model learns to extrapolate not only beyond \(N\) tokens but also for values greater than \(M\). While we confirm this finding, the core novelty of our evaluation lies in the case where \(M = N\), which demonstrates the preservation of described properties.
 
 \section{Supplementary Results}
 
@@ -163,7 +163,7 @@ To examine the impact of including all losses in the optimization process for th
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{figures/gradient-masking.pdf}
-    \caption{Histogram of the Exact Match differences between paired runs on inlier composers, with the Duplication composer excluded. Negative values indicate cases where gradient masking reduces model performance. The sample mean is \(-0.35\) EM points on a scale from \(-100\) to \(100\).}\label{fig:gradient-masking}
+    \shortcaption{Histogram of Exact Match score differences induced by gradient masking}{Histogram of the Exact Match differences between paired runs on inlier composers, with the Duplication composer excluded. Negative values indicate cases where gradient masking reduces model performance. The sample mean is \(-0.35\) EM points on a scale from \(-100\) to \(100\).}\label{fig:gradient-masking}
 \end{figure}
 
 Another observation is that disabling gradient masking eliminates the detrimental properties of the Duplication composer. We attribute this to the model being required to perform well on the first instance of the completion file presented in the context, which does not have access to the ground truth lines to copy from.

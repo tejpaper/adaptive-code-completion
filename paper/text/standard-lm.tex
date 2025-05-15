@@ -91,7 +91,7 @@ These formulas differ from the original architecture described in \citet{vaswani
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/post-vs-pre-norm.pdf}
-    \caption{Comparison of post-normalization and pre-normalization architectures in Transformer models}\label{fig:post-vs-pre-norm}
+    \shortcaption{Comparison of post-normalization and pre-normalization}{Comparison of post-normalization and pre-normalization architectures in Transformer models}\label{fig:post-vs-pre-norm}
     \hfill\textit{Source: \citet{ding2021}}
 \end{figure}
 
@@ -110,7 +110,7 @@ where \(\mathbf{V} = \mathbf{XW}_V^{\top}\) and \(\{\mathbf{Q}, \mathbf{K}\} = \
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.85\textwidth]{figures/attention.pdf}
-    \caption{Attention mechanism at the single token level}\label{fig:attention}
+    \shortcaption{Attention mechanism at the single token level}{Attention mechanism at the single token level}\label{fig:attention}
     \hfill\textit{Source: \citet{zhang2023b}}
 \end{figure}
 
@@ -140,7 +140,7 @@ Originally, the Rectified Linear Unit (ReLU) was used as the activation function
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{figures/dropout.pdf}
-    \caption{An application of dropout to a multi-layer perceptron}\label{fig:dropout}
+    \shortcaption{Application of dropout to a multi-layer perceptron}{Dropout applied to the activations of a multi-layer perceptron, with a dropout probability of \(p_{\mathrm{dropout}} = 0.5\)}\label{fig:dropout}
     \hfill\textit{Source: \citet{labach2019}}
 \end{figure}
 
@@ -174,7 +174,7 @@ where \(d = d_k\) and \(\Theta = \{\theta_i=\theta_{\mathrm{base}}^{-2(i-1)/d}, 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{figures/rope.pdf}
-    \caption{Illustration of the effect of RoPE on the query and key vectors}\label{fig:rope}
+    \shortcaption{Illustration of the effect of RoPE on the query and key vectors}{Illustration of the effect of RoPE on the query and key vectors}\label{fig:rope}
     \hfill\textit{Source: \citet{su2021}}
 \end{figure}
 
@@ -256,7 +256,7 @@ Tokens are selected based on their associated probabilities \(\mathbf{p}_t\) fro
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{figures/softmax-temperature.pdf}
-    \caption{Impact of the temperature parameter on the softmax output}\label{fig:softmax-temperature}
+    \shortcaption{Impact of the temperature parameter on the softmax output}{Impact of the temperature parameter on the softmax output. The middle image demonstrates the standard effect of the softmax function on an array of logits. The images on the left and right show the limiting case of temperature adjustment.}\label{fig:softmax-temperature}
 \end{figure}
 
 To further enhance the quality of the generated text, the \textit{top-\(k\) sampling} strategy is often employed. It restricts the vocabulary to the top-\(k\) most probable tokens, which helps prevent the model from outputting irrelevant tokens.

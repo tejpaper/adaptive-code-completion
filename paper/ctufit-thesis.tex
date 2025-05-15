@@ -143,13 +143,13 @@
 \newfontface\lserif{Liberation Serif}
 
 \newcommand{\Csh}{C{\lserif\#}}
-\newcommand{\todo}[1]{\hl{\textbf{TODO: ``#1''}}}
 \newcommand{\chapterref}[1]{\hyperref[#1]{Chapter~\ref*{#1}}}
 \newcommand{\sectionref}[1]{\hyperref[#1]{Section~\ref*{#1}}}
 \newcommand{\figureref}[1]{\hyperref[#1]{Figure~\ref*{#1}}}
 \newcommand{\tableref}[1]{\hyperref[#1]{Table~\ref*{#1}}}
 \newcommand{\equationref}[1]{\hyperref[#1]{Equation~\ref*{#1}}}
 \newcommand{\appendixref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
+\newcommand{\shortcaption}[2]{\caption[#1]{#2}}
 
 %%%%%%%%%%%%%%%%%%%%%%
 % DEMO CONTENTS SETTINGS END
@@ -168,9 +168,8 @@
 % list of other contents END
 %%%%%%%%%%%%%%%%%%%%%%
 
-% TODO: fill in the acknowledgment page; mention JetBrains
 \begin{acknowledgmentpage}
-	Thank you \(\dots\)
+  I would like to express my sincere gratitude to my supervisor, Evgenii Glukhov, M.Sc., whose guidance and advice proved invaluable throughout the preparation of this thesis. I also wish to extend my appreciation to the \mbox{JetBrains} Research association for initiating and supporting this research project by providing both high-level expertise and essential resources. In particular, Alexander Bezzubov, Egor Bogomolov, Timofey Bryksin, and Yaroslav Golubev made \mbox{significant} contributions by advancing a portion of the project to the ICLR 2025 Conference and offering valuable \mbox{feedback} on the paper derived from this thesis. Finally, I am deeply grateful to my family and friends for their \mbox{unwavering} patience and support.
 \end{acknowledgmentpage}
 
 % Source of the two first paragraphs: https://courses.fit.cvut.cz/SFE/download/index.html#_documents (document Declaration for FT in English); "authorization" is used instead of "authorisation" and "license" instead of "licence"
@@ -217,7 +216,7 @@
 %%%%%%%%%%%%%%%%%%%%%%
 \listoffigures % list of figures
 \begingroup
-\let\clearpage\relax
+\clearpage
 \listoftables % list of tables
 \endgroup
 
