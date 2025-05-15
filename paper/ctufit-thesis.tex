@@ -16,14 +16,12 @@
 \ctufitsupervisor{Evgenii Glukhov\, M.Sc.}
 \ctufitdepartment{Department of Applied Mathematics}
 \ctufityear{2025}
-\ctufitdeclarationplace{Prague} % replace with the place where you sign the declaration
-\ctufitdeclarationdate{\today} % replace with the date of signature of the declaration
-% TODO: determine the order of abstracts and fill them in (2 following lines)
-\ctufitabstractCZE{Fill in the abstract of this thesis in Czech.}
-\ctufitabstractENG{Fill in the abstract of this thesis in English.}
-% TODO: determine the order of keywords (2 following lines)
-\ctufitkeywordsCZE{dokončování kódu, dokončování kódu na úrovni repozitáře, projektové přizpůsobení, učení v kontextu, dlouhý kontext, rozšíření kontextu, Transformátor, Code LLM}
-\ctufitkeywordsENG{code completion, repository-level code completion, project adaptation, in-context learning, long context, context extension, Transformer, Code LLM}
+\ctufitdeclarationplace{Prague}
+\ctufitdeclarationdate{\today}
+\ctufitabstractENG{This thesis addresses the challenge of enhancing code completion models with repository-level context awareness. Modern completion systems struggle with information dispersed across large codebases, limiting their performance. The work presents a context composition framework that extracts relevant repository information and a fine-tuning pipeline for model adaptation, evaluated through systematic experimentation. The research demonstrates that context selection strategy significantly impacts completion quality during inference, while repository-level pre-training preserves in-context learning capabilities. Notably, the study demonstrates that computational requirements for context window extension can be substantially reduced while maintaining competitive performance, advancing code completion by enabling better integration of project-wide information.}
+\ctufitkeywordsENG{repository-level code completion, project adaptation, in-context learning, long context, context extension, resource efficiency, Transformer, Code LLM}
+\ctufitabstractCZE{Tato bakalářská práce se zabývá problematikou vylepšení modelů pro dokončování kódu s povědomím o kontextu na úrovni repozitáře. Moderní systémy pro dokončování kódu mají potíže s informacemi rozptýlenými napříč rozsáhlými kódovými základnami, což omezuje jejich výkonnost. Práce představuje framework pro kompozici kontextu, který extrahuje relevantní informace z repozitářů, a pipeline pro dolaďování modelů, hodnocené prostřednictvím systematického experimentování. Výzkum ukazuje, že strategie výběru kontextu významně ovlivňuje kvalitu dokončování během inference, zatímco předtrénování na úrovni repozitáře zachovává schopnosti učení v kontextu. Studie zejména prokazuje, že výpočetní požadavky pro rozšíření kontextového okna lze výrazně snížit při zachování konkurenceschopného výkonu, čímž posouvá dokončování kódu vpřed umožněním lepší integrace informací v rámci celého projektu.}
+\ctufitkeywordsCZE{dokončování kódu na úrovni repozitáře, projektové přizpůsobení, učení v kontextu, dlouhý kontext, rozšíření kontextu, účinné využívání zdrojů, Transformer, Code LLM}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CUSTOMIZATION of this template
@@ -184,7 +182,33 @@
   I declare that I have used AI tools during the preparation and writing of my thesis. I have verified the generated content. I confirm that I am aware that I am fully responsible for the content of the thesis.
 \end{declarationpage}
 
-\printabstractpage
+\newcommand{\printczechabstractpage}{%
+\begin{abstractpage}
+\begin{abstrakt}%
+\begin{sloppypar}\noindent
+\thectufitabstrakt
+\end{sloppypar}
+\end{abstrakt}
+
+\vskip 0.5cm
+
+{\noindent\color{heading}\bfseries Klíčová slova\hspace{1em}}{\thectufitklicovaslova}
+\end{abstractpage}
+\cleardoublepage
+}
+
+\begin{abstractpage}
+\begin{abstract}%
+\thectufitabstract
+\end{abstract}
+
+\vskip 0.5cm
+
+{\noindent\color{heading}\bfseries Keywords\hspace{1em}}{\thectufitkeywords}
+\end{abstractpage}
+\cleardoublepage
+
+\printczechabstractpage
 
 \tableofcontents
 %%%%%%%%%%%%%%%%%%%%%%
@@ -203,10 +227,7 @@
   ABF & Adjustment of the Base Frequency\\
   API & Application Programming Interface\\
   Adam & Adaptive Moment Estimation\\
-  BERT & Bidirectional Encoder Representations from Transformers\\
-  BLEU & Bilingual Evaluation Understudy\\
   BPE & Byte Pair Encoding\\
-  CCFINDER & Cross-File Context Finder\\
   CE & Cross-Entropy\\
   Code LLM & Code Large Language Model\\
   EM & Exact Match\\
@@ -214,15 +235,12 @@
   ES & Edit Similarity\\
   FIM & Fill-in-the-Middle\\
   FL & File-Level\\
-  GELU & Gaussian Error Linear Unit\\
   GPU & Graphics Processing Unit\\
   ICL & In-Context Learning\\
   IoU & Intersection over Union\\
   LCA & Long Code Arena\\
   LLM & Large Language Model\\
   LM & Language Modeling\\
-  LSTM & Long Short-Term Memory\\
-  METEOR & Metric for Evaluation of Translation with Explicit Ordering\\
   MLP & Multi-Layer Perceptron\\
   NLP & Natural Language Processing\\
   OOV & Out-of-Vocabulary\\
@@ -231,11 +249,7 @@
   PPL & Perplexity\\
   RAG & Retrieval-Augmented Generation\\
   RNN & Recurrent Neural Network\\
-  ROUGE & Recall-Oriented Understudy for Gisting Evaluation\\
-  ReLU & Rectified Linear Unit\\
   RoPE & Rotational Position Embedding\\
-  SiLU & Sigmoid Linear Unit\\
-  SwiGLU & Swish Gated Linear Unit\\
 \end{tabular}
 
 \resumeTOCentries
