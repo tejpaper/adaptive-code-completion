@@ -13,7 +13,7 @@
   <a href="#installation">Installation</a> •
   <a href="#reproduction">Reproduction</a> •
   <a href="#license">License</a> •
-  <a href="#citation">Citation</a> •
+  <a href="#citation">Citation</a>
 </p>
 
 ## Abstract

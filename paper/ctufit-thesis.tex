@@ -59,7 +59,7 @@
 %%%%%%%%%%%%%%%%%%%%%%
 \usepackage{dirtree}
 \usepackage{lipsum,tikz}
-\usepackage[style=authoryear,backend=biber,uniquename=false,uniquelist=false,sorting=nyt]{biblatex}
+\usepackage[style=iso-authoryear,backend=biber,uniquename=false,uniquelist=false,sorting=nyt]{biblatex}
 \addbibresource{text/bib-database.bib}
 \usepackage{array}
 \usepackage{xurl}
@@ -87,6 +87,11 @@
 \usepackage{nameref}
 \usepackage{hyperref}
 
+\DefineBibliographyStrings{english}{
+  andothers = {et~al.}
+}
+\renewcommand*{\nameyeardelim}{\hspace{0.35em}}
+\let\familynameformat=\relax
 \ExecuteBibliographyOptions{maxcitenames=1,mincitenames=1}
 
 % Create a separate category for self-citing
@@ -297,7 +302,9 @@
 
 \backmatter
 
+\chapter*{Bibliography}
 % Split bibliography with sapronov2025 first, then a gap, then all other references
+\setlength{\emergencystretch}{\textwidth}
 \printbibliography[category=our_papers,heading=none]
 \printbibliography[notcategory=our_papers,heading=none]
 

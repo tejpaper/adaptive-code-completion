@@ -1,30 +1,3 @@
-% TODO: remove unused references
-% TODO: normalize citations, one style for all
-% TODO: make citations not leave the frame (sloppypar)
-
-% @misc{izadi2024,
-%   title         = {Language Models for Code Completion: A Practical Evaluation},
-%   author        = {Maliheh Izadi and Jonathan Katzy and Tim van Dam and Marc Otten and Razvan Mihai Popescu and Arie van Deursen},
-%   year          = {2024},
-%   eprint        = {2402.16197},
-%   archiveprefix = {arXiv},
-%   primaryclass  = {cs.SE},
-%   url           = {https://arxiv.org/abs/2402.16197}
-% }
-
-% @inproceedings{izadi2022,
-%   series     = {ICSE ’22},
-%   title      = {CodeFill: multi-token code completion by jointly learning from structure and naming sequences},
-%   url        = {http://dx.doi.org/10.1145/3510003.3510172},
-%   doi        = {10.1145/3510003.3510172},
-%   booktitle  = {Proceedings of the 44th International Conference on Software Engineering},
-%   publisher  = {ACM},
-%   author     = {Izadi, Maliheh and Gismondi, Roberta and Gousios, Georgios},
-%   year       = {2022},
-%   month      = may,
-%   collection = {ICSE ’22}
-% }
-
 @misc{lu2021,
   title         = {CodeXGLUE: A Machine Learning Benchmark Dataset for Code Understanding and Generation},
   author        = {Shuai Lu and Daya Guo and Shuo Ren and Junjie Huang and Alexey Svyatkovskiy and Ambrosio Blanco and Colin Clement and Dawn Drain and Daxin Jiang and Duyu Tang and Ge Li and Lidong Zhou and Linjun Shou and Long Zhou and Michele Tufano and Ming Gong and Ming Zhou and Nan Duan and Neel Sundaresan and Shao Kun Deng and Shengyu Fu and Shujie Liu},
@@ -32,6 +5,8 @@
   eprint        = {2102.04664},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2102.04664}
 }
 
@@ -47,30 +22,6 @@
   pages     = {1–1}
 }
 
-% @misc{wang2021,
-%   title         = {Code Completion by Modeling Flattened Abstract Syntax Trees as Graphs},
-%   author        = {Yanlin Wang and Hui Li},
-%   year          = {2021},
-%   eprint        = {2103.09499},
-%   archiveprefix = {arXiv},
-%   primaryclass  = {cs.SE},
-%   url           = {https://arxiv.org/abs/2103.09499}
-% }
-
-% @article{husein2025,
-%   title    = {Large language models for code completion: A systematic literature review},
-%   journal  = {Computer Standards & Interfaces},
-%   volume   = {92},
-%   pages    = {103917},
-%   year     = {2025},
-%   issn     = {0920-5489},
-%   doi      = {https://doi.org/10.1016/j.csi.2024.103917},
-%   url      = {https://www.sciencedirect.com/science/article/pii/S0920548924000862},
-%   author   = {Rasha Ahmad Husein and Hala Aburajouh and Cagatay Catal},
-%   keywords = {Code completion, Large language models, Deep learning, Transformers},
-%   abstract = {Code completion serves as a fundamental aspect of modern software development, improving developers' coding processes. Integrating code completion tools into an Integrated Development Environment (IDE) or code editor enhances the coding process and boosts productivity by reducing errors and speeding up code writing while reducing cognitive load. This is achieved by predicting subsequent tokens, such as keywords, variable names, types, function names, operators, and more. Different techniques can achieve code completion, and recent research has focused on Deep Learning methods, particularly Large Language Models (LLMs) utilizing Transformer algorithms. While several research papers have focused on the use of LLMs for code completion, these studies are fragmented, and there is no systematic overview of the use of LLMs for code completion. Therefore, we aimed to perform a Systematic Literature Review (SLR) study to investigate how LLMs have been applied for code completion so far. We have formulated several research questions to address how LLMs have been integrated for code completion-related tasks and to assess the efficacy of these LLMs in the context of code completion. To achieve this, we retrieved 244 papers from scientific databases using auto-search and specific keywords, finally selecting 23 primary studies based on an SLR methodology for in-depth analysis. This SLR study categorizes the granularity levels of code completion achieved by utilizing LLMs in IDEs, explores the existing issues in current code completion systems, how LLMs address these challenges, and the pre-training and fine-tuning methods employed. Additionally, this study identifies open research problems and outlines future research directions. Our analysis reveals that LLMs significantly enhance code completion performance across several programming languages and contexts, and their capability to predict relevant code snippets based on context and partial input boosts developer productivity substantially.}
-% }
-
 @inproceedings{hindle2012,
   author    = {Hindle, Abram and Barr, Earl T. and Su, Zhendong and Gabel, Mark and Devanbu, Premkumar},
   title     = {On the naturalness of software},
@@ -85,16 +36,6 @@
   series    = {ICSE '12}
 }
 
-% @misc{bhoopchand2016,
-%   title         = {Learning Python Code Suggestion with a Sparse Pointer Network},
-%   author        = {Avishkar Bhoopchand and Tim Rocktäschel and Earl Barr and Sebastian Riedel},
-%   year          = {2016},
-%   eprint        = {1611.08307},
-%   archiveprefix = {arXiv},
-%   primaryclass  = {cs.NE},
-%   url           = {https://arxiv.org/abs/1611.08307}
-% }
-
 @misc{peng2023,
   title         = {The Impact of AI on Developer Productivity: Evidence from GitHub Copilot},
   author        = {Sida Peng and Eirini Kalliamvakou and Peter Cihon and Mert Demirer},
@@ -102,6 +43,8 @@
   eprint        = {2302.06590},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2302.06590}
 }
 
@@ -118,7 +61,6 @@
   doi        = {10.1145/3661145},
   abstract   = {Large language models like GPT and Codex drastically alter many daily tasks, including programming, where they can rapidly generate code from natural language or informal specifications. Thus, they will change what it means to be a programmer and how programmers act during software development. This work explores how AI assistance for code generation impacts productivity. In our user study (N=24), we asked programmers to complete Python programming tasks supported by a) an auto-complete interface using GitHub Copilot, b) a conversational system using GPT-3, and c) traditionally with just the web browser. Aside from significantly increasing productivity metrics, participants displayed distinctive usage patterns and strategies, highlighting that the form of presentation and interaction affects how users engage with these systems. Our findings emphasize the benefits of AI-assisted coding and highlight the different design challenges for these systems.},
   journal    = {Proc. ACM Hum.-Comput. Interact.},
-  month      = jun,
   articleno  = {256},
   numpages   = {29},
   keywords   = {github copilot, gpt, language models, programming, software development, user study}
@@ -131,6 +73,8 @@
   eprint        = {2501.13282},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2501.13282}
 }
 
@@ -141,6 +85,8 @@
   eprint        = {2311.00177},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2311.00177}
 }
 
@@ -151,6 +97,8 @@
   eprint        = {2503.14201},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2503.14201}
 }
 
@@ -241,23 +189,10 @@
   doi        = {10.1145/2744200},
   abstract   = {Code completion is an integral part of modern Integrated Development Environments (IDEs). Developers often use it to explore Application Programming Interfaces (APIs). It is also useful to reduce the required amount of typing and to help avoid typos. Traditional code completion systems propose all type-correct methods to the developer. Such a list is often very long with many irrelevant items. More intelligent code completion systems have been proposed in prior work to reduce the list of proposed methods to relevant items.This work extends one of these existing approaches, the Best Matching Neighbor (BMN) algorithm. We introduce Bayesian networks as an alternative underlying model, use additional context information for more precise recommendations, and apply clustering techniques to improve model sizes. We compare our new approach, Pattern-based Bayesian Networks (PBN), to the existing BMN algorithm. We extend previously used evaluation methodologies and, in addition to prediction quality, we also evaluate model size and inference speed.Our results show that the additional context information we collect improves prediction quality, especially for queries that do not contain method calls. We also show that PBN can obtain comparable prediction quality to BMN, while model size and inference speed scale better with large input sizes.},
   journal    = {ACM Trans. Softw. Eng. Methodol.},
-  month      = dec,
   articleno  = {3},
   numpages   = {31},
   keywords   = {Content assist, code completion, code recommender, evaluation, integrated development environments, machine learning, productivity}
 }
-
-% @inproceedings{nguyen2015,
-%   author    = {Nguyen, Anh Tuan and Nguyen, Tien N.},
-%   booktitle = {2015 IEEE/ACM 37th IEEE International Conference on Software Engineering},
-%   title     = {Graph-Based Statistical Language Model for Code},
-%   year      = {2015},
-%   volume    = {1},
-%   number    = {},
-%   pages     = {858-868},
-%   keywords  = {Context;Syntactics;Probability;Engines;Programming;Accuracy;Computational modeling;Graph-based Language Model;API Suggestion;Syntactic Template Suggestion},
-%   doi       = {10.1109/ICSE.2015.336}
-% }
 
 @inproceedings{bielik2016,
   title     = {PHOG: Probabilistic Model for Code},
@@ -269,7 +204,6 @@
   volume    = {48},
   series    = {Proceedings of Machine Learning Research},
   address   = {New York, New York, USA},
-  month     = {20--22 Jun},
   publisher = {PMLR},
   pdf       = {http://proceedings.mlr.press/v48/bielik16.pdf},
   url       = {https://proceedings.mlr.press/v48/bielik16.html},
@@ -290,6 +224,8 @@
   eprint        = {1903.05734},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1903.05734}
 }
 
@@ -300,6 +236,8 @@
   eprint        = {2012.14631},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2012.14631}
 }
 
@@ -310,6 +248,8 @@
   eprint        = {1910.00577},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1910.00577}
 }
 
@@ -320,6 +260,8 @@
   eprint        = {2005.08025},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2005.08025}
 }
 
@@ -330,6 +272,8 @@
   eprint        = {2003.13848},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2003.13848}
 }
 
@@ -365,6 +309,8 @@
   eprint        = {1508.07909},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1508.07909}
 }
 
@@ -382,6 +328,8 @@
   eprint        = {1706.03762},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1706.03762}
 }
 
@@ -392,6 +340,8 @@
   eprint        = {1409.0473},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1409.0473}
 }
 
@@ -402,6 +352,8 @@
   eprint        = {1809.10853},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1809.10853}
 }
 
@@ -412,6 +364,8 @@
   eprint        = {1904.10509},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1904.10509}
 }
 
@@ -422,6 +376,8 @@
   eprint        = {1906.01787},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1906.01787}
 }
 
@@ -432,6 +388,8 @@
   eprint        = {2002.04745},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2002.04745}
 }
 
@@ -442,6 +400,8 @@
   eprint        = {1607.06450},
   archiveprefix = {arXiv},
   primaryclass  = {stat.ML},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1607.06450}
 }
 
@@ -452,6 +412,8 @@
   eprint        = {1910.07467},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1910.07467}
 }
 
@@ -462,6 +424,8 @@
   eprint        = {1606.08415},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1606.08415}
 }
 
@@ -472,6 +436,8 @@
   eprint        = {2002.05202},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2002.05202}
 }
 
@@ -493,6 +459,8 @@
   eprint        = {2104.09864},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2104.09864}
 }
 
@@ -503,6 +471,8 @@
   eprint        = {2410.06205},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2410.06205}
 }
 
@@ -513,6 +483,8 @@
   eprint        = {1711.05101},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1711.05101}
 }
 
@@ -523,6 +495,8 @@
   eprint        = {1412.6980},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1412.6980}
 }
 
@@ -533,6 +507,8 @@
   eprint        = {1904.09751},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1904.09751}
 }
 
@@ -542,6 +518,8 @@
   year          = {2023},
   eprint        = {2308.12950},
   archiveprefix = {arXiv},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   primaryclass  = {cs.CL},
   url           = {https://arxiv.org/abs/2308.12950}
 }
@@ -553,6 +531,8 @@
   eprint        = {2409.12186},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2409.12186}
 }
 
@@ -563,6 +543,8 @@
   eprint        = {2401.14196},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2401.14196}
 }
 
@@ -573,6 +555,8 @@
   eprint        = {2411.04905},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2411.04905}
 }
 
@@ -583,6 +567,8 @@
   eprint        = {2207.14255},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2207.14255}
 }
 
@@ -593,6 +579,8 @@
   eprint        = {2005.05339},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2005.05339}
 }
 
@@ -603,6 +591,8 @@
   eprint        = {2201.07520},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2201.07520}
 }
 
@@ -613,6 +603,8 @@
   eprint        = {2204.05999},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2204.05999}
 }
 
@@ -623,6 +615,8 @@
   eprint        = {2301.03988},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2301.03988}
 }
 
@@ -633,6 +627,8 @@
   eprint        = {2210.16494},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2210.16494}
 }
 
@@ -651,6 +647,8 @@
   eprint        = {2107.03374},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2107.03374}
 }
 
@@ -661,6 +659,8 @@
   eprint        = {2009.10297},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2009.10297}
 }
 
@@ -684,7 +684,6 @@
   title     = {{ROUGE}: A Package for Automatic Evaluation of Summaries},
   author    = {Lin, Chin-Yew},
   booktitle = {Text Summarization Branches Out},
-  month     = jul,
   year      = {2004},
   address   = {Barcelona, Spain},
   publisher = {Association for Computational Linguistics},
@@ -704,7 +703,6 @@
                Logacheva, Varvara  and
                Pecina, Pavel},
   booktitle = {Proceedings of the Tenth Workshop on Statistical Machine Translation},
-  month     = sep,
   year      = {2015},
   address   = {Lisbon, Portugal},
   publisher = {Association for Computational Linguistics},
@@ -717,7 +715,6 @@
   title     = {{METEOR}: An Automatic Metric for {MT} Evaluation with Improved Correlation with Human Judgments},
   author    = {Banerjee, Satanjeev  and Lavie, Alon},
   booktitle = {Proceedings of the {ACL} Workshop on Intrinsic and Extrinsic Evaluation Measures for Machine Translation and/or Summarization},
-  month     = jun,
   year      = {2005},
   address   = {Ann Arbor, Michigan},
   publisher = {Association for Computational Linguistics},
@@ -732,6 +729,8 @@
   eprint        = {1904.09675},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/1904.09675}
 }
 
@@ -743,7 +742,6 @@
   publisher = {IEEE},
   author    = {Tran, Ngoc and Tran, Hieu and Nguyen, Son and Nguyen, Hoan and Nguyen, Tien},
   year      = {2019},
-  month     = may,
   pages     = {165–176}
 }
 
@@ -757,7 +755,6 @@
   publisher = {Elsevier BV},
   author    = {Evtikhiev, Mikhail and Bogomolov, Egor and Sokolov, Yaroslav and Bryksin, Timofey},
   year      = {2022},
-  month     = sep,
   pages     = {111741}
 }
 
@@ -768,18 +765,10 @@
   eprint        = {2306.03091},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2306.03091}
 }
-
-% @misc{guo2023,
-%   title         = {LongCoder: A Long-Range Pre-trained Language Model for Code Completion},
-%   author        = {Daya Guo and Canwen Xu and Nan Duan and Jian Yin and Julian McAuley},
-%   year          = {2023},
-%   eprint        = {2306.14893},
-%   archiveprefix = {arXiv},
-%   primaryclass  = {cs.SE},
-%   url           = {https://arxiv.org/abs/2306.14893}
-% }
 
 @misc{bogomolov2024,
   title         = {Long Code Arena: a Set of Benchmarks for Long-Context Code Models},
@@ -788,6 +777,8 @@
   eprint        = {2406.11612},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2406.11612}
 }
 
@@ -798,6 +789,8 @@
   eprint        = {2410.01353},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2410.01353}
 }
 
@@ -808,6 +801,8 @@
   eprint        = {2310.11248},
   archiveprefix = {arXiv},
   primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2310.11248}
 }
 
@@ -818,6 +813,8 @@
   eprint        = {2403.10059},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2403.10059}
 }
 
@@ -828,6 +825,8 @@
   eprint        = {2303.12570},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2303.12570}
 }
 
@@ -838,42 +837,10 @@
   eprint        = {2408.03519},
   archiveprefix = {arXiv},
   primaryclass  = {cs.SE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2408.03519}
 }
-
-% @misc{li2024,
-%   title         = {EvoCodeBench: An Evolving Code Generation Benchmark Aligned with Real-World Code Repositories},
-%   author        = {Jia Li and Ge Li and Xuanming Zhang and Yihong Dong and Zhi Jin},
-%   year          = {2024},
-%   eprint        = {2404.00599},
-%   archiveprefix = {arXiv},
-%   primaryclass  = {cs.CL},
-%   url           = {https://arxiv.org/abs/2404.00599}
-% }
-
-% @inproceedings{yu2023,
-%   series     = {ICSE ’24},
-%   title      = {Learning-based Widget Matching for Migrating GUI Test Cases},
-%   url        = {http://dx.doi.org/10.1145/3597503.3623322},
-%   doi        = {10.1145/3597503.3623322},
-%   booktitle  = {Proceedings of the IEEE/ACM 46th International Conference on Software Engineering},
-%   publisher  = {ACM},
-%   author     = {Zhang, Yakun and Zhang, Wenjie and Ran, Dezhi and Zhu, Qihao and Dou, Chengfeng and Hao, Dan and Xie, Tao and Zhang, Lu},
-%   year       = {2023},
-%   month      = feb,
-%   pages      = {1–13},
-%   collection = {ICSE ’24}
-% }
-
-% @misc{zhuo2024,
-%   title         = {BigCodeBench: Benchmarking Code Generation with Diverse Function Calls and Complex Instructions},
-%   author        = {Terry Yue Zhuo and Minh Chien Vu and Jenny Chim and Han Hu and Wenhao Yu and Ratnadira Widyasari and Imam Nur Bani Yusuf and Haolan Zhan and Junda He and Indraneil Paul and Simon Brunner and Chen Gong and Thong Hoang and Armel Randy Zebaze and Xiaoheng Hong and Wen-Ding Li and Jean Kaddour and Ming Xu and Zhihan Zhang and Prateek Yadav and Naman Jain and Alex Gu and Zhoujun Cheng and Jiawei Liu and Qian Liu and Zijian Wang and Binyuan Hui and Niklas Muennighoff and David Lo and Daniel Fried and Xiaoning Du and Harm de Vries and Leandro Von Werra},
-%   year          = {2024},
-%   eprint        = {2406.15877},
-%   archiveprefix = {arXiv},
-%   primaryclass  = {cs.SE},
-%   url           = {https://arxiv.org/abs/2406.15877}
-% }
 
 @misc{deng2024,
   title         = {R\textsuperscript{2}C\textsuperscript{2}-Coder: Enhancing and Benchmarking Real-world Repository-level Code Completion Abilities of Code Large Language Models},
@@ -882,6 +849,8 @@
   eprint        = {2406.01359},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2406.01359}
 }
 
@@ -892,6 +861,8 @@
   eprint        = {2410.21157},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2410.21157}
 }
 
@@ -902,6 +873,8 @@
   eprint        = {2212.10007},
   archiveprefix = {arXiv},
   primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2212.10007}
 }
 
@@ -919,7 +892,6 @@
   doi        = {10.1145/3022671.2984041},
   abstract   = {In this paper we introduce a new approach for learning precise and general probabilistic models of code based on decision tree learning. Our approach directly benefits an emerging class of statistical programming tools which leverage probabilistic models of code learned over large codebases (e.g., GitHub) to make predictions about new programs (e.g., code completion, repair, etc). The key idea is to phrase the problem of learning a probabilistic model of code as learning a decision tree in a domain specific language over abstract syntax trees (called TGen). This allows us to condition the prediction of a program element on a dynamically computed context. Further, our problem formulation enables us to easily instantiate known decision tree learning algorithms such as ID3, but also to obtain new variants we refer to as ID3+ and E13, not previously explored and ones that outperform ID3 in prediction accuracy. Our approach is general and can be used to learn a probabilistic model of any programming language. We implemented our approach in a system called Deep3 and evaluated it for the challenging task of learning probabilistic models of JavaScript and Python. Our experimental results indicate that Deep3 predicts elements of JavaScript and Python code with precision above 82\% and 69\%, respectively. Further, Deep3 often significantly outperforms state-of-the-art approaches in overall prediction accuracy.},
   journal    = {SIGPLAN Not.},
-  month      = oct,
   pages      = {731–747},
   numpages   = {17},
   keywords   = {Code Completion, Decision Trees, Probabilistic Models of Code}
@@ -951,7 +923,6 @@
   doi        = {10.1561/1500000019},
   abstract   = {The Probabilistic Relevance Framework (PRF) is a formal framework for document retrieval, grounded in work done in the 1970—1980s, which led to the development of one of the most successful text-retrieval algorithms, BM25. In recent years, research in the PRF has yielded new retrieval models capable of taking into account document meta-data (especially structure and link-graph information). Again, this has led to one of the most successful Web-search and corporate-search algorithms, BM25F. This work presents the PRF from a conceptual point of view, describing the probabilistic modelling assumptions behind the framework and the different ranking algorithms that result from its application: the binary independence model, relevance feedback models, BM25 and BM25F. It also discusses the relation between the PRF and other statistical models for IR, and covers some related topics, such as the use of non-textual features, and parameter optimisation for models with free parameters.},
   journal    = {Found. Trends Inf. Retr.},
-  month      = apr,
   pages      = {333–389},
   numpages   = {57}
 }
@@ -965,159 +936,190 @@
 }
 
 @misc{xiong2023,
-      title={Effective Long-Context Scaling of Foundation Models}, 
-      author={Wenhan Xiong and Jingyu Liu and Igor Molybog and Hejia Zhang and Prajjwal Bhargava and Rui Hou and Louis Martin and Rashi Rungta and Karthik Abinav Sankararaman and Barlas Oguz and Madian Khabsa and Han Fang and Yashar Mehdad and Sharan Narang and Kshitiz Malik and Angela Fan and Shruti Bhosale and Sergey Edunov and Mike Lewis and Sinong Wang and Hao Ma},
-      year={2023},
-      eprint={2309.16039},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2309.16039}, 
+  title         = {Effective Long-Context Scaling of Foundation Models},
+  author        = {Wenhan Xiong and Jingyu Liu and Igor Molybog and Hejia Zhang and Prajjwal Bhargava and Rui Hou and Louis Martin and Rashi Rungta and Karthik Abinav Sankararaman and Barlas Oguz and Madian Khabsa and Han Fang and Yashar Mehdad and Sharan Narang and Kshitiz Malik and Angela Fan and Shruti Bhosale and Sergey Edunov and Mike Lewis and Sinong Wang and Hao Ma},
+  year          = {2023},
+  eprint        = {2309.16039},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2309.16039}
 }
 
 @misc{hui2024,
-      title={Qwen2.5-Coder Technical Report}, 
-      author={Binyuan Hui and Jian Yang and Zeyu Cui and Jiaxi Yang and Dayiheng Liu and Lei Zhang and Tianyu Liu and Jiajun Zhang and Bowen Yu and Keming Lu and Kai Dang and Yang Fan and Yichang Zhang and An Yang and Rui Men and Fei Huang and Bo Zheng and Yibo Miao and Shanghaoran Quan and Yunlong Feng and Xingzhang Ren and Xuancheng Ren and Jingren Zhou and Junyang Lin},
-      year={2024},
-      eprint={2409.12186},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2409.12186}, 
+  title         = {Qwen2.5-Coder Technical Report},
+  author        = {Binyuan Hui and Jian Yang and Zeyu Cui and Jiaxi Yang and Dayiheng Liu and Lei Zhang and Tianyu Liu and Jiajun Zhang and Bowen Yu and Keming Lu and Kai Dang and Yang Fan and Yichang Zhang and An Yang and Rui Men and Fei Huang and Bo Zheng and Yibo Miao and Shanghaoran Quan and Yunlong Feng and Xingzhang Ren and Xuancheng Ren and Jingren Zhou and Junyang Lin},
+  year          = {2024},
+  eprint        = {2409.12186},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2409.12186}
 }
 
 @misc{kaplan2020,
-      title={Scaling Laws for Neural Language Models}, 
-      author={Jared Kaplan and Sam McCandlish and Tom Henighan and Tom B. Brown and Benjamin Chess and Rewon Child and Scott Gray and Alec Radford and Jeffrey Wu and Dario Amodei},
-      year={2020},
-      eprint={2001.08361},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2001.08361}, 
+  title         = {Scaling Laws for Neural Language Models},
+  author        = {Jared Kaplan and Sam McCandlish and Tom Henighan and Tom B. Brown and Benjamin Chess and Rewon Child and Scott Gray and Alec Radford and Jeffrey Wu and Dario Amodei},
+  year          = {2020},
+  eprint        = {2001.08361},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2001.08361}
 }
 
 @misc{brown2020,
-      title={Language Models are Few-Shot Learners}, 
-      author={Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
-      year={2020},
-      eprint={2005.14165},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2005.14165}, 
+  title         = {Language Models are Few-Shot Learners},
+  author        = {Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+  year          = {2020},
+  eprint        = {2005.14165},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2005.14165}
 }
 
 @misc{hahn2023,
-      title={A Theory of Emergent In-Context Learning as Implicit Structure Induction}, 
-      author={Michael Hahn and Navin Goyal},
-      year={2023},
-      eprint={2303.07971},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2303.07971}, 
+  title         = {A Theory of Emergent In-Context Learning as Implicit Structure Induction},
+  author        = {Michael Hahn and Navin Goyal},
+  year          = {2023},
+  eprint        = {2303.07971},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2303.07971}
 }
 
 @misc{tay2022,
-      title={Efficient Transformers: A Survey}, 
-      author={Yi Tay and Mostafa Dehghani and Dara Bahri and Donald Metzler},
-      year={2022},
-      eprint={2009.06732},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2009.06732}, 
+  title         = {Efficient Transformers: A Survey},
+  author        = {Yi Tay and Mostafa Dehghani and Dara Bahri and Donald Metzler},
+  year          = {2022},
+  eprint        = {2009.06732},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2009.06732}
 }
 
 @misc{liu2021,
-      title={What Makes Good In-Context Examples for GPT-$3$?}, 
-      author={Jiachang Liu and Dinghan Shen and Yizhe Zhang and Bill Dolan and Lawrence Carin and Weizhu Chen},
-      year={2021},
-      eprint={2101.06804},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2101.06804}, 
+  title         = {What Makes Good In-Context Examples for GPT-$3$?},
+  author        = {Jiachang Liu and Dinghan Shen and Yizhe Zhang and Bill Dolan and Lawrence Carin and Weizhu Chen},
+  year          = {2021},
+  eprint        = {2101.06804},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2101.06804}
 }
 
 @misc{lewis2020,
-      title={Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks}, 
-      author={Patrick Lewis and Ethan Perez and Aleksandra Piktus and Fabio Petroni and Vladimir Karpukhin and Naman Goyal and Heinrich Küttler and Mike Lewis and Wen-tau Yih and Tim Rocktäschel and Sebastian Riedel and Douwe Kiela},
-      year={2021},
-      eprint={2005.11401},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2005.11401}, 
+  title         = {Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks},
+  author        = {Patrick Lewis and Ethan Perez and Aleksandra Piktus and Fabio Petroni and Vladimir Karpukhin and Naman Goyal and Heinrich Küttler and Mike Lewis and Wen-tau Yih and Tim Rocktäschel and Sebastian Riedel and Douwe Kiela},
+  year          = {2021},
+  eprint        = {2005.11401},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2005.11401}
 }
 
 @misc{chen2023,
-      title={Extending Context Window of Large Language Models via Positional Interpolation}, 
-      author={Shouyuan Chen and Sherman Wong and Liangjian Chen and Yuandong Tian},
-      year={2023},
-      eprint={2306.15595},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2306.15595}, 
+  title         = {Extending Context Window of Large Language Models via Positional Interpolation},
+  author        = {Shouyuan Chen and Sherman Wong and Liangjian Chen and Yuandong Tian},
+  year          = {2023},
+  eprint        = {2306.15595},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2306.15595}
 }
 
 @misc{peng2023,
-      title={YaRN: Efficient Context Window Extension of Large Language Models}, 
-      author={Bowen Peng and Jeffrey Quesnelle and Honglu Fan and Enrico Shippole},
-      year={2023},
-      eprint={2309.00071},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2309.00071}, 
+  title         = {YaRN: Efficient Context Window Extension of Large Language Models},
+  author        = {Bowen Peng and Jeffrey Quesnelle and Honglu Fan and Enrico Shippole},
+  year          = {2023},
+  eprint        = {2309.00071},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2309.00071}
 }
 
 @online{nvidia2024,
   author       = {{NVIDIA Corporation}},
   title        = {Mixed Precision Training},
-  year         = 2023,
-  url          = {https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html},
-  note         = {Accessed: 2025-05-13},
+  year         = {2023},
+  howpublished = {online},
+  urldate      = {2025-05-13},
+  url          = {https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html}
 }
 
 @misc{pascanu2013,
-      title={On the difficulty of training Recurrent Neural Networks}, 
-      author={Razvan Pascanu and Tomas Mikolov and Yoshua Bengio},
-      year={2013},
-      eprint={1211.5063},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/1211.5063}, 
+  title         = {On the difficulty of training Recurrent Neural Networks},
+  author        = {Razvan Pascanu and Tomas Mikolov and Yoshua Bengio},
+  year          = {2013},
+  eprint        = {1211.5063},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/1211.5063}
 }
 
 @misc{ding2021,
-      title={CogView: Mastering Text-to-Image Generation via Transformers}, 
-      author={Ming Ding and Zhuoyi Yang and Wenyi Hong and Wendi Zheng and Chang Zhou and Da Yin and Junyang Lin and Xu Zou and Zhou Shao and Hongxia Yang and Jie Tang},
-      year={2021},
-      eprint={2105.13290},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2105.13290}, 
+  title         = {CogView: Mastering Text-to-Image Generation via Transformers},
+  author        = {Ming Ding and Zhuoyi Yang and Wenyi Hong and Wendi Zheng and Chang Zhou and Da Yin and Junyang Lin and Xu Zou and Zhou Shao and Hongxia Yang and Jie Tang},
+  year          = {2021},
+  eprint        = {2105.13290},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2105.13290}
 }
 
 @misc{zhang2023b,
-      title={Dive into Deep Learning}, 
-      author={Aston Zhang and Zachary C. Lipton and Mu Li and Alexander J. Smola},
-      year={2023},
-      eprint={2106.11342},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2106.11342}, 
+  title         = {Dive into Deep Learning},
+  author        = {Aston Zhang and Zachary C. Lipton and Mu Li and Alexander J. Smola},
+  year          = {2023},
+  eprint        = {2106.11342},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.LG},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/2106.11342}
 }
 
 @misc{zehui2019,
-      title={DropAttention: A Regularization Method for Fully-Connected Self-Attention Networks}, 
-      author={Lin Zehui and Pengfei Liu and Luyao Huang and Junkun Chen and Xipeng Qiu and Xuanjing Huang},
-      year={2019},
-      eprint={1907.11065},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/1907.11065}, 
+  title         = {DropAttention: A Regularization Method for Fully-Connected Self-Attention Networks},
+  author        = {Lin Zehui and Pengfei Liu and Luyao Huang and Junkun Chen and Xipeng Qiu and Xuanjing Huang},
+  year          = {2019},
+  eprint        = {1907.11065},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CL},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/1907.11065}
 }
 
 @misc{labach2019,
-      title={Survey of Dropout Methods for Deep Neural Networks}, 
-      author={Alex Labach and Hojjat Salehinejad and Shahrokh Valaee},
-      year={2019},
-      eprint={1904.13310},
-      archivePrefix={arXiv},
-      primaryClass={cs.NE},
-      url={https://arxiv.org/abs/1904.13310}, 
+  title         = {Survey of Dropout Methods for Deep Neural Networks},
+  author        = {Alex Labach and Hojjat Salehinejad and Shahrokh Valaee},
+  year          = {2019},
+  eprint        = {1904.13310},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.NE},
+  howpublished  = {online},
+  urldate       = {2025-05-16},
+  url           = {https://arxiv.org/abs/1904.13310}
 }
