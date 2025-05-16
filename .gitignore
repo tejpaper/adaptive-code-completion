@@ -32,6 +32,7 @@ paper/**/*.synctex.gz
 paper/**/*.timestamp
 paper/**/*.toc
 paper/pdfa.xmpi
+paper/ctufit-thesis.pdf
 
 runs/**/checkpoints/*
 !runs/**/checkpoints/.gitkeep

@@ -13,6 +13,7 @@ To investigate the nature of in-context learning capabilities of Code LLMs, we d
     \item[RQ.A2]\phantomsection\label{rq:rq-a2} \textbf{\nameref{sec:fine-tuning-on-compositions}:} Does fine-tuning a pre-trained Code LLM with a specific context composer enhance the subsequent quality of code completion?
 \end{description}
 
+\newpage
 We consider the latter setting to explore the repository-level pre-training stage and to observe phenomena related to context window extension. We define the following research questions related to these objectives:
 
 \begin{sloppypar}
@@ -44,7 +45,7 @@ The Project-Level Code Completion task from the Long Code Arena benchmark \paren
 
 We select two baseline composers from the aforementioned list: File-Level (FL) and Path Distance (PD). For \hyperref[rq:rq-a2]{RQ.A2}, \hyperref[rq:rq-b1]{RQ.B1}, and \hyperref[rq:rq-b2]{RQ.B2}, we denote the composer used to obtain a model checkpoint as the original composer (Or).
 
-In contrast to the training phase, we utilize only file prefixes instead of integral completion files to derive the context for evaluation and to better reflect real-world usage scenarios. This approach involves invoking composers for each target line independently, thereby generating multiple distinct context strings for the same completion file. Duplication and Leak composers are exceptions to this rule due to their requirement for the full completion file content. These composers are outlined separately in the following sections.
+In contrast to the training phase, we utilize only file prefixes instead of integral completion files to derive the context for evaluation and to better reflect real-world usage scenarios. This approach involves invoking composers for each target line independently, thereby generating multiple distinct context\newpage\noindent strings for the same completion file. Duplication and Leak composers are exceptions to this rule due to their requirement for the full completion file content. These composers are outlined separately in the following sections.
 
 Differences in metric values compared to \citet{sapronov2025} are evident. This is because this thesis employs a separate evaluation script, independent of the proprietary one used within JetBrains Research, allowing us to publish all code under the permissive MIT license. Two factors contribute to these differences. First, we use teacher forcing, which combines effectively with the EM metric and enables a greater number of evaluation runs at a reduced cost. Second, the EM version used here does not remove whitespace prior to calculation. These factors result in a stricter metric assessment of the model's performance. Since all modifications are applied uniformly and all numbers are reported under the same setup, the metric values' bias is consistent and does not affect the conclusions drawn from the experiments.
 
@@ -107,12 +108,12 @@ We assess the impact of repository-level pre-training on the previously obtained
 We draw three main observations from the table to address \hyperref[rq:rq-b1]{RQ.B1}:
 
 \begin{enumerate}
-\item ABF without additional fine-tuning significantly impairs the ICL capabilities.
+\item ABF without additional fine-tuning significantly impairs the ICL capabilities.\newpage
 \item The context extension procedure effectively restores model performance after RoPE frequency scaling. Even the File-Level composer, which utilizes input sequences up to 4K tokens, enables the model to adapt to the new \(\theta_{\mathrm{base}}\) value and maintain the same performance level as the original model.
 \item Data leakage of ground-truth lines impedes the recovery of the model's ICL capabilities. This effect is particularly pronounced for the Duplication composer.
 \end{enumerate}
 
-\subsection{Influence of Composition on Context Extension}\label{sec:influence-of-composition-on-context-extension}
+\subsection[Influence of Composition on Context Extension]{Influence of Composition\\on Context Extension}\label{sec:influence-of-composition-on-context-extension}
 
 In this section, we address the final research question \hyperref[rq:rq-b2]{RQ.B2} by evaluating the checkpoints obtained after context extension fine-tuning, using various composers to construct the training context. Our conclusions are drawn from \tableref{tab:ocoder-extension}, which is a subset of the comprehensive \tableref{tab:ocoder-extension-extended}.
 
@@ -122,6 +123,7 @@ In this section, we address the final research question \hyperref[rq:rq-b2]{RQ.B
     \shortcaption{Evaluation of repository-level pre-trained OpenCoder-1.5B-Base}{Exact Match scores collected from the long-context evaluation of composer choices employed during the repository-level pre-training stage of OpenCoder-1.5B-Base. All clarifying remarks are consistent with the previous table. Blank cells indicate the absence of a repository-level pre-training stage in OpenCoder's development pipeline.}\label{tab:ocoder-extension}
 \end{table}
 
+\newpage
 To summarize the outcomes of our study, we present the following observations:
 
 \begin{enumerate}
@@ -147,6 +149,7 @@ The main practical contribution of this research is the identification of a low-
 
 We note that the same model's extrapolation behavior, as shown in \figureref{fig:beyond-training-window-inproject}, was partially reported by \citet{rozière2023}. Specifically, when the model is initialized with RoPE from scratch and trained on sequences up to \(N\) tokens, it is unable to extrapolate beyond its pre-training length. However, after applying ABF and optimizing for a few steps on sequences up to \(M > N\) tokens, the model learns to extrapolate not only beyond \(N\) tokens but also for values greater than \(M\). While we confirm this finding, the core novelty of our evaluation lies in the case where \(M = N\), which demonstrates the preservation of described properties.
 
+\newpage
 \section{Supplementary Results}
 
 To diversify the research, in this section we provide a supplementary analysis of the experiments focused on investigating the effects of order modifications and gradient masking.
@@ -171,10 +174,12 @@ Another observation is that disabling gradient masking eliminates the detrimenta
 
 \section{Limitations and Future Work}
 
+\begin{sloppypar}
 Although we have addressed all research questions and inferred various insights, several directions for scaling the conducted experiments and new prospects for extending the work further remain open.
+\end{sloppypar}
 
 The empirical results provided are based on the utilization of two Code LLMs, which narrows the generalizability of our research. This limitation is particularly pronounced for \hyperref[rq:rq-b1]{RQ.B1} and \hyperref[rq:rq-b2]{RQ.B2}, as OpenCoder is the only modern Code LLM released without repository-level pre-training, leaving no alternatives yet to scale this direction. We conclude that a better practice for model providers would be to release all major model checkpoints obtained throughout the development pipeline, as this would foster the growth of the field by outsourcing less compute-intensive exploration to the open research community.
 
-The evidence of a repository-level pre-training setup that requires fewer resources and achieves competitive results suggests significant potential for future exploration of the optimal recipe for this stage. First, a mixed approach combining different composers to benefit from their individual factors can be explored. Second, other RoPE extension methods can be tested using the same experimental design. Third, a proper metric for token efficiency can be developed to assess the trade-off between the compute used and the performance achieved.
+The evidence of a repository-level pre-training setup that requires fewer resources and achieves competitive results suggests significant potential for future exploration of the optimal recipe for this stage. First, a mixed approach combining different composers to benefit from their individual factors can be explored. Second, other RoPE extension methods can be tested using the same\newpage\noindent experimental design. Third, a proper metric for token efficiency can be developed to assess the trade-off between the compute used and the performance achieved.
 
-Another important line of future work is to verify the findings on other code-related tasks and test whether they can be transferred to the NLP domain.
+Another important line of future work is to verify the findings on other code-related tasks and test whether they can be transferred to the Natural Language Processing domain.

@@ -22,7 +22,7 @@ The proper representation of text is critical to effective language modeling des
 
 \subsection{Tokens}\label{sec:tokens}
 
-The first reason why words may not be the optimal choice for representing discrete units of text is the \textit{out-of-vocabulary problem}, which refers to the presence of words (or tokens) that are absent from a language model's vocabulary. This challenge arises from the inherently dynamic nature of language, which lacks fixed boundaries. As language evolves, some words become obsolete while new ones emerge. Additionally, the text corpora used for training language models often contain typographical errors and other artifacts of human language.
+The first reason why words may not be the optimal choice for representing discrete units of text is the Out-of-Vocabulary (OOV) problem, which refers to the presence of words (or tokens) that are absent from a language model's vocabulary. This challenge arises from the inherently dynamic nature of language, which lacks fixed boundaries. As language evolves, some words become obsolete while new ones emerge. Additionally, the text corpora used for training language models often contain typographical errors and other artifacts of human language.
 
 The second reason is that the language models require statistical information about the co-occurrence of words to capture the semantics of the language. It becomes a problem with rare words whose representations in models lack a learning signal. This phenomenon can be lucidly demonstrated with Zipf's law, which states that in a given corpus, the frequency of any word is inversely proportional to its rank in the frequency table \parencite{estoup1916}. This implies that a small number of words are used very frequently, while the majority are rare. Consequently, language models trained on word-level representations may struggle to learn these infrequent words, leading to poor generalization.
 
@@ -180,6 +180,7 @@ where \(d = d_k\) and \(\Theta = \{\theta_i=\theta_{\mathrm{base}}^{-2(i-1)/d}, 
 
 Note two important details regarding the application of RoPE. First, it requires \(d\) to be even. Second, it is applied across all heads in multi-head attention without repeating the rotation frequency \(h\) times, inherently adding more functional bias to heads working on higher frequencies \parencite{barbero2024}.
 
+\newpage
 When multiplying query and key matrices in \equationref{eq:attention}, the two embeddings \(\mathbf{x}_m\) and \(\mathbf{x}_n\) derive the attention score decay based on the relative distance \(m-n\) between them:
 \begin{equation}
 	\mathbf{q}_m^{\top}\mathbf{k}_n

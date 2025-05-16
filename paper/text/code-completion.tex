@@ -1,6 +1,6 @@
 \chapter{Code Completion}\label{chap:code-completion}
 
-The upcoming chapter provides a comprehensive examination of code completion. It begins with a definition of the task. The chapter then delves into the motivations for advancing code completion techniques, highlighting their impact on productivity and learning. A historical overview of the evolution of code completion methods is presented, tracing the transition from deterministic approaches to sophisticated learning-based systems. Finally, the chapter categorizes code completion based on various criteria.
+The upcoming chapter provides a comprehensive examination of code completion. It begins with a definition of the task, then delves into the motivations for advancing code completion techniques, highlighting their impact on productivity and learning. Finally, the categorization of code completion based on various criteria is presented.
 
 \section{Task Definition}
 
@@ -22,35 +22,9 @@ Due to the simple and atomic formulation of code completion, it possesses the im
 
 In summary, code completion stands as a foundational and multifaceted tool within modern software development. Its benefits extend beyond mere convenience, offering measurable improvements in efficiency, learning, and code quality. As advancements in AI continue to refine its capabilities, code completion not only streamlines day-to-day programming tasks but also acts as a cornerstone for broader innovations in AI-assisted software engineering.
 
-\section{Evolution of Methods}\label{sec:evolution-of-code-completion}
-
-\begin{sloppypar}
-Approaches to code completion have evolved considerably over the past few decades, progressing from simple deterministic methods to sophisticated learning-based systems. This section highlights key developments in the history of code completion. The Related Work section of the~\citet{ciniselli2021} was mainly used to compile this valuable information.
-\end{sloppypar}
-
-In the early years, code completion methods primarily relied on rule-based approaches and static type information. These systems typically presented the user with a list of type-compatible methods or variables, often sorted alphabetically~\parencite{mandelin2005}. While straightforward to implement, these methods lacked contextual awareness and often produced lengthy suggestion lists that were cumbersome to navigate.
-
-A significant advancement came with clone-based completion methods, where code fragments from existing repositories were identified and reused as completion suggestions \parencite{hill2004}. These approaches recognized that developers often write repetitive code patterns, but they were limited by the need for exact or near-exact matches in the code database.
-
-The next major evolution occurred when researchers began applying statistical methods to code completion. \citet{han2009} introduced a novel approach that expanded abbreviated inputs into complete code tokens using Hidden Markov Models trained on example code. This represented an early step toward probabilistic code completion. \citet{hindle2012} demonstrated that software exhibits natural patterns that can be captured by statistical language models, laying the groundwork for treating code completion as a language modeling problem.
-
-Building on this foundation, more sophisticated probabilistic models were developed. \citet{raychev2014} applied statistical language models specifically for code completion tasks, while \citet{bielik2016} introduced Probabilistic Higher Order Grammar, which parameterized grammar production rules on a context obtained from executing functions learned from data. Bayesian Networks were also explored by \citet{proksch2015}, who used additional context information beyond just the static type to generate completion suggestions.
-
-Context-sensitivity became increasingly important as code completion systems matured. \citet{asaduzzaman2014} developed CSCC, which leveraged previous code examples to recommend method calls by considering the surrounding code context. This approach demonstrated how incorporating more contextual information affects the relevance of completion suggestions.
-
-The rise of deep learning brought another paradigm shift to code completion. Recurrent Neural Networks (RNNs), particularly Long Short-Term Memory (LSTM) networks, were applied to model the sequential nature of code. \citet{ginzberg2017} explored both standard LSTMs and attention-augmented networks for token-level code completion, establishing new capabilities in code prediction tasks.
-
-Recent years have witnessed the adoption of even more powerful neural architectures. \citet{karampatsis2019} tackled the Out-of-Vocabulary (OOV) problem in code completion using subword units with neural language models. \citet{liu2020} leveraged multi-task learning and pre-trained language models for code completion, while also incorporating type information to assist in identifier prediction.
-
-The latest advancements utilize Transformer-based architectures, which have proven effective in Natural Language Processing (NLP). \citet{svyatkovskiy2020} introduced IntelliCode Compose, a general-purpose code completion tool that predicts sequences of code tokens using a Transformer model. \citet{kim2021} enhanced Transformer models by incorporating syntactic structure awareness through representations based on Abstract Syntax Tree. These Transformer architectures address limitations of previous sequence models by allowing attention to any part of the input context, rather than relying solely on sequential information. Furthermore, attention mechanisms enable Transformers to consider relationships between distant parts of the code that have semantic connections, overcoming the long-range dependency challenges faced by RNN-based approaches.
-
-Parallel to these developments, structural approaches that go beyond treating code as a mere sequence of tokens have gained prominence. \citet{alon2019} proposed a structural language modeling approach that leverages the strict syntax of programming languages to model code as a tree, capturing both syntactic and semantic relationships in the code. These structure-aware models offer an alternative to purely sequential approaches by explicitly modeling the hierarchical nature of source code.
-
-The evolution of code completion methods reflects a general trend toward more contextually aware, semantically rich, and structurally informed models that capture the unique characteristics of source code compared to natural language. It also emphasizes the dominance of the probabilistic approaches over the deterministic ones.
-
 \section{Taxonomy of Code Completion}
 
-The concept of code completion lacks a strict definition within the field, as its interpretation has evolved with the various approaches employed to address it over time (see \sectionref{sec:evolution-of-code-completion} for more details). This section provides a comprehensive overview of the diverse characteristics of code completion and highlights the specific focus of this thesis.
+The concept of code completion lacks a strict definition within the field, as its interpretation has evolved with the various approaches employed to address it over time (see the Related Work section of the~\citet{ciniselli2021} for more details). This section provides a comprehensive overview of the diverse characteristics of code completion and highlights the specific focus of this thesis.
 
 To grasp the meaning of the subsequent text, it is crucial to understand the term \textit{token}, which refers to any subsequence of characters with a finite length. The utility of this term is further justified in \sectionref{sec:tokens}.
 

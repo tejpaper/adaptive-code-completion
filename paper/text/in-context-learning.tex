@@ -38,6 +38,7 @@ Not only the number of demonstrations but also their relevance to the task has b
 
 Closely related to this idea is the Retrieval-Augmented Generation (RAG) framework, which introduces a separate retrieval step in the prompt engineering procedure \parencite{lewis2020}. The objective of this mechanism is to provide the model with access to a non-parametric chunk of information related to the task at hand. The provided context can be either a factual knowledge supplement or the demonstrations required by the ICL setting.
 
+\newpage
 \begin{sloppypar}
 RAG addresses the problem of overfitting and updates the outdated parameter-based memory of the model with a more relevant, query-conditioned context.
 \end{sloppypar}
@@ -46,7 +47,7 @@ RAG addresses the problem of overfitting and updates the outdated parameter-base
 
 Since long context is an obstacle present at the architectural level, it affects both the inference and training modes of the model. The latter is particularly problematic, as it is more resource intensive. This issue is mitigated by dividing the model development pipeline into multiple stages, the specific cases for Code LLMs of which are discussed in \sectionref{sec:training-stages}. First, models are heavily trained on a small context window, which is then extended to larger ones. This approach drastically reduces training time and long context data requirements, thereby increasing the efficiency of the pipeline \parencite{xiong2023}.
 
-\textit{Context extension} is functionally linked to RoPE, as the only novel information passed to the model with longer contexts is the greater positional span. This necessitates the introduction of an extrapolation property for this information. However, this cannot be directly achieved by simply training on longer sequences, as RoPE has been shown to be a universal approximator and suffers greatly on ranges outside of the original context window \parencite{chen2023}. To address this issue, multiple methods have been proposed (\cite{chen2023};~\cite{rozière2023};~\cite{peng2023};~\cite{xiong2023}), the main idea of which is to shift from the landscape of the extrapolation problem to that of interpolation.
+\textit{Context extension} is functionally linked to RoPE, as the only novel information passed to the model with longer contexts is the greater positional span. This necessitates the introduction of an extrapolation property for this information. However, this cannot be directly achieved by simply training on longer sequences, as RoPE has been shown to be a universal approximator and suffers greatly on ranges outside of the original context window \mbox{\parencite{chen2023}}. To address this issue, multiple methods have been proposed (\cite{chen2023};~\cite{rozière2023};~\cite{peng2023};~\cite{xiong2023}), the main idea of which is to shift from the landscape of the extrapolation problem to that of interpolation.
 
 The most fundamental modification in the model's architecture between short and long training stages is an Adjustment of the Base Frequency (ABF) parameter of RoPE, as concurrently proposed by \citet{rozière2023} and \citet{xiong2023}. More specifically, \(\theta_{\mathrm{base}}\) is scaled by one or two orders of magnitude to diminish the decay of the attention scores related to the increased relative distance \(m - n\) between tokens.
 

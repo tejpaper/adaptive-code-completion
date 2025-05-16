@@ -22,20 +22,6 @@
   pages     = {1–1}
 }
 
-@inproceedings{hindle2012,
-  author    = {Hindle, Abram and Barr, Earl T. and Su, Zhendong and Gabel, Mark and Devanbu, Premkumar},
-  title     = {On the naturalness of software},
-  year      = {2012},
-  isbn      = {9781467310673},
-  publisher = {IEEE Press},
-  abstract  = {Natural languages like English are rich, complex, and powerful. The highly creative and graceful use of languages like English and Tamil, by masters like Shakespeare and Avvaiyar, can certainly delight and inspire. But in practice, given cognitive constraints and the exigencies of daily life, most human utterances are far simpler and much more repetitive and predictable. In fact, these utterances can be very usefully modeled using modern statistical methods. This fact has led to the phenomenal success of statistical approaches to speech recognition, natural language translation, question-answering, and text mining and comprehension. We begin with the conjecture that most software is also natural, in the sense that it is created by humans at work, with all the attendant constraints and limitations---and thus, like natural language, it is also likely to be repetitive and predictable. We then proceed to ask whether a) code can be usefully modeled by statistical language models and b) such models can be leveraged to support software engineers. Using the widely adopted n-gram model, we provide empirical evidence supportive of a positive answer to both these questions. We show that code is also very repetitive, and in fact even more so than natural languages. As an example use of the model, we have developed a simple code completion engine for Java that, despite its simplicity, already improves Eclipse's completion capability. We conclude the paper by laying out a vision for future research in this area.},
-  booktitle = {Proceedings of the 34th International Conference on Software Engineering},
-  pages     = {837–847},
-  numpages  = {11},
-  location  = {Zurich, Switzerland},
-  series    = {ICSE '12}
-}
-
 @misc{peng2023,
   title         = {The Impact of AI on Developer Productivity: Evidence from GitHub Copilot},
   author        = {Sida Peng and Eirini Kalliamvakou and Peter Cihon and Mert Demirer},
@@ -102,157 +88,6 @@
   url           = {https://arxiv.org/abs/2503.14201}
 }
 
-@inproceedings{mandelin2005,
-  author    = {Mandelin, David and Xu, Lin and Bod\'{\i}k, Rastislav and Kimelman, Doug},
-  title     = {Jungloid mining: helping to navigate the API jungle},
-  year      = {2005},
-  isbn      = {1595930566},
-  publisher = {Association for Computing Machinery},
-  address   = {New York, NY, USA},
-  url       = {https://doi.org/10.1145/1065010.1065018},
-  doi       = {10.1145/1065010.1065018},
-  abstract  = {Reuse of existing code from class libraries and frameworks is often difficult because APIs are complex and the client code required to use the APIs can be hard to write. We observed that a common scenario is that the programmer knows what type of object he needs, but does not know how to write the code to get the object.In order to help programmers write API client code more easily, we developed techniques for synthesizing jungloid code fragments automatically given a simple query that describes that desired code in terms of input and output types. A jungloid is simply a unary expression; jungloids are simple, enabling synthesis, but are also versatile, covering many coding problems, and composable, combining to form more complex code fragments. We synthesize jungloids using both API method signatures and jungloids mined from a corpus of sample client programs.We implemented a tool, prospector, based on these techniques. prospector is integrated with the Eclipse IDE code assistance feature, and it infers queries from context so there is no need for the programmer to write queries. We tested prospector on a set of real programming problems involving APIs; prospector found the desired solution for 18 of 20 problems. We also evaluated prospector in a user study, finding that programmers solved programming problems more quickly and with more reuse when using prospector than without prospector.},
-  booktitle = {Proceedings of the 2005 ACM SIGPLAN Conference on Programming Language Design and Implementation},
-  pages     = {48–61},
-  numpages  = {14},
-  keywords  = {mining, program synthesis, reuse},
-  location  = {Chicago, IL, USA},
-  series    = {PLDI '05}
-}
-
-@inproceedings{hill2004,
-  author    = {Hill, Rosco and Rideout, Joe},
-  title     = {Automatic Method Completion},
-  year      = {2004},
-  isbn      = {0769521312},
-  publisher = {IEEE Computer Society},
-  address   = {USA},
-  abstract  = {Modern software development environments include tools to help programmers write code efficiently and accurately. For example many integrated development environments include variable name completion, method name completion and recently refactoring tools have been added to some environments. This paper extends the idea of automatic completion to include completion of the body of a method by employing machine learning algorithms on the near duplicate code segments that frequently exist in large software projects.},
-  booktitle = {Proceedings of the 19th IEEE International Conference on Automated Software Engineering},
-  pages     = {228–235},
-  numpages  = {8},
-  series    = {ASE '04}
-}
-
-@inproceedings{han2009,
-  author    = {Han, Sangmok and Wallace, David R. and Miller, Robert C.},
-  booktitle = {2009 IEEE/ACM International Conference on Automated Software Engineering},
-  title     = {Code Completion from Abbreviated Input},
-  year      = {2009},
-  volume    = {},
-  number    = {},
-  pages     = {332-343},
-  keywords  = {Hidden Markov models;Lead;Programming profession;Acceleration;Software engineering;Feedback;User interfaces;System testing;Sampling methods;Data mining;Code Completion;Hidden Markov Model;Abbreviation;Multiple Keywords;Code Assistants;Data Mining},
-  doi       = {10.1109/ASE.2009.64}
-}
-
-@inproceedings{raychev2014,
-  author    = {Raychev and others},
-  title     = {Code completion with statistical language models},
-  year      = {2014},
-  isbn      = {9781450327848},
-  publisher = {Association for Computing Machinery},
-  address   = {New York, NY, USA},
-  url       = {https://doi.org/10.1145/2594291.2594321},
-  doi       = {10.1145/2594291.2594321},
-  abstract  = {We address the problem of synthesizing code completions for programs using APIs. Given a program with holes, we synthesize completions for holes with the most likely sequences of method calls.Our main idea is to reduce the problem of code completion to a natural-language processing problem of predicting probabilities of sentences. We design a simple and scalable static analysis that extracts sequences of method calls from a large codebase, and index these into a statistical language model. We then employ the language model to find the highest ranked sentences, and use them to synthesize a code completion. Our approach is able to synthesize sequences of calls across multiple objects together with their arguments.Experiments show that our approach is fast and effective. Virtually all computed completions typecheck, and the desired completion appears in the top 3 results in 90\% of the cases.},
-  booktitle = {Proceedings of the 35th ACM SIGPLAN Conference on Programming Language Design and Implementation},
-  pages     = {419–428},
-  numpages  = {10},
-  location  = {Edinburgh, United Kingdom},
-  series    = {PLDI '14}
-}
-
-@inproceedings{asaduzzaman2014,
-  author    = {Asaduzzaman, Muhammad and Roy, Chanchal K. and Schneider, Kevin A. and Hou, Daqing},
-  booktitle = {2014 IEEE International Conference on Software Maintenance and Evolution},
-  title     = {Context-Sensitive Code Completion Tool for Better API Usability},
-  year      = {2014},
-  volume    = {},
-  number    = {},
-  pages     = {621-624},
-  keywords  = {Context;Proposals;Java;Context modeling;Receivers;Libraries;Databases;API methods;Code Completion;Eclipse plugin},
-  doi       = {10.1109/ICSME.2014.110}
-}
-
-@article{proksch2015,
-  author     = {Proksch, Sebastian and Lerch, Johannes and Mezini, Mira},
-  title      = {Intelligent Code Completion with Bayesian Networks},
-  year       = {2015},
-  issue_date = {December 2015},
-  publisher  = {Association for Computing Machinery},
-  address    = {New York, NY, USA},
-  volume     = {25},
-  number     = {1},
-  issn       = {1049-331X},
-  url        = {https://doi.org/10.1145/2744200},
-  doi        = {10.1145/2744200},
-  abstract   = {Code completion is an integral part of modern Integrated Development Environments (IDEs). Developers often use it to explore Application Programming Interfaces (APIs). It is also useful to reduce the required amount of typing and to help avoid typos. Traditional code completion systems propose all type-correct methods to the developer. Such a list is often very long with many irrelevant items. More intelligent code completion systems have been proposed in prior work to reduce the list of proposed methods to relevant items.This work extends one of these existing approaches, the Best Matching Neighbor (BMN) algorithm. We introduce Bayesian networks as an alternative underlying model, use additional context information for more precise recommendations, and apply clustering techniques to improve model sizes. We compare our new approach, Pattern-based Bayesian Networks (PBN), to the existing BMN algorithm. We extend previously used evaluation methodologies and, in addition to prediction quality, we also evaluate model size and inference speed.Our results show that the additional context information we collect improves prediction quality, especially for queries that do not contain method calls. We also show that PBN can obtain comparable prediction quality to BMN, while model size and inference speed scale better with large input sizes.},
-  journal    = {ACM Trans. Softw. Eng. Methodol.},
-  articleno  = {3},
-  numpages   = {31},
-  keywords   = {Content assist, code completion, code recommender, evaluation, integrated development environments, machine learning, productivity}
-}
-
-@inproceedings{bielik2016,
-  title     = {PHOG: Probabilistic Model for Code},
-  author    = {Bielik, Pavol and Raychev, Veselin and Vechev, Martin},
-  booktitle = {Proceedings of The 33rd International Conference on Machine Learning},
-  pages     = {2933--2942},
-  year      = {2016},
-  editor    = {Balcan, Maria Florina and Weinberger, Kilian Q.},
-  volume    = {48},
-  series    = {Proceedings of Machine Learning Research},
-  address   = {New York, New York, USA},
-  publisher = {PMLR},
-  pdf       = {http://proceedings.mlr.press/v48/bielik16.pdf},
-  url       = {https://proceedings.mlr.press/v48/bielik16.html},
-  abstract  = {We introduce a new generative model for code called probabilistic higher order grammar (PHOG). PHOG generalizes probabilistic context free grammars (PCFGs) by allowing conditioning of a production rule beyond the parent non-terminal, thus capturing rich contexts relevant to programs. Even though PHOG is more powerful than a PCFG, it can be learned from data just as efficiently. We trained a PHOG model on a large JavaScript code corpus and show that it is more precise than existing models, while similarly fast. As a result, PHOG can immediately benefit existing programming tools based on probabilistic models of code.}
-}
-
-@inproceedings{ginzberg2017,
-  title  = {Automatic Code Completion},
-  author = {Adam Ginzberg and Lindsey Kostas and Tara Balakrishnan},
-  year   = {2017},
-  url    = {https://api.semanticscholar.org/CorpusID:35359813}
-}
-
-@misc{karampatsis2019,
-  title         = {Maybe Deep Neural Networks are the Best Choice for Modeling Source Code},
-  author        = {Rafael-Michael Karampatsis and Charles Sutton},
-  year          = {2019},
-  eprint        = {1903.05734},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.SE},
-  howpublished  = {online},
-  urldate       = {2025-05-16},
-  url           = {https://arxiv.org/abs/1903.05734}
-}
-
-@misc{liu2020,
-  title         = {Multi-task Learning based Pre-trained Language Model for Code Completion},
-  author        = {Fang Liu and Ge Li and Yunfei Zhao and Zhi Jin},
-  year          = {2020},
-  eprint        = {2012.14631},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.SE},
-  howpublished  = {online},
-  urldate       = {2025-05-16},
-  url           = {https://arxiv.org/abs/2012.14631}
-}
-
-@misc{alon2019,
-  title         = {Structural Language Models of Code},
-  author        = {Uri Alon and Roy Sadaka and Omer Levy and Eran Yahav},
-  year          = {2019},
-  eprint        = {1910.00577},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.LG},
-  howpublished  = {online},
-  urldate       = {2025-05-16},
-  url           = {https://arxiv.org/abs/1910.00577}
-}
-
 @misc{svyatkovskiy2020,
   title         = {IntelliCode Compose: Code Generation Using Transformer},
   author        = {Alexey Svyatkovskiy and Shao Kun Deng and Shengyu Fu and Neel Sundaresan},
@@ -263,18 +98,6 @@
   howpublished  = {online},
   urldate       = {2025-05-16},
   url           = {https://arxiv.org/abs/2005.08025}
-}
-
-@misc{kim2021,
-  title         = {Code Prediction by Feeding Trees to Transformers},
-  author        = {Seohyun Kim and Jinman Zhao and Yuchi Tian and Satish Chandra},
-  year          = {2021},
-  eprint        = {2003.13848},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.SE},
-  howpublished  = {online},
-  urldate       = {2025-05-16},
-  url           = {https://arxiv.org/abs/2003.13848}
 }
 
 @article{estoup1916,
