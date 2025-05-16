@@ -52,7 +52,7 @@ This metric is crucial for evaluating code completion scenarios, as it provides 
 
 \subsubsection{Cross-Entropy and Perplexity}
 
-As mentioned earlier, cross-entropy is employed as a loss function in the training process of language models. More specifically, it represents the average log-likelihood of the individual ground truth tokens. It can also be interpreted as the average number of nats required to encode the model's predictions per token compared to the true distribution.
+As mentioned earlier, cross-entropy is employed as a loss function in the training process of language models. More specifically, it represents the average log-likelihood of the individual ground-truth tokens. It can also be interpreted as the average number of nats required to encode the model's predictions per token compared to the true distribution.
 
 Perplexity (PPL) is the exponentiated form of cross-entropy, providing a more intuitive interpretation as the average number of choices among which the model is uncertain. For this reason, perplexity is often referred to as the weighted average branching factor of a language \parencite{murphy2022}.
 
@@ -61,7 +61,7 @@ Both metrics are frequently used as proxies for assessing model quality. They ar
 \subsubsection{Top-\(k\) Accuracy}
 
 \begin{sloppypar}
-Top-\(k\) Accuracy is a metric that quantifies the frequency with which the model's top-\(k\) predictions align with the actual ground truth completion. Within the scope of this thesis, Top-\(k\) Accuracy is considered as a token-level metric to provide a more granular evaluation of the model's performance.
+Top-\(k\) Accuracy is a metric that quantifies the frequency with which the model's top-\(k\) predictions align with the actual ground-truth completion. Within the scope of this thesis, Top-\(k\) Accuracy is considered as a token-level metric to provide a more granular evaluation of the model's performance.
 \end{sloppypar}
 
 \subsubsection{Pass@k}
@@ -96,7 +96,7 @@ Several metrics for evaluating generated code have been migrated from machine tr
 
 Besides the chosen inference strategy, types of which were discussed in \sectionref{sec:inference}, there are multiple setups for evaluating the repository-level completion capabilities of the Code LLM.
 
-During training, language models typically employ a technique known as \textit{teacher forcing}. In this method, each subsequent token prediction is conditioned on the ground truth tokens from the preceding sequence. This approach takes advantage of the parallelizable nature of Transformers, facilitating efficient training. Conversely, during evaluation, the model can be conditioned on its own previously generated tokens, offering a more realistic assessment of its capabilities. Despite this, teacher forcing remains prevalent during training for the purpose of collecting metrics and monitoring progress, as it does not require additional forward passes. It is crucial to recognize that teacher forcing can render some metrics meaningless, as they may assume conditioning on the model's output distribution. For example, ES necessitates the generation of a full line solely by the model without external guidance, as it compares entire lines rather than individual tokens. The same statement does not hold for EM, where a single incorrectly generated token results in the entire line being deemed incorrect.
+During training, language models typically employ a technique known as \textit{teacher forcing}. In this method, each subsequent token prediction is conditioned on the ground-truth tokens from the preceding sequence. This approach takes advantage of the parallelizable nature of Transformers, facilitating efficient training. Conversely, during evaluation, the model can be conditioned on its own previously generated tokens, offering a more realistic assessment of its capabilities. Despite this, teacher forcing remains prevalent during training for the purpose of collecting metrics and monitoring progress, as it does not require additional forward passes. It is crucial to recognize that teacher forcing can render some metrics meaningless, as they may assume conditioning on the model's output distribution. For example, ES necessitates the generation of a full line solely by the model without external guidance, as it compares entire lines rather than individual tokens. The same statement does not hold for EM, where a single incorrectly generated token results in the entire line being deemed incorrect.
 
 For single-line code completion, the repository context can be composed based on the file prefix (and suffix in the case of FIM) or the entire file. The former method requires a separate composition and forward pass for each target line in the composition file, offering superior performance. In contrast, the latter requires only a single instance of both, but it risks data leakage of the target line for the retrieval mechanism. Despite the potential issues of the second method, it is suitable for training as it does not necessitate gradient masking for the file prefix and provides more training tokens for loss computation.
 

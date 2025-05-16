@@ -18,9 +18,9 @@
 \ctufityear{2025}
 \ctufitdeclarationplace{Prague}
 \ctufitdeclarationdate{\today}
-\ctufitabstractENG{This thesis addresses the challenge of enhancing code completion models with repository-level context awareness. Modern completion systems struggle with information dispersed across large codebases, limiting their performance. The work presents a context composition framework that extracts relevant repository information and a fine-tuning pipeline for model adaptation, evaluated through systematic experimentation. The research demonstrates that context selection strategy significantly impacts completion quality during inference, while repository-level pre-training preserves in-context learning capabilities. Notably, the study demonstrates that computational requirements for context window extension can be substantially reduced while maintaining competitive performance, advancing code completion by enabling better integration of project-wide information.}
+\ctufitabstractENG{This thesis addresses the challenge of enhancing code completion models with repository-level context awareness. Modern completion systems struggle with information dispersed across large codebases, limiting their performance. The work presents a context composition framework that extracts relevant repository information and a fine-tuning pipeline for model adaptation, evaluated through systematic experimentation. The research demonstrates that context selection strategy significantly impacts completion quality during inference, while repository-level pre-training preserves in-context learning capabilities. Notably, the study demonstrates that computational requirements for context window extension can be substantially reduced while maintaining competitive performance, advancing code completion by enabling better integration of project-wide information.\blfootnote{Home Page: \url{https://github.com/sapromak/adaptive-code-completion}}}
 \ctufitkeywordsENG{repository-level code completion, project adaptation, in-context learning, long context, context extension, resource efficiency, Transformer, Code LLM}
-\ctufitabstractCZE{Tato bakalářská práce se zabývá problematikou vylepšení modelů pro dokončování kódu s povědomím o kontextu na úrovni repozitáře. Moderní systémy pro dokončování kódu mají potíže s informacemi rozptýlenými napříč rozsáhlými kódovými základnami, což omezuje jejich výkonnost. Práce představuje framework pro kompozici kontextu, který extrahuje relevantní informace z repozitářů, a pipeline pro dolaďování modelů, hodnocené prostřednictvím systematického experimentování. Výzkum ukazuje, že strategie výběru kontextu významně ovlivňuje kvalitu dokončování během inference, zatímco předtrénování na úrovni repozitáře zachovává schopnosti učení v kontextu. Studie zejména prokazuje, že výpočetní požadavky pro rozšíření kontextového okna lze výrazně snížit při zachování konkurenceschopného výkonu, čímž posouvá dokončování kódu vpřed umožněním lepší integrace informací v rámci celého projektu.}
+\ctufitabstractCZE{Tato bakalářská práce se zabývá problematikou vylepšení modelů pro dokončování kódu s povědomím o kontextu na úrovni repozitáře. Moderní systémy pro dokončování kódu mají potíže s informacemi rozptýlenými napříč rozsáhlými kódovými základnami, což omezuje jejich výkonnost. Práce představuje framework pro kompozici kontextu, který extrahuje relevantní informace z repozitářů, a pipeline pro dolaďování modelů, hodnocené prostřednictvím systematického experimentování. Výzkum ukazuje, že strategie výběru kontextu významně ovlivňuje kvalitu dokončování během inference, zatímco předtrénování na úrovni repozitáře zachovává schopnosti učení v kontextu. Studie zejména prokazuje, že výpočetní požadavky pro rozšíření kontextového okna lze výrazně snížit při zachování konkurenceschopného výkonu, čímž posouvá dokončování kódu vpřed umožněním lepší integrace informací v rámci celého projektu.\blfootnote{Domovská stránka: \url{https://github.com/sapromak/adaptive-code-completion}}}
 \ctufitkeywordsCZE{dokončování kódu na úrovni repozitáře, projektové přizpůsobení, učení v kontextu, dlouhý kontext, rozšíření kontextu, účinné využívání zdrojů, Transformer, Code LLM}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -151,6 +151,13 @@
 \newcommand{\equationref}[1]{\hyperref[#1]{Equation~\ref*{#1}}}
 \newcommand{\appendixref}[1]{\hyperref[#1]{Appendix~\ref*{#1}}}
 \newcommand{\shortcaption}[2]{\caption[#1]{#2}}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
 
 %%%%%%%%%%%%%%%%%%%%%%
 % DEMO CONTENTS SETTINGS END
