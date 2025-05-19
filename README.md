@@ -128,6 +128,6 @@ MIT & LPPL (paper subdirectory)
   year         = {2025},
   type         = {Bachelor's thesis},
   address      = {Prague, Czech Republic},
-  url          = {https://github.com/tejpaper/project-adaptation-code-completion}
+  url          = {https://github.com/sapromak/adaptive-code-completion}
 }
 ```
