@@ -7,6 +7,8 @@ train_metrics: [
   # Training Decomposed Cross-entropy
   cross_entropy/completion.yaml,
   cross_entropy/context.yaml,
+  cross_entropy/attached.yaml,
+  cross_entropy/detached.yaml,
   cross_entropy/full.yaml,
 
   # Training Decomposed Top-k Accuracy
@@ -36,6 +38,8 @@ valid_metrics: [
   # Validation Decomposed Exact Match
   exact_match/completion_3.yaml,
   exact_match/context_3.yaml,
+  cross_entropy/attached.yaml,
+  cross_entropy/detached.yaml,
   exact_match/full_3.yaml,
 
   # Validation Decomposed Cross-entropy
