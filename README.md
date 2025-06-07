@@ -1,10 +1,10 @@
 <h1 align="center">
   <br>
-    Project Adaptation in Code Completion via In-Context Learning
+    Project Adaptation in Code Completion via In-Context Learning <img src="paper/figures/longcat.jpg" height="25" />
   <br>
 </h1>
 
-<h4 align="center">The source codes on bachelor's thesis</h4>
+<h4 align="center">The source codes for bachelor's thesis</h4>
 
 <p align="center">
   <a href="#abstract">Abstract</a> •
@@ -13,6 +13,7 @@
   <a href="#installation">Installation</a> •
   <a href="#reproduction">Reproduction</a> •
   <a href="#license">License</a> •
+  <a href="#acknowledgments">Acknowledgments</a> •
   <a href="#citation">Citation</a>
 </p>
 
@@ -40,13 +41,13 @@ This thesis addresses the challenge of enhancing code completion models with rep
 
 - **Influence of Composition on Context Extension:** Repository context plays a minimal role in the outcome of context extension.
 
-- **Resource Efficiency:** ✨ Repository-level pre-training can achieve competitive results with significantly fewer resources (73M tokens vs billions). ✨
+- **Resource Efficiency:** ✨ Repository-level pre-training can achieve competitive results with significantly fewer resources (73M tokens vs billions). This contribution is additionally issued in the form of [tiny paper](https://openreview.net/forum?id=t9RN9WX4Ic). ✨
 
 - Other, more detailed insights on the subject of the thesis.
 
 ### Released
 
-The core checkpoints will be available here soon.
+The core checkpoints are available [here](https://huggingface.co/collections/sapromak/repository-level-pre-trained-opencoder-684206bfc99d48a7e94c0789).
 
 ## Structure
 
@@ -67,6 +68,8 @@ The core checkpoints will be available here soon.
 ## Installation
 
 ### Virtual Environment
+
+**Python Version:** 3.11+
 
 ```bash
 python3 -m venv .venv
@@ -117,6 +120,10 @@ The used benchmark is available [here](https://huggingface.co/datasets/JetBrains
 ## License
 
 MIT & LPPL (paper subdirectory)
+
+## Acknowledgments
+
+This thesis is based on the author's internships at [JetBrains Research](https://www.jetbrains.com/research/) and was supervised by Evgenii Glukhov, M.Sc.
 
 ## Citation
 
