@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-    Project Adaptation in Code Completion via In-Context Learning <img src="paper/figures/longcat.jpg" height="25" />
+    Project Adaptation in Code Completion<br>via In-Context Learning <img src="paper/figures/longcat.jpg" height="25" />
   <br>
 </h1>
 
